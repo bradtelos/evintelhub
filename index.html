@@ -113,6 +113,7 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       <button onclick="showTab('partnerships',this)">Strategic Partnerships</button>
     </div>
     <div class="nav-row">
+      <button onclick="showTab('connectivity',this)">Connectivity</button>
       <button onclick="showTab('competitors',this)" style="background:#FAECE7;color:#711B13;border-color:#F0997B;font-weight:500;">&#9650; Competitors</button>
       <button onclick="showTab('modeling',this)" style="background:#EAF3DE;color:#27500A;border-color:#C0DD97;font-weight:500;">&#9654; Modeler</button>
     </div>
@@ -830,6 +831,151 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
   </div>
 
 
+
+
+  <!-- CONNECTIVITY TAB -->
+  <div id="connectivity" class="section">
+    <div class="page-title">Connectivity</div>
+    <div class="page-sub">WiFi and cellular solutions for bringing EV chargers online — hardware, carriers, costs, and site decision framework</div>
+
+    <!-- KEY PRINCIPLE -->
+    <div style="background:#E6F1FB;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;border:0.5px solid #B5D4F4;">
+      <div style="font-size:12px;font-weight:500;color:#0C447C;margin-bottom:4px;">Key framing — data usage is minimal</div>
+      <div style="font-size:12px;color:#185FA5;line-height:1.6;">EV chargers send telemetry, session data, and management pings — not streaming video. Realistic usage is <strong style="font-weight:500;">1–5 GB/month per site</strong> regardless of stall count. This keeps cellular data costs very low and makes connectivity a rounding error in your operating budget. Carry <strong style="font-weight:500;">$1,500/site capex</strong> and <strong style="font-weight:500;">$40/month recurring</strong> as your underwriting line items.</div>
+    </div>
+
+    <!-- DECISION FRAMEWORK -->
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Site decision framework — in order of cost efficiency</div><div class="card-sub">Run through these three steps at every new site before spending anything on connectivity</div></div></div>
+      <hr class="div">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;background:#EAF3DE;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:18px;font-weight:600;color:#27500A;min-width:24px;">1</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#27500A;margin-bottom:3px;">Test existing hotel / property WiFi at stall locations — cost: $0</div>
+            <div style="font-size:12px;color:#3B6D11;line-height:1.55;">Tesla Gen 3 Wall Connectors need a WPA2-secured 2.4GHz network — standard enterprise hotel WiFi meets this spec. Ask: "Can you add our chargers' MAC addresses to a dedicated VLAN or network segment?" Many hotel IT teams will cooperate, especially branded properties (Hilton, Marriott) being pushed by their flag to expand EV. What kills it: security policies blocking non-guest devices, or parking lots out of AP range. Always test signal at proposed stall locations before budgeting anything.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:#f1efe8;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:18px;font-weight:600;color:#1a1a18;min-width:24px;">2</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">Check T-Mobile and Verizon 5G coverage at the specific address — cost: ~$40/month</div>
+            <div style="font-size:12px;color:#5f5e5a;line-height:1.55;">If strong signal is confirmed → deploy a Peplink BR1 Pro 5G with an IoT data plan. This is your default solution for the vast majority of sites in the Cincinnati MSA and target markets. Carrier-agnostic, deployment-ready, one-time capex.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:#FAECE7;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:18px;font-weight:600;color:#711B13;min-width:24px;">3</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#711B13;margin-bottom:3px;">Dedicated ISP line — only if cellular coverage is genuinely poor</div>
+            <div style="font-size:12px;color:#5A1008;line-height:1.55;">Requires hotel/property operator cooperation for ISP provisioning access. Monthly cost ~$50–80/month for a business broadband line. Higher upfront coordination cost, longer lead time. Last resort only — most urban/suburban sites in your target markets will have strong 5G.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION A: CELLULAR -->
+    <div class="section-label">Option A — 5G/LTE cellular router (primary go-to)</div>
+
+    <div class="card" style="border-color:#1D9E75;">
+      <div class="card-header"><div><div class="card-title">Peplink MAX BR1 Pro 5G</div><div class="card-sub">Best value for most sites — recommended default · ~$999 hardware · ~$40/month data</div></div><span class="badge b-green">Recommended</span></div>
+      <hr class="div">
+      <div class="detail">All-in-one cellular router with embedded 5G/LTE modem, WiFi 6, dual SIM slots, and a weatherized metal enclosure. Pole/pedestal-mountable. Rated -40°F to +149°F — survives Ohio winters and surface lot heat. Updated X65 modem released October 2025; price holds at $999. Cloud management via InControl2 included in Year 1 PrimeCare subscription. Dual SIM slots give you a path to a backup carrier in the future without swapping hardware.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost</div>
+          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$999–$1,100</div>
+          <div style="font-size:11px;color:#5f5e5a;">incl. antenna kit</div>
+        </div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Monthly data plan</div>
+          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$30–50/mo</div>
+          <div style="font-size:11px;color:#5f5e5a;">IoT plan, 5–10GB pooled</div>
+        </div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Annual PrimeCare renewal</div>
+          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$179/yr</div>
+          <div style="font-size:11px;color:#5f5e5a;">after Year 1</div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><div class="pros-t">Pros</div><ul><li>Purpose-built for outdoor fixed deployments</li><li>Dual SIM — carrier flexibility without new hardware</li><li>WiFi 6 — future-proof for multi-device sites</li><li>Cloud-managed — monitor all sites remotely via InControl2</li><li>One-time capex fits your underwriting model cleanly</li></ul></div>
+        <div class="cons"><div class="cons-t">Cons</div><ul><li>Requires NEMA-rated enclosure for pedestal mounts (~$50–100 additional)</li><li>External antenna runs needed (vs. HD1 Dome's internal antennas)</li><li>PrimeCare renewal adds ~$180/yr per site</li></ul></div>
+      </div>
+      <div class="badge-row"><span class="badge b-green">Default recommendation</span><span class="badge b-teal">5G + WiFi 6</span><span class="badge b-blue">Dual SIM</span><span class="badge b-gray">Cloud managed</span></div>
+      <div class="notes-area" placeholder="BR1 Pro notes — vendor contacts, carrier plan details, install findings..." id="note-br1pro" oninput="save('br1pro',this.value)"></div>
+      <div id="saved-br1pro" class="saved-note"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Peplink HD1 Dome Pro</div><div class="card-sub">Premium outdoor all-in-one · ~$2,799 hardware · internal antennas · designed for vehicles/marine</div></div><span class="badge b-gray">Not recommended for fixed pedestal installs</span></div>
+      <hr class="div">
+      <div class="detail">Outdoor-first unit with integrated cellular antennas for minimal cable loss. 5G modem with WiFi 6 and dual SIM slots. Pole-mount design is clean. All antennas internal — no external antenna runs needed. Priced at $2,799 — nearly 3x the BR1 Pro for incremental outdoor form factor advantage. Purpose-built for vehicles and marine use where cable routing is genuinely complex. For a fixed pedestal mount with conduit access and power already run by your electrician, the BR1 Pro in a NEMA enclosure achieves the same result at a third of the cost.</div>
+      <div style="background:#FAECE7;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:12px;color:#5A1008;"><strong style="font-weight:500;">Bottom line:</strong> The HD1 Dome Pro is the right tool for vehicles and boats — not for fixed lot pedestal mounts. Save $1,800 per site and use the BR1 Pro instead. Revisit only if you encounter a site with genuinely complex antenna routing constraints.</div>
+      <div class="badge-row" style="margin-top:10px;"><span class="badge b-gray">~$2,799 hardware</span><span class="badge b-gray">Overkill for fixed installs</span></div>
+      <div class="notes-area" placeholder="HD1 Dome notes..." id="note-hd1dome" oninput="save('hd1dome',this.value)"></div>
+      <div id="saved-hd1dome" class="saved-note"></div>
+    </div>
+
+    <!-- OPTION B: HOTEL WIFI -->
+    <div class="section-label">Option B — tap into existing property WiFi (situational)</div>
+
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Hotel / property WiFi access</div><div class="card-sub">Always test first — cost: $0 if it works</div></div><span class="badge b-teal">Test at every site</span></div>
+      <hr class="div">
+      <div class="detail">Tesla Gen 3 Wall Connectors require a WPA2-secured 2.4GHz network. Standard enterprise hotel WiFi meets this spec. Before spending anything on connectivity, test signal strength at the actual stall locations and ask the property IT team to whitelist your chargers' MAC addresses on a dedicated VLAN or network segment.</div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><div class="pros-t">When it works</div><ul><li>Branded hotel properties (Hilton, Marriott) increasingly motivated to support EV — their flags are pushing it</li><li>Parking structures attached to the building — often within AP range</li><li>Properties with modern enterprise WiFi infrastructure</li></ul></div>
+        <div class="cons"><div class="cons-t">When it fails</div><ul><li>Security policies blocking non-guest device registration</li><li>Open surface lots out of AP range</li><li>Older properties with weak or inconsistent WiFi coverage</li><li>IT teams unwilling to add external devices to their network</li></ul></div>
+      </div>
+      <div class="notes-area" placeholder="Property WiFi notes by site — which hotels cooperated, which didn't..." id="note-hotelwifi" oninput="save('hotelwifi',this.value)"></div>
+      <div id="saved-hotelwifi" class="saved-note"></div>
+    </div>
+
+    <!-- OPTION C: STARLINK -->
+    <div class="section-label">Option C — Starlink (flagged and dismissed)</div>
+
+    <div class="card" style="background:#f8f7f4;border-style:dashed;">
+      <div class="card-header"><div><div class="card-title">Starlink</div><div class="card-sub">~$600 hardware · ~$150/month · designed for locations with zero cellular coverage</div></div><span class="badge b-gray">Not applicable — dismiss confidently</span></div>
+      <hr class="div">
+      <div class="detail">Starlink comes up in EV connectivity discussions and is worth addressing so you can dismiss it confidently. It is designed for locations with genuinely no cellular coverage — rural, maritime, remote. For urban and suburban Cincinnati MSA surface lots, T-Mobile and Verizon 5G coverage is near-universal. Latency and reliability do not outperform 5G for this use case, and the cost ($150/month) is 3–4x a cellular IoT plan for no meaningful benefit. Do not use Starlink for your deployments.</div>
+      <div class="notes-area" placeholder="Starlink notes..." id="note-starlink" oninput="save('starlink',this.value)"></div>
+      <div id="saved-starlink" class="saved-note"></div>
+    </div>
+
+    <!-- UNDERWRITING NUMBERS -->
+    <div class="section-label">Underwriting numbers</div>
+
+    <div class="card" style="border-color:#378ADD;">
+      <div class="card-header"><div><div class="card-title">Connectivity capex &amp; opex — use these in your models</div><div class="card-sub">Validated numbers from the WiFi solutions research conversation · May 2026</div></div></div>
+      <hr class="div">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
+        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
+          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Capex per site</div>
+          <div style="font-size:22px;font-weight:500;color:#0C447C;">$1,500</div>
+          <div style="font-size:11px;color:#5f5e5a;">hardware + install (BR1 Pro scenario)</div>
+        </div>
+        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
+          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Monthly recurring</div>
+          <div style="font-size:22px;font-weight:500;color:#0C447C;">$40</div>
+          <div style="font-size:11px;color:#5f5e5a;">data plan + amortized device mgmt</div>
+        </div>
+        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
+          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">10-site capex total</div>
+          <div style="font-size:22px;font-weight:500;color:#0C447C;">$15,000</div>
+          <div style="font-size:11px;color:#5f5e5a;">across full 24-month deployment</div>
+        </div>
+        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
+          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Annual recurring (10 sites)</div>
+          <div style="font-size:22px;font-weight:500;color:#0C447C;">$4,800</div>
+          <div style="font-size:11px;color:#5f5e5a;">$400/month total portfolio</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#5f5e5a;font-style:italic;">These are conservative, defensible numbers. Connectivity is a rounding error in your overall deployment budget — don't over-engineer the solution to save $20/month.</div>
+      <div class="notes-area" placeholder="Connectivity cost notes — actual carrier quotes, install findings, model updates..." id="note-conn-costs" oninput="save('conn-costs',this.value)"></div>
+      <div id="saved-conn-costs" class="saved-note"></div>
+    </div>
+
+  </div>
 
   <!-- COMPETITORS TAB -->
   <div id="competitors" class="section">
@@ -1753,7 +1899,7 @@ var TAB_NAMES = {
   overview:'Overview', bizlines:'Business lines', equipment:'Equipment',
   operators:'Networks & operators', realestate:'RE & platform cos',
   software:'Software & OCPP', capital:'Capital & PE', markets:'Markets',
-  partnerships:'Strategic partnerships', competitors:'Competitors', modeling:'Modeler'
+  partnerships:'Strategic partnerships', connectivity:'Connectivity', competitors:'Competitors', modeling:'Modeler'
 };
 
 var searchIndex = null;
