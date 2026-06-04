@@ -17,6 +17,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .nav button { font-size: 13px; padding: 6px 16px; border-radius: 18px; border: 0.5px solid #b4b2a9; background: transparent; color: #5f5e5a; cursor: pointer; transition: all 0.15s; font-family: inherit; white-space: nowrap; line-height: 1.6; }
 .nav button:hover { background: #f1efe8; color: #1a1a18; }
 .nav button.active { background: #1a1a18; color: #f8f7f4; border-color: #1a1a18; font-weight: 500; }
+.vcard { transition: box-shadow 0.15s, transform 0.15s; }
+.vcard:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
 .section { display: none; }
 .section.active { display: block; }
 .page-title { font-size: 18px; font-weight: 500; color: #1a1a18; margin-bottom: 3px; }
@@ -108,15 +110,13 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       <button onclick="showTab('bizlines',this)">Business Lines</button>
       <button onclick="showTab('equipment',this)">Equipment</button>
       <button onclick="showTab('operators',this)">Networks &amp; Operators</button>
-      <button onclick="showTab('realestate',this)">RE &amp; Platform Cos</button>
+      <button onclick="showTab('realestate',this)">Active CRE Cos</button>
     </div>
     <div class="nav-row">
       <button onclick="showTab('software',this)">Software &amp; OCPP</button>
       <button onclick="showTab('capital',this)">Capital &amp; PE</button>
-      <button onclick="showTab('markets',this)">Markets</button>
-      <button onclick="showTab('partnerships',this)">Strategic Partnerships</button>
+      <button onclick="showTab('partnerships',this)">Partners &amp; Vendors</button>
       <button onclick="showTab('connectivity',this)">Connectivity</button>
-      <button onclick="showTab('vendors',this)">Vendors &amp; Partners</button>
     </div>
   </div>
 
@@ -159,24 +159,24 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     <div class="section-label">Active verticals — Phase 1</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.5rem;">
 
-      <div class="card" style="border-top:3px solid #1D9E75;margin:0;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Hotel &amp; Hospitality</div>
+      <div class="card vcard" style="border-top:3px solid #1D9E75;margin:0;cursor:pointer;" onclick="jumpToVertical('vertical-hotel')" title="Click for full hotel vertical detail">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Hotel &amp; Hospitality <span style="font-size:10px;color:#888780;font-weight:400;">→ detail</span></div>
         <div style="font-size:11px;color:#5f5e5a;line-height:1.6;margin-bottom:8px;">EV charging is becoming a booking decision factor. 57% of EV drivers say charger availability affects hotel choice. IHG, Marriott, Hilton all pushing flag-level EV mandates to franchisees. Average DCFC utilization at hotels: 15–25% in Year 1, growing to 40–60% by Year 3. Typical deployment: 2–6 L2 stalls + 1–2 DCFC stalls per property.</div>
         <div style="font-size:11px;font-weight:500;color:#27500A;margin-bottom:3px;">Why we win here</div>
         <div style="font-size:11px;color:#5f5e5a;">Existing hotel relationships give us site access competitors can't buy. Brands want a local operator they can trust — not a national rollout machine. Our CaaS model means zero capex for franchisees.</div>
         <span class="badge b-green" style="margin-top:8px;">Active — Phase 1</span>
       </div>
 
-      <div class="card" style="border-top:3px solid #378ADD;margin:0;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Multifamily</div>
+      <div class="card vcard" style="border-top:3px solid #378ADD;margin:0;cursor:pointer;" onclick="jumpToVertical('vertical-apartments')" title="Click for full multifamily vertical detail">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Multifamily <span style="font-size:10px;color:#888780;font-weight:400;">→ detail</span></div>
         <div style="font-size:11px;color:#5f5e5a;line-height:1.6;margin-bottom:8px;">EV adoption at luxury multifamily is outpacing public charging buildout. 30–40% of new luxury multifamily leases go to EV owners by 2027 (projected). L2 CaaS is the dominant model — zero cost to property owner, monthly service fee or rev share. Hills Properties pilot (239-unit, Cincinnati MSA) is our proof-of-concept deployment.</div>
         <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:3px;">Why we win here</div>
         <div style="font-size:11px;color:#5f5e5a;">Make-ready during active construction is 3–5x cheaper than retrofitting. Our RE background means we get in before competitors during grading. Hills pilot creates a replicable template across their portfolio.</div>
         <span class="badge b-blue" style="margin-top:8px;">Active — Hills pilot</span>
       </div>
 
-      <div class="card" style="border-top:3px solid #EF9F27;margin:0;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Retail &amp; STNL</div>
+      <div class="card vcard" style="border-top:3px solid #EF9F27;margin:0;cursor:pointer;" onclick="jumpToVertical('vertical-retail')" title="Click for full retail vertical detail">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Retail &amp; STNL <span style="font-size:10px;color:#888780;font-weight:400;">→ detail</span></div>
         <div style="font-size:11px;color:#5f5e5a;line-height:1.6;margin-bottom:8px;">Retail co-location is the highest-volume DCFC use case. Dwell time (20–45 min grocery/QSR visit) matches charging windows perfectly. Kroger and UDF are active strategic relationships — both are high-frequency destination anchors with consistent traffic. Average DCFC utilization at quality retail: 35–55% mature. Simon Property Group + BP Pulse deploying 900 chargers across 75 malls.</div>
         <div style="font-size:11px;font-weight:500;color:#854F0B;margin-bottom:3px;">Why we win here</div>
         <div style="font-size:11px;color:#5f5e5a;">Active relationships at Kroger and UDF are a direct competitive advantage. Our STNL development background means we understand what drives site selection decisions — and we speak the same language as their RE teams.</div>
@@ -196,7 +196,7 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       </div>
 
       <div class="card" style="background:#f8f7f4;border-style:dashed;margin:0;">
-        <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">Office</div>
+        <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">Office <span style="font-size:10px;color:#888780;font-weight:400;">→ detail</span></div>
         <div style="font-size:11px;color:#5f5e5a;line-height:1.6;">Employee EV charging is becoming a benefits-level amenity — HR and facilities are both pushing it. Daytime charging profile is predictable and low-demand. Hybrid work means charging during office days is highly valued. Market need is real but deal cycle is longer (corporate approvals). Consider when capacity allows.</div>
         <span class="badge b-gray" style="margin-top:8px;">Phase 2</span>
       </div>
@@ -301,212 +301,247 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       <div class="notes-area" placeholder="Owner targets, deal structures in exploration..." id="note-bl3" oninput="save('bl3',this.value)"></div>
       <div id="saved-bl3" class="saved-note"></div>
     </div>
+
+    <!-- ═══════════════ VERTICALS ═══════════════ -->
+    <div class="section-label" style="font-size:15px;color:#1a1a18;border-top:2px solid #444441;padding-top:12px;margin-top:1.75rem;">Verticals</div>
+    <div class="page-sub" style="margin-top:-0.5rem;margin-bottom:1rem;">Deal parameters, utilization, time-of-use, and ideal structures by property type. Conservative / base / upside throughput where available. Install cost targets are placeholders pending real bids.</div>
+
+    <!-- ───── L3 VERTICALS ───── -->
+    <div class="section-label" style="font-size:14px;color:#0C447C;border-top:1.5px solid #378ADD;padding-top:10px;">DC Fast Charging (L3) verticals</div>
+
+    <div class="card" style="border-top:3px solid #1D9E75;">
+      <div class="card-header"><div><div class="card-title">Grocery</div><div class="card-sub">The single highest-performing DCFC amenity · dwell-time match is near-perfect · Kroger + UDF active relationships</div></div><span class="badge b-green">Top L3 priority</span></div>
+      <hr class="div">
+      <div class="detail">Grocery is the best-performing DCFC site type in the market. Per the Electric Era / Paren analysis of 4,105 stations, fast stations near a grocery store see a median of 42 sessions per day — nearly 5× the dataset baseline of 9 SPD. The reason is dwell-time alignment: a typical grocery run takes 25–40 minutes, which is exactly how long a fast charge takes. Critically, only ~6.7% of DCFC stations sit near a grocery store today — it is simultaneously the highest-performing and least-represented amenity type. This is the clearest opportunity gap in the market, and your Kroger and UDF relationships are a direct, hard-to-replicate competitive advantage.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;margin-bottom:3px;">Conservative</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">~20 SPD</div><div style="font-size:11px;color:#5f5e5a;">below-median grocery site, building utilization</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Base</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">~42 SPD</div><div style="font-size:11px;color:#5f5e5a;">market median for grocery-anchored DCFC</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">Upside</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">59+ SPD</div><div style="font-size:11px;color:#5f5e5a;">grocery + amenity density (Publix case: 59 SPD)</div></div>
+      </div>
+      <div style="margin-top:10px;background:#f1efe8;border-radius:8px;padding:8px 12px;font-size:12px;color:#5f5e5a;line-height:1.6;"><strong style="font-weight:500;color:#1a1a18;">Targets to develop:</strong> Kroger (active relationship), UDF (active relationship). Add additional grocery anchors — Publix, Meijer, regional chains — as targets are identified. Amenity density compounds: a grocery store in a power center with coffee, pharmacy, and bank outperforms a standalone grocery.</div>
+      <div class="notes-area" placeholder="Grocery vertical notes — Kroger contacts, UDF sites, target store list, density analysis..." id="note-v-grocery" oninput="save('v-grocery',this.value)"></div>
+      <div id="saved-v-grocery" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border-top:3px solid #378ADD;">
+      <div class="card-header"><div><div class="card-title">Retail &amp; Power Centers</div><div class="card-sub">Big box, fashion, malls · amenity density is the biggest performance lever</div></div><span class="badge b-blue">Strong L3</span></div>
+      <hr class="div">
+      <div class="detail">Retail co-location is the highest-volume DCFC use case after grocery. The biggest performance lever in the entire Electric Era dataset is amenity density: stations with no nearby amenities see 3 SPD, some amenities 9 SPD, and 11+ amenities 28 SPD — a 7× gap. Shopping malls near DCFC see a median of 35 SPD (peak recorded: 102 SPD), the highest-density winner, yet only 3.7% of stations are near a mall. Your STNL development background means you understand what drives retail site selection and can speak the same language as retail RE teams.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;margin-bottom:3px;">Conservative</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">~15 SPD</div><div style="font-size:11px;color:#5f5e5a;">single anchor, low surrounding density</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Base</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">~28 SPD</div><div style="font-size:11px;color:#5f5e5a;">power center, 11+ amenities nearby</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">Upside</div><div style="font-size:16px;font-weight:500;color:#1a1a18;">35+ SPD</div><div style="font-size:11px;color:#5f5e5a;">mall / dense outlet (peak 102 SPD)</div></div>
+      </div>
+      <div class="notes-area" placeholder="Retail vertical notes — power center targets, mall opportunities, anchor mix analysis..." id="note-v-retail-l3" oninput="save('v-retail-l3',this.value)"></div>
+      <div id="saved-v-retail-l3" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border-top:3px solid #EF9F27;">
+      <div class="card-header"><div><div class="card-title">Highway Corridor</div><div class="card-sub">En-route fast charging · Trip Planner / routing-app dependent · pricing competitiveness is critical</div></div><span class="badge b-amber">Selective L3</span></div>
+      <hr class="div">
+      <div class="detail">Highway corridor sites serve en-route charging — drivers stopping mid-journey rather than at a destination. Demand is driven almost entirely by routing-app and Trip Planner visibility, not foot traffic. This makes pricing competitiveness existential: for Tesla Supercharger for Business sites, the Spring 2026 Trip Planner filter can hide third-party sites priced above Tesla's network rates. Corridor sites also benefit most from NEVI funding (NEVI specifically targets highway corridor coverage). Best paired with retail amenities (QSR, coffee, c-store) to give drivers somewhere to be during the charge.</div>
+      <div style="margin-top:10px;background:#FAECE7;border-radius:8px;padding:8px 12px;font-size:12px;color:#5A1008;line-height:1.6;"><strong style="font-weight:500;">Key consideration:</strong> Pricing must stay competitive with the nearest Tesla/EA network sites or you lose routing visibility. NEVI grants can offset the higher capex of corridor sites. Reliability is non-negotiable — unreliable corridor stations get demoted in routing apps and rarely re-tried.</div>
+      <div class="notes-area" placeholder="Highway corridor notes — NEVI corridor maps, target interchanges, pricing benchmarks..." id="note-v-highway" oninput="save('v-highway',this.value)"></div>
+      <div id="saved-v-highway" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border-top:3px solid #378ADD;">
+      <div class="card-header"><div><div class="card-title">Hospitality (DCFC)</div><div class="card-sub">Hotels with DCFC for through-travelers + guest fast charging</div></div><span class="badge b-blue">Selective L3</span></div>
+      <hr class="div">
+      <div class="detail">While hotels are primarily an L2 destination-charging vertical (see L2 section), select hotel sites near highways or in high-traffic destinations justify DCFC for through-travelers and guests who want a fast top-up. Lodging appears near only ~9% of DCFC stations today. Best for hotels at interstate exits, near tourist destinations (e.g., Hampton Inn Williamstown near Ark Encounter, ~1M visitors/year), or large-format properties. Pair DCFC with L2 for a complete guest charging offering.</div>
+      <div class="notes-area" placeholder="Hospitality DCFC notes — which hotel sites justify L3, traffic analysis..." id="note-v-hosp-l3" oninput="save('v-hosp-l3',this.value)"></div>
+      <div id="saved-v-hosp-l3" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border-top:3px solid #7F77DD;">
+      <div class="card-header"><div><div class="card-title">Developer Partnerships</div><div class="card-sub">How we partner with property owners + what we target · minimize install cost via active earthwork</div></div><span class="badge b-purple">Strategic</span></div>
+      <hr class="div">
+      <div class="detail">This is where the real estate advantage compounds. The highest-ROI capital decision in EV infrastructure is installing make-ready conduit during active earthwork — when the ground is already open, trenching and civil costs are a fraction of a retrofit. Targeting active mixed-use developments where grading is underway lets us deploy at a structural cost advantage no pure CPO can match. We bring development expertise and site control; the partner brings the project. Detail specific developer relationships, target projects, and deal structures here.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">What we target</div><div style="font-size:12px;color:#3B6D11;line-height:1.55;">Active mixed-use developments with earthwork underway · sites where we can stub conduit before paving · partners who control multiple projects · developments where EV is a differentiator</div></div>
+        <div style="background:#E6F1FB;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#0C447C;font-weight:500;margin-bottom:3px;">Why it wins</div><div style="font-size:12px;color:#185FA5;line-height:1.55;">Make-ready during active construction is 3–5× cheaper than retrofit. Getting in during grading is a timing advantage only a developer-operator can execute. Turns site control into structural cost advantage.</div></div>
+      </div>
+      <div class="notes-area" placeholder="Developer partnership notes — active mixed-use targets, earthwork timing, partner relationships, deal structures..." id="note-v-devpartner" oninput="save('v-devpartner',this.value)"></div>
+      <div id="saved-v-devpartner" class="saved-note"></div>
+    </div>
+
+    <!-- ───── L2 VERTICALS ───── -->
+    <div class="section-label" style="font-size:14px;color:#27500A;border-top:1.5px solid #1D9E75;padding-top:10px;margin-top:1.5rem;">Level 2 (L2) verticals</div>
+
+    <div class="card" id="vertical-apartments" style="border-top:3px solid #1D9E75;">
+      <div class="card-header"><div><div class="card-title">Apartments / Multifamily</div><div class="card-sub">Overnight charging · CaaS model · Hills pilot active · make-ready during construction is the highest-ROI decision</div></div><span class="badge b-green">Active — Hills pilot</span></div>
+      <hr class="div">
+      <div class="detail">Multifamily is the core L2 vertical. Residents charge overnight — the most predictable, lowest-demand charging profile of any vertical. EV adoption at luxury multifamily is outpacing public charging buildout. The Hills Properties pilot (239-unit, Cincinnati MSA, active grading) is the proof-of-concept. Sizing rule of thumb: 1 shared charger per 3 EV drivers; each L2 charger needs 40 amps on a breaker, but intelligent load management lets you share that 40A across up to 4 chargers — often avoiding expensive electrical upgrades.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Install cost target</div><div style="font-size:14px;font-weight:500;color:#1a1a18;">&lt; $2,500/charger</div><div style="font-size:11px;color:#5f5e5a;">placeholder — far lower if make-ready during construction</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Charging window</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">Overnight</div><div style="font-size:11px;color:#5f5e5a;">~9pm–7am peak. Low daytime use. Idle fees less critical (assigned/overnight).</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Deal structure</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">CaaS</div><div style="font-size:11px;color:#5f5e5a;">monthly service fee + rev share. Hills = active CaaS deal.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;">Conservative</div><div style="font-size:13px;color:#1a1a18;">~5 kWh/stall/day</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;">Base</div><div style="font-size:13px;color:#1a1a18;">~8 kWh/stall/day</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;">Upside</div><div style="font-size:13px;color:#1a1a18;">~12 kWh/stall/day</div></div>
+      </div>
+
+      <!-- MULTIFAMILY OWNER Q&A PLAYBOOK -->
+      <div style="margin-top:12px;background:#f8f7f4;border-radius:10px;padding:12px 14px;border:0.5px solid #d3d1c7;">
+        <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:8px;">Multifamily owner Q&amp;A — sales playbook</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:10px;line-height:1.6;">The questions every sophisticated multifamily owner will ask. Have crisp answers ready — this is a competitive advantage.</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">How many chargers do we need?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;">Rule of thumb: 1 shared charger per 3 EV drivers. Survey residents on 2–5 year EV intent. Start with a pilot count and scale as adoption grows — don't over-build day one.</div></div>
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">How do we manage installation cost?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;">Load management is the key lever — share 40A across up to 4 chargers to avoid expensive service upgrades. Make-ready during construction is 3–5× cheaper than retrofit. Local incentives/rebates can offset up to 100% in some areas.</div></div>
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">Won't this be obsolete / locked-in?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;"><strong style="font-weight:500;">This is our anti-Tesla / anti-EV+ weapon.</strong> Choose an open, OCPP-compliant platform so you're never forced to rip everything out if hardware or software changes. Closed platforms (Tesla) lock you in. We build on open standards — your flexibility is protected.</div></div>
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">Who pays, and how is electricity metered?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;">Networked chargers with accounts (app/RFID) bill the driver directly — electricity doesn't disappear into the building's common bill. Under our CaaS model, you pay a fixed monthly service fee and we handle metering, billing, and electricity cost.</div></div>
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">How do we ensure reliability?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;">Quality hardware + 24/7 networked monitoring + preventative maintenance. An unreliable charger at a residence means angry residents and churn — uptime is non-negotiable. We monitor and maintain everything; you never field a complaint.</div></div>
+          <div style="background:#fff;border-radius:7px;padding:8px 10px;border:0.5px solid #e8e6df;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">What's the resident experience?</div><div style="font-size:11px;color:#5f5e5a;line-height:1.55;">L2 chargers (15–25 mi/hr) fully charge overnight. Simple app/RFID start and pay. For residents, all that matters: chargers exist, they work, paying is painless. We deliver that.</div></div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:#888780;font-style:italic;">Add to this playbook as new objections come up in real conversations.</div>
+      </div>
+      <div class="notes-area" placeholder="Apartments vertical notes — Hills deal status, owner objections encountered, sizing analysis..." id="note-v-apartments" oninput="save('v-apartments',this.value)" style="margin-top:10px;"></div>
+      <div id="saved-v-apartments" class="saved-note"></div>
+    </div>
+
+    <div class="card" id="vertical-hotel" style="border-top:3px solid #378ADD;">
+      <div class="card-header"><div><div class="card-title">Hotel</div><div class="card-sub">Overnight guest charging · CaaS model · idle fee timing matters · brand EV mandates driving demand</div></div><span class="badge b-blue">Active — CaaS</span></div>
+      <hr class="div">
+      <div class="detail">Hotels are an overnight L2 destination vertical. Guests plug in on arrival and charge overnight. IHG, Marriott, and Hilton are pushing flag-level EV mandates to franchisees, creating top-down demand. The key operational nuance is idle fee timing: guests typically unplug and check out by mid-morning, so idle fees should kick in after a set morning hour (e.g., 9–10am) to free stalls for the next guest without penalizing overnight charging. EV charging is increasingly a booking-decision factor for EV-driving travelers.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Install cost target</div><div style="font-size:14px;font-weight:500;color:#1a1a18;">&lt; $2,500/charger</div><div style="font-size:11px;color:#5f5e5a;">placeholder pending real bids</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Charging window</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">Overnight → AM</div><div style="font-size:11px;color:#5f5e5a;">check-in to ~9–10am. Set idle fees after morning checkout window to turn stalls.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Deal structure</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">CaaS</div><div style="font-size:11px;color:#5f5e5a;">monthly fee + guest charging revenue. Williamstown = CaaS.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;">Conservative</div><div style="font-size:13px;color:#1a1a18;">~6 kWh/stall/day</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;">Base</div><div style="font-size:13px;color:#1a1a18;">~10 kWh/stall/day</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;">Upside</div><div style="font-size:13px;color:#1a1a18;">~15 kWh/stall/day</div></div>
+      </div>
+      <div class="notes-area" placeholder="Hotel vertical notes — Williamstown status, idle fee timing, brand mandate intel..." id="note-v-hotel" oninput="save('v-hotel',this.value)" style="margin-top:10px;"></div>
+      <div id="saved-v-hotel" class="saved-note"></div>
+    </div>
+
+    <div class="card" id="vertical-retail" style="border-top:3px solid #EF9F27;">
+      <div class="card-header"><div><div class="card-title">Retail (L2)</div><div class="card-sub">Midday charging during shopping · tiered rev share model · first pitch keeps Year 1 revenue</div></div><span class="badge b-amber">First pitch — tiered rev share</span></div>
+      <hr class="div">
+      <div class="detail">Retail L2 serves shoppers charging during a store visit — a midday-weighted profile, opposite of multifamily/hotel. Dwell time (30–90 min shopping) supports meaningful L2 charge. Lower utilization per stall than DCFC but cheaper to deploy and a strong amenity for the property. Our first retail pitch used a tiered revenue-share model where Telos keeps all revenue in Year 1 (to recover capex), then steps into a share with the property owner in later years.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Install cost target</div><div style="font-size:14px;font-weight:500;color:#1a1a18;">&lt; $2,500/charger</div><div style="font-size:11px;color:#5f5e5a;">placeholder pending real bids</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Charging window</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">Midday / daytime</div><div style="font-size:11px;color:#5f5e5a;">store hours, weekend-heavy. Idle fees important — turn stalls during peak shopping.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Deal structure</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">Tiered rev share</div><div style="font-size:11px;color:#5f5e5a;">Year 1: Telos keeps all revenue. Later years: share with owner.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;">Conservative</div><div style="font-size:13px;color:#1a1a18;">~4 kWh/stall/day</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;">Base</div><div style="font-size:13px;color:#1a1a18;">~7 kWh/stall/day</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;">Upside</div><div style="font-size:13px;color:#1a1a18;">~11 kWh/stall/day</div></div>
+      </div>
+      <div class="notes-area" placeholder="Retail L2 notes — first pitch status, tiered rev share terms, idle fee policy..." id="note-v-retail-l2" oninput="save('v-retail-l2',this.value)" style="margin-top:10px;"></div>
+      <div id="saved-v-retail-l2" class="saved-note"></div>
+    </div>
+
+    <div class="card" id="vertical-office" style="border-top:3px solid #7F77DD;">
+      <div class="card-header"><div><div class="card-title">Office / Workplace</div><div class="card-sub">Daytime weekday charging · benefits-level amenity · light weekend use</div></div><span class="badge b-gray">Phase 2</span></div>
+      <hr class="div">
+      <div class="detail">Workplace charging is a daytime, weekday-concentrated vertical — the inverse of multifamily. Employees plug in on arrival and charge during the workday. It's increasingly a benefits-level amenity that HR and facilities both advocate for. The profile is predictable and low-demand (slow daytime charging spread across 8+ hours). Key nuance: very light weekend use, so utilization-per-stall calculations should weight weekdays. Hybrid work means charging on office days is highly valued. Longer corporate sales cycle than other verticals.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Install cost target</div><div style="font-size:14px;font-weight:500;color:#1a1a18;">&lt; $2,500/charger</div><div style="font-size:11px;color:#5f5e5a;">placeholder pending real bids</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Charging window</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">Weekday daytime</div><div style="font-size:11px;color:#5f5e5a;">~8am–5pm M–F. Very light weekend use — weight weekdays in modeling.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Deal structure</div><div style="font-size:13px;font-weight:500;color:#1a1a18;">CaaS / employer-subsidized</div><div style="font-size:11px;color:#5f5e5a;">TBD — employer may subsidize as benefit. Leverage active relationships.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#711B13;font-weight:500;">Conservative</div><div style="font-size:13px;color:#1a1a18;">~5 kWh/stall/day</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;">Base</div><div style="font-size:13px;color:#1a1a18;">~8 kWh/stall/day</div></div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;">Upside</div><div style="font-size:13px;color:#1a1a18;">~12 kWh/stall/day</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#888780;font-style:italic;">Note: weekday-weighted utilization — a "per day" figure understates weekday intensity. Model on a 5-day basis for office.</div>
+      <div class="notes-area" placeholder="Office vertical notes — target employers, subsidy models, weekday utilization analysis..." id="note-v-office" oninput="save('v-office',this.value)" style="margin-top:10px;"></div>
+      <div id="saved-v-office" class="saved-note"></div>
+    </div>
+
   </div>
 
   <!-- EQUIPMENT -->
   <div id="equipment" class="section">
     <div class="page-title">Equipment manufacturers</div>
-    <div class="page-sub">Hardware vendors — strategic fit and pros/cons for your deployment model</div>
-    <div class="warn-box">Note: OCPP compliance is a non-negotiable for any hardware selection intended for NEVI-funded sites or third-party CSMS management. Tesla Wall Connectors are a deliberate exception to evaluate — their closed platform has strategic trade-offs covered in detail in the Tesla card below. See the Software & OCPP tab for full protocol context.</div>
+    <div class="page-sub">Charging hardware organized by type — DC Fast Charging (L3) and Level 2 (L2). Strategic fit and pros/cons for your deployment model.</div>
+    <div class="warn-box">Note: OCPP compliance is non-negotiable for any hardware intended for NEVI-funded sites or third-party CSMS management. Tesla and Red E are deliberate exceptions to evaluate — their closed/vertically-integrated platforms have strategic trade-offs covered in detail in each card. See the Software & OCPP tab for full protocol context.</div>
 
+    <!-- ═══════════════ DC FAST CHARGING (L3) ═══════════════ -->
+    <div class="section-label" style="font-size:14px;color:#0C447C;border-top:2px solid #378ADD;padding-top:10px;">DC Fast Charging (L3)</div>
+
+    <!-- TESLA SUPERCHARGER (L3) -->
     <div class="card" style="border-color:#378ADD;">
-      <div class="card-header"><div><div class="card-title">Tesla — Supercharger for Business (DCFC) + Wall Connector for Business (L2)</div><div class="card-sub">Two distinct products — different use cases, economics, and platform implications. One closed ecosystem.</div></div><span class="badge b-blue">Deep evaluate</span></div>
+      <div class="card-header"><div><div class="card-title">Tesla — Supercharger for Business (DCFC)</div><div class="card-sub">Highway/destination fast charging · You own the hardware · Tesla runs everything else · Launched September 2025</div></div><span class="badge b-blue">Deep evaluate</span></div>
       <hr class="div">
-
-      <!-- ── SUPERCHARGER SECTION ─────────────────────────────────────── -->
-      <div style="background:#f1efe8;border-radius:10px;padding:12px 14px;margin-bottom:14px;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:2px;">① Supercharger for Business (DCFC)</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:10px;">Highway/destination fast charging · You own the hardware · Tesla runs everything else · Launched September 2025</div>
-
-        <div class="detail" style="margin-top:0;">Tesla's Supercharger for Business program allows commercial property owners to purchase and host V4 Supercharger hardware on their property while Tesla continues to run the stalls on its network. Program launched September 2025, opened to all US businesses. First buyer was BP Pulse. Hardware: V4 Cabinet + V4 posts, 400–500kW per post (1,000V architecture), NACS connector, supports non-Tesla vehicles. Pre-assembled Supercharger Units (PSUs) cut deployment to as few as 4 days. White-label branding available. Tesla owns and operates all software — trip planning, billing, customer support, maintenance — host just owns the hardware and the real estate.</div>
-
-        <!-- Platform fee -->
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla platform fee</div>
-            <div style="font-size:22px;font-weight:500;color:#D85A30;">$0.10<span style="font-size:13px;color:#5f5e5a;">/kWh</span></div>
-            <div style="font-size:11px;color:#5f5e5a;">Covers software, billing, payment processing, customer support, 97% uptime guarantee, maintenance</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost (8-stall)</div>
-            <div style="font-size:18px;font-weight:500;color:#1a1a18;">~$940K</div>
-            <div style="font-size:11px;color:#5f5e5a;">$500K hardware + ~$440K install (medium tier $55K/post). Per stall: ~$117,500</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla's revenue take</div>
-            <div style="font-size:18px;font-weight:500;color:#1a1a18;">~20%</div>
-            <div style="font-size:11px;color:#5f5e5a;">At median retail price ~$0.50/kWh, $0.10 = ~20% gross off the top. Est. $88K–$132K/yr per 8-stall site to Tesla.</div>
-          </div>
+      <div class="detail">Tesla's Supercharger for Business program allows commercial property owners to purchase and host V4 Supercharger hardware on their property while Tesla continues to run the stalls on its network. Program launched September 2025, opened to all US businesses. First buyer was BP Pulse. Hardware: V4 Cabinet + V4 posts, 400–500kW per post (1,000V architecture), NACS connector, supports non-Tesla vehicles. Pre-assembled Supercharger Units (PSUs) cut deployment to as few as 4 days. White-label branding available. Tesla owns and operates all software — trip planning, billing, customer support, maintenance — host just owns the hardware and the real estate.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla platform fee</div>
+          <div style="font-size:22px;font-weight:500;color:#D85A30;">$0.10<span style="font-size:13px;color:#5f5e5a;">/kWh</span></div>
+          <div style="font-size:11px;color:#5f5e5a;">Covers software, billing, payment processing, customer support, 97% uptime guarantee, maintenance</div>
         </div>
-
-        <!-- TRIP PLANNER SECTION — CRITICAL -->
-        <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:10px;border:0.5px solid #F0997B;">
-          <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:5px;">⚠ Trip Planner visibility — critical pricing risk (Spring 2026 update)</div>
-          <div style="font-size:12px;color:#5A1008;line-height:1.65;">Third-party Supercharger sites (i.e., Supercharger for Business locations like yours) <strong style="font-weight:500;">appear in the Tesla Trip Planner and in-vehicle navigation by default</strong> — this is a key feature of the program and a major driver of utilization. However, Tesla's Spring 2026 software update introduced a new filter: <strong style="font-weight:500;">"Only Add Superchargers Accepting Free Supercharging"</strong> which, when enabled, <strong style="font-weight:500;">excludes third-party owned Superchargers entirely from Trip Planner routing.</strong> Tesla owners with legacy Free Supercharging perks will likely enable this toggle, removing your site from their routing. Additionally, drivers without free charging can also enable a preference for Tesla-owned sites only. This filter is now available on Intel-model Teslas fleet-wide as of Spring 2026. Tesla frames your site as "host-set pricing" and warns drivers it is "exempt from Free Supercharging for Life" awards.</div>
-          <div style="margin-top:8px;font-size:12px;color:#711B13;line-height:1.6;"><strong style="font-weight:500;">Pricing implication:</strong> Your pricing directly determines your visibility to the largest driver segment. <strong style="font-weight:500;">Drivers who opt out of seeing third-party sites generally do so to avoid unexpected charges.</strong> Competitive pricing (closer to Tesla's own rates) reduces the motivation to filter you out. Price significantly above Tesla's network rates and you risk being hidden from a material share of routed traffic. Tesla's own network pricing goal: maintain rates 30% below competitors and more economical than gasoline. In May 2025, Tesla began piloting real-time dynamic pricing at 10 stations based on live utilization — this is the pricing benchmark your site will be compared against.</div>
-          <div style="margin-top:8px;font-size:12px;color:#5A1008;line-height:1.6;"><strong style="font-weight:500;">Bottom line for your sites:</strong> Trip Planner routing is the primary demand driver for your Supercharger for Business sites — not foot traffic like a gas station. Set pricing competitively. Consider Tesla's own posted rates for the Cincinnati MSA as your pricing ceiling. The $0.10/kWh Tesla fee is already built in to your cost structure; your spread above utility cost + Tesla fee is your margin. Don't over-price it — you need the routing.</div>
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost (8-stall)</div>
+          <div style="font-size:18px;font-weight:500;color:#1a1a18;">~$940K</div>
+          <div style="font-size:11px;color:#5f5e5a;">$500K hardware + ~$440K install (medium tier $55K/post). Per stall: ~$117,500</div>
         </div>
-
-        <!-- Supercharger pros/cons -->
-        <div class="pros-cons" style="margin-top:10px;">
-          <div class="pros">
-            <div class="pros-t">Supercharger for Business — pros</div>
-            <ul>
-              <li>Immediate Trip Planner + Tesla App visibility (80,000+ stall network, 6.7 TWh delivered in 2025)</li>
-              <li>Also appears in Google Maps — Tesla + Google Maps integration live for Business sites</li>
-              <li>97% uptime guarantee with Tesla-managed maintenance and 24/7 NOC</li>
-              <li>Best-in-class driver UX — Plug &amp; Charge, no app required, automatic battery preconditioning</li>
-              <li>V4 Cabinet: 400–500kW, supports 400V–1,000V architectures, all major EVs via NACS</li>
-              <li>White-label branding available — site can carry your brand identity</li>
-              <li>PSU pre-assembled units — 4-day deployment from delivery to open</li>
-              <li>Tesla's configurator now provides public pricing + ROI estimates by address</li>
-            </ul>
-          </div>
-          <div class="cons">
-            <div class="cons-t">Supercharger for Business — cons</div>
-            <ul>
-              <li>$0.10/kWh platform fee = ~20% of gross revenue at median pricing, every session, forever</li>
-              <li>Spring 2026 Trip Planner filter can exclude third-party sites for drivers with Free Supercharging</li>
-              <li>Closed ecosystem — Tesla controls routing, pricing framework, and driver data</li>
-              <li>Tesla does not pay rent to site owners — you provide the real estate and the capex</li>
-              <li>~$940K all-in for 8 stalls is substantial capex — Fort Mitchell and Alexander Plaza ROI must be modeled carefully</li>
-              <li>Tesla's configurator assumes optimistic utilization (300–450 kWh/post/day) — suburban sites may underperform</li>
-              <li>Host has no access to individual driver data</li>
-            </ul>
-          </div>
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla's revenue take</div>
+          <div style="font-size:18px;font-weight:500;color:#1a1a18;">~20%</div>
+          <div style="font-size:11px;color:#5f5e5a;">At median retail price ~$0.50/kWh, $0.10 = ~20% gross off the top. Est. $88K–$132K/yr per 8-stall site to Tesla.</div>
         </div>
-        <div class="badge-row" style="margin-top:8px;"><span class="badge b-coral">$0.10/kWh Tesla fee</span><span class="badge b-amber">Trip Planner filter risk — Spring 2026</span><span class="badge b-blue">Trip Planner + Google Maps</span><span class="badge b-gray">~$117K/stall capex</span></div>
-        <div class="notes-area" placeholder="Supercharger notes — Fort Mitchell + Alexander Plaza deal status, pricing strategy, configurator outputs, Trip Planner filter impact assessment..." id="note-tesla-sc" oninput="save('tesla-sc',this.value)" style="margin-top:8px;"></div>
-        <div id="saved-tesla-sc" class="saved-note"></div>
       </div>
-
-      <!-- ── WALL CONNECTOR SECTION ──────────────────────────────────── -->
-      <div style="background:#f1efe8;border-radius:10px;padding:12px 14px;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:2px;">② Wall Connector for Business (L2)</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:10px;">Long-dwell charging — multifamily, hotel, retail, workplace · You own hardware + keep revenue · $0.03/kWh platform fee</div>
-
-        <div class="detail" style="margin-top:0;">A commercial L2 program targeting apartments, hotels, workplaces, and retail. Property owner purchases and installs the hardware (~$650/unit + ~$5,000 estimated turnkey installation per unit). Tesla provides the software platform, management portal, billing, and network listing. If pay-per-use is enabled, Tesla takes $0.03/kWh and remits the remainder to the owner quarterly. If charging is offered free to users, the software is entirely free. Universal Wall Connector supports non-Tesla EVs via built-in J1772 adapter. NACS adoption spreading to Rivian, Ford, and others. Sites listed on Tesla's Find Us map. Program actively scaling: 1,250+ new commercial connectors added since November 2025, 158+ new sites globally. Tall Pedestal (Feb 2026) now available for freestanding outdoor installs.</div>
-
-        <!-- Platform fee -->
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla platform fee</div>
-            <div style="font-size:22px;font-weight:500;color:#1D9E75;">$0.03<span style="font-size:13px;color:#5f5e5a;">/kWh</span></div>
-            <div style="font-size:11px;color:#5f5e5a;">Covers software, billing, payment processing, network listing. Free if charging is offered at no cost to drivers.</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost</div>
-            <div style="font-size:18px;font-weight:500;color:#1a1a18;">~$650</div>
-            <div style="font-size:11px;color:#5f5e5a;">Per unit. ~$5,000 estimated turnkey installation. All-in per stall: ~$5,650. Buy hardware, own revenue.</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
-            <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Trip Planner visibility</div>
-            <div style="font-size:18px;font-weight:500;color:#1a1a18;">Find Us map</div>
-            <div style="font-size:11px;color:#5f5e5a;">Listed on Tesla's Find Us map. Not routed via Trip Planner (L2 sites are destination chargers, not en-route stops — different routing logic than DCFC).</div>
-          </div>
-        </div>
-
-        <!-- OCPP -->
-        <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:10px;border:0.5px solid #F0997B;">
-          <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:4px;">OCPP status — the critical platform risk</div>
-          <div style="font-size:12px;color:#5A1008;line-height:1.6;">Tesla Wall Connectors currently do not officially support OCPP. The platform is proprietary — chargers communicate through Tesla's closed cloud. You cannot manage them through a third-party CSMS (Monta, ChargeLab, Red E). You are fully dependent on Tesla's portals: <strong style="font-weight:500;">Powerhub</strong> (real-time status, uptime) and <strong style="font-weight:500;">Tesla Business Portal</strong> (billing, pricing, session data). Notable operational limitations: no per-user identification, no access denial by vehicle, no idle fee enforcement. OCPP 1.6 support is reportedly in development per Tesla's own statements but no official timeline or public documentation has been released. Do not plan around it until confirmed.</div>
-        </div>
-
-        <!-- Management platform -->
-        <div style="background:#f8f7f4;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;line-height:1.6;">
-          <strong style="font-weight:500;color:#1a1a18;">Management portals:</strong> Powerhub (real-time charger status, uptime monitoring) + Tesla Business Portal (billing records, pricing config, session download). Remittance: quarterly. Fee structure: pay-per-use restricted to private sites in CA and WA currently — confirm availability in OH/KY before finalizing Hills pricing structure.
-        </div>
-
-        <!-- Wall Connector pros/cons -->
-        <div class="pros-cons" style="margin-top:10px;">
-          <div class="pros">
-            <div class="pros-t">Wall Connector for Business — pros</div>
-            <ul>
-              <li>$0.03/kWh is the lowest platform fee in the L2 commercial market</li>
-              <li>Listed on Tesla Find Us map — visibility to Tesla driver base</li>
-              <li>Universal Wall Connector supports all EVs via J1772 adapter</li>
-              <li>~$650 hardware cost is among the lowest per-unit in commercial L2</li>
-              <li>Tall Pedestal available (Feb 2026) for outdoor freestanding installs</li>
-              <li>Utility rebate programs available in multiple states incl. Dominion VA</li>
-              <li>OTA firmware updates, Wi-Fi connected, remote diagnostics</li>
-              <li>If free charging: $0 platform cost — pure CaaS fee to property owner</li>
-            </ul>
-          </div>
-          <div class="cons">
-            <div class="cons-t">Wall Connector for Business — cons</div>
-            <ul>
-              <li>No OCPP — locked into Tesla's closed platform, no third-party CSMS</li>
-              <li>No per-user session identification</li>
-              <li>No idle fee enforcement — risk at high-traffic retail or multifamily</li>
-              <li>No access denial by individual vehicle</li>
-              <li>Pay-per-use geography restrictions (CA and WA only currently) — confirm OH/KY status</li>
-              <li>Quarterly remittance cycle — delayed cash flow vs. monthly</li>
-              <li>Management software described as rudimentary vs. Monta or Red E</li>
-            </ul>
-          </div>
-        </div>
-        <div class="badge-row" style="margin-top:8px;"><span class="badge b-green">$0.03/kWh platform fee</span><span class="badge b-amber">OCPP: in development — not confirmed</span><span class="badge b-teal">Universal — all EVs</span><span class="badge b-blue">Find Us map visibility</span></div>
-        <div class="notes-area" placeholder="Wall Connector notes — Hills pilot hardware plan, OH/KY pay-per-use status, OCPP update tracking, management portal findings..." id="note-tesla-wc" oninput="save('tesla-wc',this.value)" style="margin-top:8px;"></div>
-        <div id="saved-tesla-wc" class="saved-note"></div>
+      <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:10px;border:0.5px solid #F0997B;">
+        <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:5px;">⚠ Trip Planner visibility — critical pricing risk (Spring 2026 update)</div>
+        <div style="font-size:12px;color:#5A1008;line-height:1.65;">Third-party Supercharger sites <strong style="font-weight:500;">appear in the Tesla Trip Planner and in-vehicle navigation by default</strong> — a key feature and major utilization driver. However, Tesla's Spring 2026 update introduced a filter: <strong style="font-weight:500;">"Only Add Superchargers Accepting Free Supercharging"</strong> which, when enabled, <strong style="font-weight:500;">excludes third-party owned Superchargers entirely from Trip Planner routing.</strong> Owners with legacy Free Supercharging perks will likely enable this, removing your site from their routing. Drivers without free charging can also prefer Tesla-owned sites only.</div>
+        <div style="margin-top:8px;font-size:12px;color:#711B13;line-height:1.6;"><strong style="font-weight:500;">Pricing implication:</strong> Your pricing directly determines visibility to the largest driver segment. Competitive pricing (closer to Tesla's own rates) reduces the motivation to filter you out. Tesla's network pricing goal: 30% below competitors. May 2025 they began piloting real-time dynamic pricing — the benchmark your site is compared against.</div>
+        <div style="margin-top:8px;font-size:12px;color:#5A1008;line-height:1.6;"><strong style="font-weight:500;">Bottom line:</strong> Trip Planner routing is the primary demand driver for these sites — not foot traffic. Set pricing competitively. Use Tesla's posted Cincinnati MSA rates as your ceiling. Your spread above utility cost + Tesla fee is your margin. Don't over-price — you need the routing.</div>
       </div>
-
-      <!-- Strategic summary -->
-      <div class="insight-box" style="margin-top:12px;">
-        <div class="insight-t">Strategic summary — the all-Tesla platform thesis</div>
-        <div class="insight-txt">Pairing Supercharger for Business (DCFC) with Wall Connector for Business (L2) on the same properties is compelling: one brand, one app, one installer relationship. The Wall Connector economics are genuinely attractive for multifamily and hotel — lowest platform fee in the market, broad EV compatibility. The Supercharger for Business program gives you trip planner visibility and best-in-class driver UX at scale. The risks are the same on both sides: closed ecosystem, no OCPP, Tesla controls your routing and your data. The Spring 2026 Trip Planner filter adds a new layer of pricing risk specifically for your DCFC sites — price competitively or accept reduced routing exposure. Model this into your Fort Mitchell and Alexander Plaza ROI assumptions before finalizing pricing.</div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><div class="pros-t">Supercharger for Business — pros</div><ul>
+          <li>Immediate Trip Planner + Tesla App visibility (80,000+ stall network)</li>
+          <li>Also appears in Google Maps — integration live for Business sites</li>
+          <li>97% uptime guarantee with Tesla-managed maintenance and 24/7 NOC</li>
+          <li>Best-in-class driver UX — Plug &amp; Charge, no app, auto preconditioning</li>
+          <li>V4 Cabinet: 400–500kW, 400V–1,000V, all major EVs via NACS</li>
+          <li>White-label branding available</li>
+          <li>PSU pre-assembled units — 4-day deployment</li>
+          <li>Configurator provides public pricing + ROI estimates by address</li>
+        </ul></div>
+        <div class="cons"><div class="cons-t">Supercharger for Business — cons</div><ul>
+          <li>$0.10/kWh fee = ~20% of gross at median pricing, every session, forever</li>
+          <li>Spring 2026 Trip Planner filter can exclude third-party sites</li>
+          <li>Closed ecosystem — Tesla controls routing, pricing, driver data</li>
+          <li>No rent to site owners — you provide RE and capex</li>
+          <li>~$940K all-in for 8 stalls — model Fort Mitchell + Alexander Plaza carefully</li>
+          <li>Configurator assumes optimistic utilization (300–450 kWh/post/day)</li>
+          <li>Host has no access to individual driver data</li>
+        </ul></div>
       </div>
-
-      <div class="notes-area" placeholder="Tesla overall notes — strategy updates, pricing decisions, OCPP news, program changes..." id="note-tesla" oninput="save('tesla',this.value)" style="margin-top:10px;"></div>
-      <div id="saved-tesla" class="saved-note"></div>
+      <div class="badge-row" style="margin-top:8px;"><span class="badge b-coral">$0.10/kWh Tesla fee</span><span class="badge b-amber">Trip Planner filter risk — Spring 2026</span><span class="badge b-blue">Trip Planner + Google Maps</span><span class="badge b-gray">~$117K/stall capex</span></div>
+      <div style="background:#f1efe8;border-radius:8px;padding:7px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> Tesla also makes the Wall Connector for Business (L2) — see the Level 2 section below. Full closed-platform strategy analysis in the Strategic Notes card at the bottom of this tab.</div>
+      <div class="notes-area" placeholder="Supercharger notes — Fort Mitchell + Alexander Plaza deal status, pricing strategy, configurator outputs, Trip Planner filter impact..." id="note-tesla-sc" oninput="save('tesla-sc',this.value)" style="margin-top:8px;"></div>
+      <div id="saved-tesla-sc" class="saved-note"></div>
     </div>
 
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Red E Charging</div><div class="card-sub">Operator-friendly, independent platform</div></div><span class="badge b-amber">Evaluate for Phase 1</span></div>
-      <hr class="div">
-      <div class="detail">Positioned as an operator-friendly platform with potentially better unit economics for independent operators. 3V3I (your potential construction partner) is an active Red E deployment partner — this could accelerate your first deployment via the 3V3I relationship.</div>
-      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Operator-friendly commercial model</li><li>Potentially better margins for independents</li><li>3V3I already deploying Red E sites — warm intro path</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Smaller driver network vs Tesla/ChargePoint</li><li>Less data on long-term reliability at scale</li></ul></div></div>
-      <div class="notes-area" placeholder="Red E notes, commercial terms, contacts..." id="note-rede" oninput="save('rede',this.value)"></div>
-      <div id="saved-rede" class="saved-note"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">ChargePoint</div><div class="card-sub">Largest independent network in North America</div></div><span class="badge b-teal">Network + hardware</span></div>
-      <hr class="div">
-      <div class="detail">Primarily a SaaS + hardware platform. Sells and licenses to operators rather than owning sites. Strong in commercial, workplace, and multifamily. Public company (CHPT) — monitor financial health. Could serve as both hardware vendor and network layer for owned-site deployments.</div>
-      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Large existing driver network and app</li><li>B2B focused — fits RE operator model</li><li>OCPP-compliant, flexible integration</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Stock under pressure — financial health to monitor</li><li>Hardware quality inconsistency reported</li><li>Competition squeezing margins</li></ul></div></div>
-      <div class="notes-area" placeholder="ChargePoint notes..." id="note-cp" oninput="save('cp',this.value)"></div>
-      <div id="saved-cp" class="saved-note"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Autel Energy</div><div class="card-sub">Competitive hardware pricing, growing US presence</div></div><span class="badge b-amber">Evaluate</span></div>
-      <hr class="div">
-      <div class="detail">Hardware manufacturer with competitive pricing. OCPP-compliant — pairs with multiple network management platforms. Worth evaluating for cost-efficient Phase A deployments at existing owned sites where brand pull matters less.</div>
-      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Competitive hardware pricing</li><li>OCPP-compliant — flexible network pairing</li><li>Growing US distribution and support</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Low brand recognition for end drivers</li><li>Network software less mature</li><li>Limited large-scale deployment data</li></ul></div></div>
-      <div class="notes-area" placeholder="Autel notes, pricing intel..." id="note-autel" oninput="save('autel',this.value)"></div>
-      <div id="saved-autel" class="saved-note"></div>
-    </div>
-
-    <!-- ALPITRONIC -->
+    <!-- ALPITRONIC (L3) -->
     <div class="card">
       <div class="card-header"><div><div class="card-title">Alpitronic (alpitronic.it)</div><div class="card-sub">Italian DCFC manufacturer — Hypercharger line · 135,000 charge points globally · Ionna's exclusive hardware partner</div></div><span class="badge b-blue">Research</span></div>
       <hr class="div">
-      <div class="detail">Alpitronic is an electrical equipment manufacturer based in Bolzano, Italy, founded in 2009. Their Hypercharger product line has achieved a 30% market share in Europe and is rapidly expanding in the US. They manufactured 80 units in 2018, 900 in 2019, and 20,000 in 2023. As of 2025, 135,000 Alpitronic charge points are in operation globally. Annual revenue approached €1 billion in 2023 and 2024. Their silicon-carbide (SiC) power electronics deliver exceptional efficiency. Key US customers: Ionna (exclusive DCFC hardware partner using HYC400), Mercedes-Benz, Walmart. All Ionna stations feature Alpitronic HYC400 chargers branded in Ionna teal at 400kW maximum output.</div>
+      <div class="detail">Alpitronic is an electrical equipment manufacturer based in Bolzano, Italy, founded in 2009. Their Hypercharger product line has ~30% market share in Europe and is rapidly expanding in the US. They manufactured 80 units in 2018, 900 in 2019, and 20,000 in 2023. As of 2025, 135,000 Alpitronic charge points are in operation globally. Annual revenue approached €1 billion in 2023–2024. Silicon-carbide (SiC) power electronics deliver exceptional efficiency. Key US customers: Ionna (exclusive DCFC hardware partner using HYC400), Mercedes-Benz, Walmart. All Ionna stations feature Alpitronic HYC400 chargers at 400kW max.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
         <div>
           <div style="font-size:11px;font-weight:500;color:#1a1a18;margin-bottom:6px;">Key models — DCFC (L3)</div>
           <div style="display:flex;flex-direction:column;gap:5px;">
-            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC400 — 400kW</div><div style="font-size:11px;color:#5f5e5a;">Ionna's hardware of choice. Supports up to 1,000V / 500A. Two ports, dynamic load sharing in 50kW increments. SiC power electronics. March 2026: HYC400 Series 2 announced with front-facing display. Industry-leading for high-power public DCFC.</div></div>
-            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC300 — 300kW</div><div style="font-size:11px;color:#5f5e5a;">Four 75kW power modules, two charging cables. First delivered May 2018. Modular and upgradeable. Used by E.ON and other European operators.</div></div>
-            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC150 / HYC200 — 75–150kW</div><div style="font-size:11px;color:#5f5e5a;">Narrower form factor, two inverter modules. Ideal for lower-power corridor or destination sites. Also available: HYC50 — first wall-mountable 50kW charger.</div></div>
-            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC1000 — Megawatt Charging</div><div style="font-size:11px;color:#5f5e5a;">Introduced 2025. Power modules in separate inverter cabinet serving up to 8 stations. 1,000kW MCS / 600kW CCS. Fleet depot and heavy commercial vehicle use.</div></div>
+            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC400 — 400kW</div><div style="font-size:11px;color:#5f5e5a;">Ionna's hardware of choice. Up to 1,000V / 500A. Two ports, dynamic load sharing in 50kW increments. SiC. March 2026: HYC400 Series 2 with front-facing display.</div></div>
+            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC300 — 300kW</div><div style="font-size:11px;color:#5f5e5a;">Four 75kW power modules, two cables. First delivered May 2018. Modular, upgradeable. Used by E.ON.</div></div>
+            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC150 / HYC200 — 75–150kW</div><div style="font-size:11px;color:#5f5e5a;">Narrower form factor. Ideal for lower-power corridor/destination sites. HYC50 — first wall-mountable 50kW charger.</div></div>
+            <div style="background:#f1efe8;border-radius:7px;padding:7px 10px;"><div style="font-size:11px;font-weight:500;color:#1a1a18;">HYC1000 — Megawatt Charging</div><div style="font-size:11px;color:#5f5e5a;">Introduced 2025. Separate inverter cabinet serving up to 8 stations. 1,000kW MCS / 600kW CCS. Fleet/heavy commercial.</div></div>
           </div>
         </div>
         <div>
           <div style="font-size:11px;font-weight:500;color:#1a1a18;margin-bottom:6px;">Strategic relevance to Telos EV</div>
           <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;margin-bottom:8px;">
             <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:4px;">Ionna connection is critical</div>
-            <div style="font-size:11px;color:#185FA5;line-height:1.55;">As of April 2026, Ionna has 107 stations open with 1,020 stalls — all Alpitronic HYC400. If your preferred developer relationship with Ionna matures, you will be specifying Alpitronic hardware for every DCFC site. Understanding the product line, lead times, and pricing is a near-term operational requirement — not just market research.</div>
+            <div style="font-size:11px;color:#185FA5;line-height:1.55;">As of April 2026, Ionna has 107 stations open with 1,020 stalls — all Alpitronic HYC400. If your developer relationship with Ionna matures, you will be specifying Alpitronic for every DCFC site. Understanding the product line, lead times, and pricing is a near-term operational requirement.</div>
           </div>
           <div style="background:#f1efe8;border-radius:8px;padding:10px 12px;">
             <div style="font-size:11px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Key users of Alpitronic hardware</div>
@@ -519,33 +554,174 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       <div id="saved-alpitronic" class="saved-note"></div>
     </div>
 
-    <!-- FRACTAL EV -->
+    <!-- RED E (L3) -->
+    <div class="card" style="border-color:#1D9E75;">
+      <div class="card-header"><div><div class="card-title">Red E Charging — DCFC (L3)</div><div class="card-sub">Vertically integrated — hardware + software · operator-friendly economics · 3V3I active deployment partner</div></div><span class="badge b-amber">Evaluate for Phase 1</span></div>
+      <hr class="div">
+      <div class="detail">Red E is vertically integrated — they manufacture L3 (and L2) hardware AND require their own CSMS software platform. Positioned as operator-friendly with better unit economics for independent operators. 3V3I (your potential construction partner) is an active Red E deployment partner — a warm path to accelerate your first DCFC deployment. Because they require their own software, evaluate the hardware and software together as a bundled decision.</div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Operator-friendly commercial model</li><li>No monthly/transaction software fees (see Software tab)</li><li>3V3I already deploying Red E sites — warm intro path</li><li>40+ OCPP integrations, CCS and NACS</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Vertically integrated — must use their software</li><li>Smaller driver network vs Tesla/ChargePoint</li><li>Less long-term reliability data at scale</li></ul></div></div>
+      <div style="background:#f1efe8;border-radius:8px;padding:7px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> Red E also makes L2 hardware (see Level 2 section) and provides the Red E Enterprise CSMS (see Software &amp; OCPP tab). Evaluate hardware + software as one bundled decision.</div>
+      <div class="notes-area" placeholder="Red E L3 notes — hardware specs, pricing, commercial terms, 3V3I path..." id="note-rede-l3" oninput="save('rede-l3',this.value)"></div>
+      <div id="saved-rede-l3" class="saved-note"></div>
+    </div>
+
+    <!-- CHARGEPOINT (L3) -->
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">ChargePoint — DCFC (L3)</div><div class="card-sub">Largest independent network in North America · hardware + SaaS</div></div><span class="badge b-teal">Network + hardware</span></div>
+      <hr class="div">
+      <div class="detail">ChargePoint makes DCFC hardware (Express series) alongside their network platform. Primarily a SaaS + hardware platform — sells and licenses to operators rather than owning sites. Public company (CHPT) — monitor financial health. OCPP-compliant. Could serve as both hardware vendor and network layer for owned-site deployments.</div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Large existing driver network and app</li><li>B2B focused — fits RE operator model</li><li>OCPP-compliant, flexible integration</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Stock under pressure — financial health to monitor</li><li>Hardware quality inconsistency reported</li><li>Competition squeezing margins</li></ul></div></div>
+      <div style="background:#f1efe8;border-radius:8px;padding:7px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> ChargePoint also operates as a CSMS — see the Software &amp; OCPP tab.</div>
+      <div class="notes-area" placeholder="ChargePoint L3 notes..." id="note-cp" oninput="save('cp',this.value)"></div>
+      <div id="saved-cp" class="saved-note"></div>
+    </div>
+
+    <!-- AUTEL (L3) -->
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Autel Energy — DCFC (L3)</div><div class="card-sub">Competitive hardware pricing, growing US presence · MaxiCharger DC series</div></div><span class="badge b-amber">Evaluate</span></div>
+      <hr class="div">
+      <div class="detail">Autel manufactures DCFC hardware (MaxiCharger DC series, up to 640kW) with competitive pricing. OCPP-compliant — pairs with multiple network management platforms. Worth evaluating for cost-efficient DCFC deployments where brand pull matters less than capex. Growing US distribution and support footprint.</div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Competitive hardware pricing</li><li>OCPP-compliant — flexible network pairing</li><li>Growing US distribution and support</li><li>Broad power range (up to 640kW)</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Low brand recognition for end drivers</li><li>Network software less mature</li><li>Limited large-scale US deployment data</li></ul></div></div>
+      <div class="notes-area" placeholder="Autel L3 notes, pricing intel..." id="note-autel-l3" oninput="save('autel-l3',this.value)"></div>
+      <div id="saved-autel-l3" class="saved-note"></div>
+    </div>
+
+    <!-- ═══════════════ LEVEL 2 (L2) ═══════════════ -->
+    <div class="section-label" style="font-size:14px;color:#27500A;border-top:2px solid #1D9E75;padding-top:10px;margin-top:1.5rem;">Level 2 (L2)</div>
+
+    <!-- TESLA WALL CONNECTOR (L2) -->
+    <div class="card" style="border-color:#1D9E75;">
+      <div class="card-header"><div><div class="card-title">Tesla — Wall Connector for Business (L2)</div><div class="card-sub">Long-dwell charging — multifamily, hotel, retail, workplace · You own hardware + keep revenue · $0.03/kWh platform fee</div></div><span class="badge b-blue">Deep evaluate</span></div>
+      <hr class="div">
+      <div class="detail">A commercial L2 program targeting apartments, hotels, workplaces, and retail. Property owner purchases and installs the hardware (~$650/unit + ~$5,000 estimated turnkey installation per unit). Tesla provides the software platform, management portal, billing, and network listing. If pay-per-use is enabled, Tesla takes $0.03/kWh and remits the remainder quarterly. If charging is offered free, the software is entirely free. Universal Wall Connector supports non-Tesla EVs via built-in J1772 adapter. Sites listed on Tesla's Find Us map. Program actively scaling: 1,250+ new commercial connectors added since November 2025. Tall Pedestal (Feb 2026) now available for freestanding outdoor installs.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Tesla platform fee</div>
+          <div style="font-size:22px;font-weight:500;color:#1D9E75;">$0.03<span style="font-size:13px;color:#5f5e5a;">/kWh</span></div>
+          <div style="font-size:11px;color:#5f5e5a;">Covers software, billing, payment processing, network listing. Free if charging is offered at no cost.</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost</div>
+          <div style="font-size:18px;font-weight:500;color:#1a1a18;">~$650</div>
+          <div style="font-size:11px;color:#5f5e5a;">Per unit. ~$5,000 turnkey install. All-in per stall: ~$5,650. Buy hardware, own revenue.</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid #d3d1c7;">
+          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Visibility</div>
+          <div style="font-size:18px;font-weight:500;color:#1a1a18;">Find Us map</div>
+          <div style="font-size:11px;color:#5f5e5a;">Listed on Tesla's Find Us map. Not routed via Trip Planner (L2 = destination, not en-route).</div>
+        </div>
+      </div>
+      <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:10px;border:0.5px solid #F0997B;">
+        <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:4px;">OCPP status — the critical platform risk</div>
+        <div style="font-size:12px;color:#5A1008;line-height:1.6;">Tesla Wall Connectors currently do not officially support OCPP. The platform is proprietary — chargers communicate through Tesla's closed cloud. You cannot manage them through a third-party CSMS (Monta, ChargeLab, Red E). You are fully dependent on Tesla's portals: <strong style="font-weight:500;">Powerhub</strong> (real-time status, uptime) and <strong style="font-weight:500;">Tesla Business Portal</strong> (billing, pricing, session data). Limitations: no per-user identification, no access denial by vehicle, no idle fee enforcement. OCPP 1.6 reportedly in development per Tesla but no official timeline. Do not plan around it until confirmed.</div>
+      </div>
+      <div style="background:#f8f7f4;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;line-height:1.6;">
+        <strong style="font-weight:500;color:#1a1a18;">Management portals:</strong> Powerhub (real-time status, uptime) + Tesla Business Portal (billing, pricing, session download). Remittance: quarterly. Pay-per-use restricted to private sites in CA and WA currently — confirm OH/KY availability before finalizing Hills pricing.
+      </div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><div class="pros-t">Wall Connector for Business — pros</div><ul>
+          <li>$0.03/kWh is the lowest platform fee in the L2 commercial market</li>
+          <li>Listed on Tesla Find Us map — visibility to Tesla driver base</li>
+          <li>Universal Wall Connector supports all EVs via J1772 adapter</li>
+          <li>~$650 hardware cost among the lowest per-unit in commercial L2</li>
+          <li>Tall Pedestal available (Feb 2026) for outdoor freestanding installs</li>
+          <li>Utility rebate programs available incl. Dominion VA</li>
+          <li>OTA firmware updates, Wi-Fi connected, remote diagnostics</li>
+          <li>If free charging: $0 platform cost — pure CaaS fee to owner</li>
+        </ul></div>
+        <div class="cons"><div class="cons-t">Wall Connector for Business — cons</div><ul>
+          <li>No OCPP — locked into Tesla's closed platform, no third-party CSMS</li>
+          <li>No per-user session identification</li>
+          <li>No idle fee enforcement — risk at high-traffic retail/multifamily</li>
+          <li>No access denial by individual vehicle</li>
+          <li>Pay-per-use geo restrictions (CA/WA only) — confirm OH/KY</li>
+          <li>Quarterly remittance — delayed cash flow vs. monthly</li>
+          <li>Management software rudimentary vs. Monta or Red E</li>
+        </ul></div>
+      </div>
+      <div class="badge-row" style="margin-top:8px;"><span class="badge b-green">$0.03/kWh platform fee</span><span class="badge b-amber">OCPP: in development — not confirmed</span><span class="badge b-teal">Universal — all EVs</span><span class="badge b-blue">Find Us map visibility</span></div>
+      <div style="background:#f1efe8;border-radius:8px;padding:7px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> Tesla also makes the Supercharger for Business (L3) — see the DC Fast Charging section above. Full closed-platform strategy analysis in the Strategic Notes card at the bottom of this tab.</div>
+      <div class="notes-area" placeholder="Wall Connector notes — Hills pilot hardware plan, OH/KY pay-per-use status, OCPP tracking, portal findings..." id="note-tesla-wc" oninput="save('tesla-wc',this.value)" style="margin-top:8px;"></div>
+      <div id="saved-tesla-wc" class="saved-note"></div>
+    </div>
+
+    <!-- FRACTAL EV (L2) -->
     <div class="card">
       <div class="card-header"><div><div class="card-title">Fractal EV (fractalev.com)</div><div class="card-sub">Commercial L2 charger manufacturer — 48A and 80A · Mesh networking · Fleet, MURB, and public use cases</div></div><span class="badge b-amber">Evaluate — call pending</span></div>
       <hr class="div">
-      <div class="detail">Fractal EV manufactures commercial L2 charging hardware targeting multifamily (MURBs), fleet depots, and public commercial applications. Their two products — FR-48C (48A) and FR-80C (80A) — are OCPP 1.6J compliant, ETL Listed, FCC certified, and EnergyStar rated. Standout technical differentiator: built-in mesh networking using an 802.11 proprietary protocol that creates a redundant charger network and enables automated commissioning without requiring a site-level router for every unit. Dual SIM (3G/4G CAT1 + eSIM included) and WiFi built in. 4.3" outdoor-rated color touchscreen with RFID reader. Wall or pedestal mount. IP65 weatherproofing, IK08 impact rating. Cloud managed via FractalCloud — no monthly software fees. Network agnostic with REST API for integrations.</div>
+      <div class="detail">Fractal EV manufactures commercial L2 hardware targeting multifamily (MURBs), fleet depots, and public commercial applications. Their two products — FR-48C (48A) and FR-80C (80A) — are OCPP 1.6J compliant, ETL Listed, FCC certified, EnergyStar rated. Standout differentiator: built-in mesh networking (802.11 proprietary protocol) creating a redundant charger network and enabling automated commissioning without a site-level router per unit. Dual SIM (3G/4G CAT1 + eSIM) and WiFi built in. 4.3" outdoor touchscreen with RFID. Wall or pedestal mount. IP65, IK08. Cloud managed via FractalCloud — no monthly software fees. Network agnostic with REST API.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">FR-48C specs</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">48 Amp · 208/240VAC · 11.5kW output · 21ft J1772 cable · 10 lbs · -22°F to 122°F</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">FR-80C specs</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">80 Amp · 208/240VAC · 19.2kW output · 21ft J1772 cable · 15 lbs · same temp range</div>
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#854F0B;font-weight:500;margin-bottom:3px;">Why this is interesting</div>
-          <div style="font-size:12px;color:#633806;line-height:1.55;">Mesh networking reduces per-site infrastructure cost. No site router needed — chargers form their own network. FractalCloud has no monthly fee — important for CaaS economics at scale.</div>
-        </div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">FR-48C specs</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">48 Amp · 208/240VAC · 11.5kW · 21ft J1772 · 10 lbs · -22°F to 122°F</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">FR-80C specs</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">80 Amp · 208/240VAC · 19.2kW · 21ft J1772 · 15 lbs · same temp range</div></div>
+        <div style="background:#FAEEDA;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#854F0B;font-weight:500;margin-bottom:3px;">Why this is interesting</div><div style="font-size:12px;color:#633806;line-height:1.55;">Mesh networking reduces per-site infra cost. No site router needed. FractalCloud has no monthly fee — important for CaaS economics at scale.</div></div>
       </div>
       <div class="insight-box" style="margin-top:10px;">
         <div class="insight-t">Evaluate after pending call</div>
-        <div class="insight-txt">The mesh networking capability and zero software fee structure are both differentiated for L2 CaaS deployments. At $0/month for cloud management vs. Monta's per-port fee or Red E's transaction structure, Fractal could meaningfully improve per-stall economics at scale. Key questions for the call: pricing per unit, volume discount structure, US warranty and support infrastructure, and whether FractalCloud supports white-labeling for Telos EV branding. OCPP 1.6J is confirmed — verify 2.0.1 roadmap before committing.</div>
+        <div class="insight-txt">Mesh networking and zero software fee are both differentiated for L2 CaaS. At $0/month for cloud management vs. Monta's per-port fee or Red E's transaction structure, Fractal could meaningfully improve per-stall economics at scale. Call questions: pricing per unit, volume discounts, US warranty/support, white-label for Telos EV branding. OCPP 1.6J confirmed — verify 2.0.1 roadmap.</div>
       </div>
       <div class="badge-row" style="margin-top:10px;"><span class="badge b-amber">Call pending</span><span class="badge b-teal">Mesh networking</span><span class="badge b-green">No monthly software fee</span><span class="badge b-blue">OCPP 1.6J · Dual SIM</span></div>
       <div class="notes-area" placeholder="Fractal EV call notes — pricing, volume discounts, white-label, 2.0.1 roadmap..." id="note-fractal" oninput="save('fractal',this.value)"></div>
       <div id="saved-fractal" class="saved-note"></div>
     </div>
+
+    <!-- AUTEL (L2) -->
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Autel Energy — L2</div><div class="card-sub">MaxiCharger AC series · competitive pricing · OCPP-compliant</div></div><span class="badge b-amber">Evaluate</span></div>
+      <hr class="div">
+      <div class="detail">Autel's MaxiCharger AC series covers the L2 commercial segment — up to 48A/11.5kW, OCPP-compliant, with options for RFID, dynamic load balancing, and cellular/WiFi connectivity. Competitive pricing makes Autel a candidate for cost-efficient L2 deployments at multifamily, hotel, and retail where driver brand recognition matters less. Pairs with third-party CSMS (unlike Tesla/Red E). Placeholder card — to be expanded with information from upcoming research.</div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Competitive hardware pricing</li><li>OCPP-compliant — works with any CSMS</li><li>Load balancing built in</li><li>Growing US distribution</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Low brand recognition for drivers</li><li>Network software less mature</li><li>Need more US deployment/reliability data</li></ul></div></div>
+      <div class="notes-area" placeholder="Autel L2 notes — model specs, pricing, send additional info to work through..." id="note-autel-l2" oninput="save('autel-l2',this.value)"></div>
+      <div id="saved-autel-l2" class="saved-note"></div>
+    </div>
+
+    <!-- WALLBOX (L2) -->
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Wallbox</div><div class="card-sub">Spanish manufacturer · Pulsar / Commander / Supernova lines · design-forward L2</div></div><span class="badge b-amber">Evaluate — placeholder</span></div>
+      <hr class="div">
+      <div class="detail">Wallbox is a Barcelona-based manufacturer (NYSE: WBX) known for design-forward L2 hardware. Their commercial lines (Commander 2, Pulsar series) target multifamily, workplace, and hospitality. OCPP-compliant, supports dynamic power sharing, and offers their own myWallbox management platform plus third-party CSMS integration. Known for clean industrial design and a strong app experience. Also makes the Quasar bidirectional (V2H) charger. Placeholder card — to be expanded with information from upcoming research.</div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>Design-forward hardware — strong aesthetic for premium properties</li><li>OCPP-compliant — CSMS flexibility</li><li>Power sharing / load management built in</li><li>Strong app and user experience</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Public company under financial pressure — monitor</li><li>US support footprint vs. EU base — confirm</li><li>Pricing vs. Autel/Fractal TBD</li></ul></div></div>
+      <div class="notes-area" placeholder="Wallbox notes — model specs, US pricing, support footprint, send additional info..." id="note-wallbox" oninput="save('wallbox',this.value)"></div>
+      <div id="saved-wallbox" class="saved-note"></div>
+    </div>
+
+    <!-- RED E (L2) -->
+    <div class="card" style="border-color:#1D9E75;">
+      <div class="card-header"><div><div class="card-title">Red E Charging — L2</div><div class="card-sub">Vertically integrated — hardware + software · operator-friendly · requires Red E CSMS</div></div><span class="badge b-amber">Evaluate for Phase 1</span></div>
+      <hr class="div">
+      <div class="detail">Red E also manufactures L2 hardware as part of their vertically integrated model — hardware plus their required CSMS software. Operator-friendly economics with no monthly/transaction software fees. Same bundled-decision consideration as their L3 line: choosing Red E hardware means using Red E software. 3V3I deployment relationship applies here too. Placeholder card — to be expanded with information from upcoming research.</div>
+      <div style="background:#f1efe8;border-radius:8px;padding:7px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> Red E also makes L3 hardware (see DC Fast Charging section above) and provides the Red E Enterprise CSMS (see Software &amp; OCPP tab). Vertically integrated — hardware and software are one decision.</div>
+      <div class="notes-area" placeholder="Red E L2 notes — hardware specs, pricing, send additional info to work through..." id="note-rede-l2" oninput="save('rede-l2',this.value)"></div>
+      <div id="saved-rede-l2" class="saved-note"></div>
+    </div>
+
+    <!-- ═══════════════ STRATEGIC NOTES ═══════════════ -->
+    <div class="section-label" style="margin-top:1.5rem;">Strategic notes — platform &amp; OCPP considerations</div>
+
+    <div class="card" style="border-color:#7F77DD;">
+      <div class="card-header"><div><div class="card-title">Closed vs. open platforms — the core hardware strategy decision</div><div class="card-sub">How hardware choice locks (or frees) your software, data, and long-term flexibility</div></div></div>
+      <hr class="div">
+      <div class="insight-box" style="margin-top:4px;">
+        <div class="insight-t">The all-Tesla platform thesis</div>
+        <div class="insight-txt">Pairing Supercharger for Business (DCFC) with Wall Connector for Business (L2) on the same properties is compelling: one brand, one app, one installer relationship. The Wall Connector economics are genuinely attractive for multifamily and hotel — lowest platform fee in the market, broad EV compatibility. Supercharger for Business gives you Trip Planner visibility and best-in-class driver UX at scale. The risks are the same on both: closed ecosystem, no OCPP, Tesla controls your routing and your data. The Spring 2026 Trip Planner filter adds pricing risk specifically for DCFC sites — price competitively or accept reduced routing exposure. Model this into Fort Mitchell and Alexander Plaza ROI before finalizing pricing.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+        <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:5px;">Closed / vertically-integrated platforms</div>
+          <div style="font-size:12px;color:#5A1008;line-height:1.6;"><strong style="font-weight:500;">Tesla</strong> (no OCPP — proprietary cloud) and <strong style="font-weight:500;">Red E</strong> (vertically integrated — must use their software). Trade-off: simplicity and bundled economics vs. lock-in. You give up the ability to swap CSMS or mix hardware brands. If the relationship sours or the company changes terms, switching means ripping and replacing.</div>
+        </div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:11px;font-weight:500;color:#27500A;margin-bottom:5px;">Open / OCPP-compliant platforms</div>
+          <div style="font-size:12px;color:#3B6D11;line-height:1.6;"><strong style="font-weight:500;">Alpitronic, ChargePoint, Autel, Fractal, Wallbox</strong> — OCPP-compliant hardware that pairs with any compliant CSMS (Monta, ChargeLab, EV Connect, AMPECO). Trade-off: more upfront integration work vs. long-term flexibility, data ownership, and negotiating leverage. You can change software without changing hardware.</div>
+        </div>
+      </div>
+      <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;margin-top:10px;">
+        <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:4px;">The strategic principle for Telos EV</div>
+        <div style="font-size:12px;color:#185FA5;line-height:1.6;">OCPP 2.0.1 minimum on all open-platform hardware and software agreements — this is the NEVI-required standard and protects your flexibility. The open-platform lock-in argument is also your sharpest sales weapon against EV+ and against all-Tesla solutions: a third-party SWTCH source explicitly warns owners not to lock into closed platforms because "you'll need to rip everything out to start over." Use closed-platform risk as a differentiator when pitching property owners. Reserve closed platforms (Tesla, Red E) for specific cases where their economics or driver-network advantages clearly outweigh the lock-in — e.g., Tesla Supercharger where Trip Planner visibility is the entire demand driver, or Red E where the 3V3I relationship and zero software fees accelerate a Phase 1 deployment.</div>
+      </div>
+      <div class="notes-area" placeholder="Platform strategy notes — OCPP decisions, hardware standardization, lock-in trade-offs by deal..." id="note-platform-strategy" oninput="save('platform-strategy',this.value)" style="margin-top:10px;"></div>
+      <div id="saved-platform-strategy" class="saved-note"></div>
+    </div>
+
   </div>
 
   <!-- OPERATORS -->
@@ -694,8 +870,8 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
 
   <!-- RE & PLATFORM -->
   <div id="realestate" class="section">
-    <div class="page-title">RE &amp; Platform Companies</div>
-    <div class="page-sub">Real estate companies — REITs, brokers, owners, and developers actively investing in or solving for EV infrastructure. Track partnerships, active programs, and relationship opportunities.</div>
+    <div class="page-title">Active CRE Companies</div>
+    <div class="page-sub">Commercial real estate companies actively researching or deploying EV strategies — REITs, brokers, owners, and developers. A living repository of who is doing what in the CRE-meets-EV space.</div>
 
     <div class="section-label">Industrial REITs</div>
 
@@ -838,6 +1014,13 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
         <div class="insight-t">Why this is directly relevant to your model</div>
         <div class="insight-txt">The no-fee structure is significant for the owned-and-operate business line. Most CSMS platforms charge per-charger monthly fees plus a transaction percentage — both of which compress margins on early deployments when utilization is still building. Red E's zero-fee model means 100% of charging revenue flows to you from day one. Combined with the fact that your potential construction partner 3V3I is already deploying Red E sites, there is a clear path to a preferred commercial relationship here. Worth getting a direct conversation with their team early.</div>
       </div>
+      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>No monthly software fees — no transaction fees</li><li>40+ OCPP hardware integrations, CCS and NACS</li><li>Utility-approved in multiple states (rebate access)</li><li>Self-troubleshooting fault reporting — reduces truck rolls</li><li>24/7 live support from Detroit-based engineers</li><li>3V3I already deploying Red E — warm commercial path</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Smaller driver network vs ChargePoint or Monta</li><li>Less mature AI/analytics layer vs Monta</li><li>White-label and data warehouse capabilities less clear</li><li>Scale of platform vs enterprise needs TBD</li></ul></div></div>
+      <div class="badge-row"><span class="badge b-green">No software fees</span><span class="badge b-green">No transaction fees</span><span class="badge b-teal">OCPP compliant</span><span class="badge b-amber">3V3I already deploying</span></div>
+      <div style="background:#f1efe8;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:#5f5e5a;"><strong style="font-weight:500;color:#1a1a18;">Cross-reference:</strong> Red E is vertically integrated — they make L2 and L3 hardware AND require their own software. See Red E cards in the Equipment tab (L2 and L3 sections) for hardware details.</div>
+      <div class="notes-area" placeholder="Red E Enterprise notes, commercial terms, demo..." id="note-rede-sw" oninput="save('rede-sw',this.value)"></div>
+      <div id="saved-rede-sw" class="saved-note"></div>
+    </div>
+
     <div class="section-label" style="margin-top:4px;">CSMS vendors — Charging Station Management Software</div>
     <div class="detail" style="margin-bottom:12px;">The CSMS is the software layer that sits between your chargers and your business operations — it handles remote monitoring, session management, billing, access control, load management, and reporting. Choosing an OCPP-compliant CSMS means you retain hardware flexibility. Below are the key players to evaluate.</div>
 
@@ -880,12 +1063,6 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
       <div class="detail">Cloud-based platform for large-scale networks. Certified for OCPP 1.6 and 2.0.1. Supports complex energy management, multi-tenant billing, roaming, and V2G. Best suited for enterprise or utility-scale operators. Likely over-engineered for early-stage deployments but worth knowing as a platform to grow into.</div>
       <div class="notes-area" placeholder="Driivz notes..." id="note-driivz" oninput="save('driivz',this.value)"></div>
       <div id="saved-driivz" class="saved-note"></div>
-    </div>
-
-      <div class="pros-cons"><div class="pros"><div class="pros-t">Pros</div><ul><li>No monthly software fees — no transaction fees</li><li>40+ OCPP hardware integrations, CCS and NACS</li><li>Utility-approved in multiple states (rebate access)</li><li>Self-troubleshooting fault reporting — reduces truck rolls</li><li>24/7 live support from Detroit-based engineers</li><li>3V3I already deploying Red E — warm commercial path</li></ul></div><div class="cons"><div class="cons-t">Cons</div><ul><li>Smaller driver network vs ChargePoint or Monta</li><li>Less mature AI/analytics layer vs Monta</li><li>White-label and data warehouse capabilities less clear</li><li>Scale of platform vs enterprise needs TBD</li></ul></div></div>
-      <div class="badge-row"><span class="badge b-green">No software fees</span><span class="badge b-green">No transaction fees</span><span class="badge b-teal">OCPP compliant</span><span class="badge b-amber">3V3I already deploying</span></div>
-      <div class="notes-area" placeholder="Red E Enterprise notes, commercial terms, demo..." id="note-rede-sw" oninput="save('rede-sw',this.value)"></div>
-      <div id="saved-rede-sw" class="saved-note"></div>
     </div>
 
     <div class="card">
@@ -1013,39 +1190,111 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     </div>
   </div>
 
-  <!-- MARKETS -->
-  <div id="markets" class="section">
-    <div class="page-title">Market intelligence</div>
-    <div class="page-sub">Geography, incentive programs, and expansion targets</div>
+  <!-- PARTNERS & VENDORS -->
+  <div id="partnerships" class="section">
+    <div class="page-title">Partners &amp; Vendors</div>
+    <div class="page-sub">Companies we work with to execute and grow — organized by relationship and vendor type. Electrical contractors, engineers, construction partners, utilities, and strategic/channel partners.</div>
+
+    <!-- ELECTRICAL CONTRACTORS -->
+    <div class="section-label">Electrical contractors</div>
 
     <div class="card" style="border-color:#1D9E75;">
-      <div class="card-header"><div><div class="card-title">Cincinnati, OH</div><div class="card-sub">Home market — Phase 1 on existing portfolio</div></div><span class="badge b-green">Phase 1 active</span></div>
+      <div class="card-header"><div><div class="card-title">STG Electric (stgelectricservices.com)</div><div class="card-sub">Northeast Ohio + Western PA · Commercial, industrial, residential · EV charger installation + Tesla Supercharger experience · Est. 1972</div></div><span class="badge b-green">Preferred — evaluate</span></div>
       <hr class="div">
-      <div class="detail">Primary launch market. Existing owned portfolio removes site control risk. I-71 and I-75 are major NEVI corridors. AEP Ohio and Duke Energy Ohio utility programs worth researching for EV rebates and rate structures.</div>
-      <div class="badge-row"><span class="badge b-green">Owned assets</span><span class="badge b-blue">I-71 / I-75 corridor</span><span class="badge b-amber">Research ODOT + AEP programs</span></div>
-      <div class="notes-area" placeholder="Cincinnati site targets, utility contacts, grant findings..." id="note-cincy" oninput="save('cincy',this.value)"></div>
-      <div id="saved-cincy" class="saved-note"></div>
+      <div class="detail">STG Electric Services is a full-service electrical contractor based in Northeast Ohio, serving industrial, commercial, and residential clients since 1972. Their service department specializes in EV charger installation and maintenance alongside generators and general electrical work. Critically, they have direct Tesla Supercharger installation experience — a key differentiator given your active Fort Mitchell Gateway and Alexander Plaza Supercharger deals. Service area: Northeast Ohio, Western Pennsylvania, and beyond. Part of the STG family of companies (STG Communications, Advanced Underground Solutions, Blue Jay Communications). Dedicated EV charging section on their website with a cost estimator tool.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">Why STG is relevant</div><div style="font-size:12px;color:#3B6D11;line-height:1.55;">Tesla Supercharger experience is rare among regional contractors. If your DCFC sites require Supercharger installation, STG has already solved the technical and coordination challenges of Tesla's proprietary install requirements.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Contact</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">Phone: 330-650-0513 · stgelectricservices.com · Confirm: do they serve Hamilton County / Greater Cincinnati directly?</div></div>
+      </div>
+      <div class="badge-row" style="margin-top:10px;"><span class="badge b-green">Tesla Supercharger experience</span><span class="badge b-teal">NE Ohio + W. PA</span><span class="badge b-blue">Commercial + industrial</span></div>
+      <div class="notes-area" placeholder="STG notes — Cincinnati coverage, pricing, Supercharger experience, key contact..." id="note-stg" oninput="save('stg',this.value)"></div>
+      <div id="saved-stg" class="saved-note"></div>
     </div>
 
-    <div class="grid2">
-      <div class="card"><div class="card-title">Dayton, OH</div><div class="card-sub">Adjacent Ohio market</div><hr class="div"><div class="detail">I-70/I-75 interchange — major NEVI corridor node. Same Ohio incentive landscape. RE partner relationships transferable from Cincinnati.</div><div class="badge-row"><span class="badge b-blue">NEVI corridor</span><span class="badge b-teal">Partner market</span></div><div class="notes-area" placeholder="Dayton notes..." id="note-dayton" oninput="save('dayton',this.value)" style="min-height:50px;"></div><div id="saved-dayton" class="saved-note"></div></div>
-      <div class="card"><div class="card-title">Louisville, KY</div><div class="card-sub">Nearby metro, strong growth</div><hr class="div"><div class="detail">I-65/I-64 interchange. Kentucky Energy and Environment Cabinet programs to research. Fast-growing retail market.</div><div class="badge-row"><span class="badge b-amber">Research KY incentives</span><span class="badge b-blue">I-65 corridor</span></div><div class="notes-area" placeholder="Louisville notes..." id="note-lou" oninput="save('lou',this.value)" style="min-height:50px;"></div><div id="saved-lou" class="saved-note"></div></div>
-      <div class="card"><div class="card-title">Lexington, KY</div><div class="card-sub">I-75 corridor + university market</div><hr class="div"><div class="detail">I-75 between Cincinnati and Knoxville. University of Kentucky market. Tourism and corridor traffic relevant for destination charging.</div><div class="badge-row"><span class="badge b-blue">I-75 corridor</span><span class="badge b-teal">Tourism demand</span></div><div class="notes-area" placeholder="Lexington notes..." id="note-lex" oninput="save('lex',this.value)" style="min-height:50px;"></div><div id="saved-lex" class="saved-note"></div></div>
-      <div class="card"><div class="card-title">Richmond, VA</div><div class="card-sub">Southeast anchor, I-95 corridor</div><hr class="div"><div class="detail">Virginia has active EV incentive programs. Dominion Energy utility EV programs. I-95 is the highest-priority corridor nationally for fast charging networks.</div><div class="badge-row"><span class="badge b-blue">I-95 corridor</span><span class="badge b-teal">Dominion programs</span><span class="badge b-amber">Virginia NEVI plan</span></div><div class="notes-area" placeholder="Richmond notes..." id="note-rich" oninput="save('rich',this.value)" style="min-height:50px;"></div><div id="saved-rich" class="saved-note"></div></div>
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Qmerit (qmerit.com)</div><div class="card-sub">National managed installer network — 23,000+ certified electricians · Hardware-agnostic · NEVI + 30C grant support</div></div><span class="badge b-green">Potential execution partner</span></div>
+      <hr class="div">
+      <div class="detail">Qmerit is a managed installation and electrification services platform with a national network of 23,000+ certified, licensed, insured, background-checked electricians. Hardware-agnostic. Full permitting, inspection, compliance management. NEVI grant navigation + 30C tax credit support. Ongoing EVSE maintenance program post-install. Dedicated multifamily and hospitality pages. Automakers accounting for 90% of all EV models use Qmerit as preferred home install partner. Utility partners include Tucson Electric Power. Fleet partners include WEX.</div>
+      <div class="insight-box">
+        <div class="insight-t">Best use case for Telos EV</div>
+        <div class="insight-txt">Qmerit is your most scalable path to rapid L2 deployment across multiple property types without building an in-house electrician network. Bring the real estate and the deal — Qmerit brings certified electricians, permitting, inspections, and grant navigation in any market you enter. Particularly relevant for Phase 1 Cincinnati deployments and new market entry where you don't yet have a local contractor relationship.</div>
+      </div>
+      <div class="badge-row"><span class="badge b-green">23,000+ certified electricians</span><span class="badge b-teal">Hardware agnostic</span><span class="badge b-blue">NEVI + 30C grant support</span></div>
+      <div class="notes-area" placeholder="Qmerit notes — Cincinnati network depth, commercial pricing, utility partnerships in OH/KY/VA..." id="note-qmerit-v" oninput="save('qmerit-v',this.value)"></div>
+      <div id="saved-qmerit-v" class="saved-note"></div>
     </div>
 
-    <div class="section-label" style="margin-top:4px;">Incentive research checklist</div>
-    <div class="action-item">Federal: 30C Alternative Fuel Vehicle Refueling Property Credit (IRA)</div>
-    <div class="action-item">Federal: NEVI Formula Program — state NEVI plans for OH, KY, VA</div>
-    <div class="action-item">Ohio: ODOT EV programs, AEP Ohio and Duke Energy Ohio utility rebates</div>
-    <div class="action-item">Kentucky: Kentucky Energy and Environment Cabinet EV programs</div>
-    <div class="action-item">Virginia: Dominion Energy EV programs, Virginia DEQ incentives</div>
-  </div>
+    <!-- ENGINEERING -->
+    <div class="section-label">Engineering &amp; site design</div>
 
-  <!-- PARTNERSHIPS -->
-  <div id="partnerships" class="section">
-    <div class="page-title">Strategic partnerships</div>
-    <div class="page-sub">Adjacent opportunities — not core EV infrastructure players but potential ecosystem partners</div>
+    <div class="card" style="border-color:#378ADD;">
+      <div class="card-header"><div><div class="card-title">Dewberry (dewberry.com)</div><div class="card-sub">National engineering firm — dedicated National EV Infrastructure Team · utilities, transit, private operators · 60+ offices, 2,500+ professionals</div></div><span class="badge b-blue">Preferred engineer — evaluate</span></div>
+      <hr class="div">
+      <div class="detail">Dewberry is a leading national professional services and engineering firm with more than 60 locations and 2,500+ professionals. Critically, they have a dedicated National Electric Vehicle Infrastructure Team — not a generalist group that occasionally does EV work, but a specialized team whose sole focus is EV projects. Active clients include utilities, transit authorities, and privately owned EV companies. Actively hiring for EV infrastructure roles (Deputy PM — EV Infrastructure Design posted Nov 2025), signaling active project growth. Services: site design, engineering and permitting, utility coordination, NEVI grant support.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#E6F1FB;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#0C447C;font-weight:500;margin-bottom:3px;">Why Dewberry matters</div><div style="font-size:12px;color:#185FA5;line-height:1.55;">A dedicated EV engineering team understands make-ready, utility interconnection, load management, and NEVI compliance in ways a generalist firm doesn't. For Fort Mitchell and Alexander Plaza, an EV-specialized engineer reduces design errors and speeds utility approval.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Next step</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">Identify the Dewberry office closest to Cincinnati and confirm EV project experience in OH/KY. Request an intro call — their EV team is actively seeking private operator clients.</div></div>
+      </div>
+      <div class="badge-row" style="margin-top:10px;"><span class="badge b-blue">Dedicated EV infrastructure team</span><span class="badge b-teal">National — 60+ offices</span><span class="badge b-gray">Utilities + private operators</span></div>
+      <div class="notes-area" placeholder="Dewberry notes — Cincinnati office, EV team contact, project pricing, NEVI experience..." id="note-dewberry" oninput="save('dewberry',this.value)"></div>
+      <div id="saved-dewberry" class="saved-note"></div>
+    </div>
+
+    <!-- CONSTRUCTION PARTNERS -->
+    <div class="section-label">Construction partners</div>
+
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">3V3I (3v3i.com)</div><div class="card-sub">Active partnership discussion — prefab DCFC site construction · Andrew (owner) — RE gap confirmed</div></div><span class="badge b-green">Active partnership discussion</span></div>
+      <hr class="div">
+      <div class="detail">3V3I is an active installer using a proprietary prefab construction model for DCFC sites. They completed an Ionna site in Oklahoma City's Bricktown district in 5 business days. Also deploying Red E Charging sites. Confirmed RE bottleneck on call with Andrew (owner, April 2026): 3V3I has no RE expertise — their explicit gap. Partnership thesis: Telos EV brings real estate ownership and developer expertise; 3V3I brings installation speed and execution. Next steps: define deal structure, review pipeline, agree economics split.</div>
+      <div class="badge-row"><span class="badge b-green">Active talks</span><span class="badge b-teal">Prefab construction model</span><span class="badge b-amber">RE gap = our leverage</span></div>
+      <div class="notes-area" placeholder="3V3I notes — deal structure progress, pipeline review, economics split, next steps with Andrew..." id="note-3v3i-v" oninput="save('3v3i-v',this.value)"></div>
+      <div id="saved-3v3i-v" class="saved-note"></div>
+    </div>
+
+    <!-- UTILITY COMPANIES -->
+    <div class="section-label">Utility companies</div>
+
+    <div class="card" style="border-color:#EF9F27;">
+      <div class="card-header"><div><div class="card-title">Duke Energy — Ohio</div><div class="card-sub">Serves Cincinnati MSA · Rate DS / Rate DP · Rider LM · DCFC pilot rate pending</div></div><span class="badge b-amber">Active — MQ + Cincinnati sites</span></div>
+      <hr class="div">
+      <div class="detail">Duke Energy Ohio is the utility for the Cincinnati MSA — the territory covering Montgomery Quarter and most of your Ohio sites. Rate applicability is the key variable: Rate DS vs. Rate DP depends on transformer ownership (you not owning the transformer keeps you on DS). Rider LM (time-of-use demand restructuring, updated June 1 2025) is flagged as potentially favorable. A DCFC pilot rate is embedded in a pending Duke rate case — Commission order expected before mid-2027 — worth monitoring closely for a favorable demand-charge structure.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#FAEEDA;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#854F0B;font-weight:500;margin-bottom:3px;">Key items to track</div><div style="font-size:12px;color:#633806;line-height:1.55;">Confirm Rate DS applicability (transformer ownership). Obtain Sheet 40 (Rate DS) and Sheet 76 (Rider LM). Monitor DCFC pilot rate case outcome.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Relevant sites</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">Montgomery Quarter, Hills Properties, Cincinnati-area DCFC sites.</div></div>
+      </div>
+      <div class="notes-area" placeholder="Duke Energy Ohio notes — rate confirmations, rate case updates, contacts, demand charge details..." id="note-duke-oh" oninput="save('duke-oh',this.value)"></div>
+      <div id="saved-duke-oh" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border-color:#EF9F27;">
+      <div class="card-header"><div><div class="card-title">Duke Energy — Kentucky</div><div class="card-sub">Serves Northern KY · Rate DS confirmed (~$0.13/kWh blended) · regional EV contact + project engineer identified</div></div><span class="badge b-amber">Active — Williamstown + Fort Mitchell</span></div>
+      <hr class="div">
+      <div class="detail">Duke Energy Kentucky serves Northern Kentucky — the territory for Hampton Inn Williamstown and the Fort Mitchell Gateway Supercharger. Rate DS is confirmed for Williamstown (~$0.13/kWh blended). For Fort Mitchell, utility engagement is underway — a regional EV contact and local project engineer have been identified. Note that Kentucky is a separate regulatory jurisdiction from Ohio (Kentucky PSC vs. PUCO) — rates, riders, and rate cases are tracked separately from Duke Energy Ohio.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+        <div style="background:#FAEEDA;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#854F0B;font-weight:500;margin-bottom:3px;">Status</div><div style="font-size:12px;color:#633806;line-height:1.55;">Rate DS confirmed for Williamstown. Fort Mitchell utility engagement underway — site plan is next required step before RFP.</div></div>
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Relevant sites</div><div style="font-size:12px;color:#1a1a18;line-height:1.55;">Hampton Inn Williamstown, Fort Mitchell Gateway Supercharger.</div></div>
+      </div>
+      <div class="notes-area" placeholder="Duke Energy KY notes — Fort Mitchell engagement, regional EV contact name, project engineer, rate details..." id="note-duke-ky" oninput="save('duke-ky',this.value)"></div>
+      <div id="saved-duke-ky" class="saved-note"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">MTE (Middle Tennessee Electric)</div><div class="card-sub">Tennessee electric cooperative · relevant for Franklin TN / Alexander Plaza market</div></div><span class="badge b-gray">Monitor — TN sites</span></div>
+      <hr class="div">
+      <div class="detail">Middle Tennessee Electric (MTE) is one of the largest electric cooperatives in the US, serving Middle Tennessee including the Franklin/Williamson County area relevant to the Alexander Plaza Supercharger site (Exit 65). As a cooperative rather than an investor-owned utility, rate structures and EV programs differ from Duke Energy. Confirm MTE's commercial DCFC rate schedule, demand charges, and any EV-specific rates or rebate programs before finalizing the Alexander Plaza proforma. Placeholder card — to be expanded with rate details.</div>
+      <div class="notes-area" placeholder="MTE notes — commercial DCFC rate, demand charges, EV programs, contacts for Alexander Plaza..." id="note-mte" oninput="save('mte',this.value)"></div>
+      <div id="saved-mte" class="saved-note"></div>
+    </div>
+
+    <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;">
+      <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add additional utility companies as you enter new markets (Louisville LG&amp;E, Lexington KU, Dominion VA, etc.)</div>
+      <div class="notes-area" placeholder="New utility to track..." id="note-utility-new" oninput="save('utility-new',this.value)" style="min-height:50px;"></div>
+      <div id="saved-utility-new" class="saved-note"></div>
+    </div>
+
+    <!-- STRATEGIC / CHANNEL PARTNERSHIPS -->
+    <div class="section-label">Strategic &amp; channel partnerships</div>
 
     <div class="card" style="border-color:#EF9F27;">
       <div class="card-header"><div><div class="card-title">Rove IQ (roveiq.com)</div><div class="card-sub">Wayfinding, digital signage, and DOOH advertising — meeting pending</div></div><span class="badge b-amber">Meeting pending</span></div>
@@ -1064,21 +1313,25 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     </div>
 
     <div class="card" style="border-color:#888780;">
-      <div class="card-header"><div><div class="card-title">DeCharge Network (decharge.network)</div><div class="card-sub">Crypto / Web3 decentralized EV charging network — DePIN model · Solana blockchain</div></div><span class="badge b-gray">Watch — early stage / speculative</span></div>
+      <div class="card-header"><div><div class="card-title">DeCharge Network (decharge.network)</div><div class="card-sub">Crypto / Web3 decentralized EV charging network — DePIN model · Solana blockchain</div></div><span class="badge b-gray">Watch — speculative</span></div>
       <hr class="div">
-      <div class="detail">DeCharge is a "DePIN" (Decentralized Physical Infrastructure Network) play built on the Solana blockchain. Their model: individuals buy a DeCharge hardware unit (the Beast, Mini, or coming-soon Titan DCFC), install it, and earn crypto token rewards for hosting public charging sessions. Investors can also provide liquidity to earn passive yield. Backed by Lemniscap (a crypto-native VC). Currently selling L2 hardware (7.4kW AC "Beast" for cars, 3.3kW "Mini" for 2/3-wheelers) with a DC fast charger (Titan, 30–120kW) announced but not yet shipping.</div>
+      <div class="detail">DeCharge is a "DePIN" (Decentralized Physical Infrastructure Network) play built on the Solana blockchain. Their model: individuals buy a DeCharge hardware unit, install it, and earn crypto token rewards for hosting public charging sessions. Backed by Lemniscap (a crypto-native VC). Currently selling L2 hardware with a DC fast charger (Titan, 30–120kW) announced but not yet shipping.</div>
       <div class="insight-box">
         <div class="insight-t">Why this is on the radar — and why to be cautious</div>
-        <div class="insight-txt">DeCharge represents a fundamentally different capital model for EV infrastructure: crowdsourced hardware ownership incentivized by crypto rewards rather than centralized CapEx. This is worth watching for two reasons. First, if the model scales, it could accelerate L2 deployment at multifamily and commercial properties in ways that create more competition for your property owner partnership model — individual unit owners seeking hosting arrangements at apartment complexes or retail sites. Second, it's a signal of where alternative financing for EV infrastructure is being explored. That said: the model has meaningful execution risk — crypto reward sustainability, hardware quality at scale, and enterprise-grade reliability are all unproven. This is speculative market intelligence, not a near-term competitive threat or partnership opportunity.</div>
+        <div class="insight-txt">DeCharge represents a fundamentally different capital model: crowdsourced hardware ownership incentivized by crypto rewards rather than centralized CapEx. Worth watching because if it scales, individual hardware owners may approach your property partners seeking hosting arrangements — competition for your property owner partnership model. It's also a signal of where alternative financing for EV infrastructure is being explored. That said: meaningful execution risk — crypto reward sustainability, hardware quality at scale, and enterprise-grade reliability are all unproven. Speculative intelligence, not a near-term partnership.</div>
       </div>
-      <div class="badge-row"><span class="badge b-gray">Web3 / DePIN model</span><span class="badge b-gray">Crypto-incentivized</span><span class="badge b-gray">L2 live, DCFC coming</span><span class="badge b-gray">Watch only</span></div>
+      <div class="badge-row"><span class="badge b-gray">Web3 / DePIN model</span><span class="badge b-gray">Crypto-incentivized</span><span class="badge b-gray">Watch only</span></div>
       <div class="notes-area" placeholder="DeCharge notes — token performance, hardware scaling, competitive implications..." id="note-decharge" oninput="save('decharge',this.value)"></div>
       <div id="saved-decharge" class="saved-note"></div>
     </div>
+
+    <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;">
+      <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add additional partners or vendors here</div>
+      <div class="notes-area" placeholder="New partner or vendor to track..." id="note-partner-new" oninput="save('partner-new',this.value)" style="min-height:50px;"></div>
+      <div id="saved-partner-new" class="saved-note"></div>
+    </div>
+
   </div>
-
-
-
 
   <!-- CONNECTIVITY TAB -->
   <div id="connectivity" class="section">
@@ -1223,86 +1476,6 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     </div>
 
   </div>
-
-  <!-- VENDORS & PARTNERS TAB -->
-  <div id="vendors" class="section">
-    <div class="page-title">Vendors &amp; Partners</div>
-    <div class="page-sub">Companies we work with to execute — installation contractors, engineers, and construction partners. Evaluate, track, and build relationships.</div>
-
-    <div class="section-label">Electrical contractors</div>
-
-    <div class="card" style="border-color:#1D9E75;">
-      <div class="card-header"><div><div class="card-title">STG Electric (stgelectricservices.com)</div><div class="card-sub">Northeast Ohio + Western PA · Commercial, industrial, residential · EV charger installation + Tesla Supercharger experience · Est. 1972</div></div><span class="badge b-green">Preferred — evaluate for Telos deployments</span></div>
-      <hr class="div">
-      <div class="detail">STG Electric Services is a full-service electrical contractor based in Northeast Ohio, serving industrial, commercial, and residential clients since 1972. Their service department specializes in EV charger installation and maintenance alongside generators and general electrical work. Critically, they have direct Tesla Supercharger installation experience — a key differentiator given your active Fort Mitchell Gateway and Alexander Plaza Supercharger deals. Service area: Northeast Ohio, Western Pennsylvania, and beyond. Part of the STG family of companies which also includes STG Communications, Advanced Underground Solutions, and Blue Jay Communications. They have a dedicated EV charging section on their website including a cost estimator tool.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">Why STG is relevant</div>
-          <div style="font-size:12px;color:#3B6D11;line-height:1.55;">Tesla Supercharger experience is rare among regional contractors. If your DCFC sites require Supercharger installation, STG has already solved the technical and coordination challenges that come with Tesla's proprietary installation requirements. Northeast Ohio service area covers your Cincinnati and Dayton markets.</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Contact</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Phone: 330-650-0513 · stgelectricservices.com · Request Quote available on site. Confirm: do they serve Hamilton County / Greater Cincinnati directly?</div>
-        </div>
-      </div>
-      <div class="badge-row" style="margin-top:10px;"><span class="badge b-green">Tesla Supercharger experience</span><span class="badge b-teal">NE Ohio + W. PA service area</span><span class="badge b-blue">Commercial + industrial</span></div>
-      <div class="notes-area" placeholder="STG notes — Cincinnati coverage, pricing, Supercharger experience details, key contact name..." id="note-stg" oninput="save('stg',this.value)"></div>
-      <div id="saved-stg" class="saved-note"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Qmerit (qmerit.com)</div><div class="card-sub">National managed installer network — 23,000+ certified electricians · Hardware-agnostic · NEVI + 30C grant support</div></div><span class="badge b-green">Potential execution partner</span></div>
-      <hr class="div">
-      <div class="detail">Qmerit is a managed installation and electrification services platform with a national network of 23,000+ certified, licensed, insured, and background-checked electricians. Hardware-agnostic. Full permitting, inspection, and compliance management. NEVI grant navigation + 30C tax credit support. Ongoing EVSE maintenance program post-install. Dedicated multifamily and hospitality pages. Automakers accounting for 90% of all EV models use Qmerit as their preferred home installation partner. Utility partners include Tucson Electric Power. Fleet partners include WEX. Busiest period in company history was early 2025.</div>
-      <div class="insight-box">
-        <div class="insight-t">Best use case for Telos EV</div>
-        <div class="insight-txt">Qmerit is your most scalable path to rapid L2 deployment across multiple property types without building an in-house electrician network. Bring the real estate and the deal — Qmerit brings certified electricians, permitting, inspections, and grant navigation in any market you enter. Particularly relevant for Phase A Cincinnati deployments and any new market entry where you don't have a local electrical contractor relationship yet.</div>
-      </div>
-      <div class="badge-row"><span class="badge b-green">23,000+ certified electricians</span><span class="badge b-teal">Hardware agnostic</span><span class="badge b-blue">NEVI + 30C grant support</span></div>
-      <div class="notes-area" placeholder="Qmerit notes — Cincinnati network depth, commercial pricing, utility partnerships in OH/KY/VA..." id="note-qmerit-v" oninput="save('qmerit-v',this.value)"></div>
-      <div id="saved-qmerit-v" class="saved-note"></div>
-    </div>
-
-    <div class="section-label">Engineering &amp; site design</div>
-
-    <div class="card" style="border-color:#378ADD;">
-      <div class="card-header"><div><div class="card-title">Dewberry (dewberry.com)</div><div class="card-sub">National engineering firm — dedicated National EV Infrastructure Team · utilities, transit, private operators · 60+ offices, 2,500+ professionals</div></div><span class="badge b-blue">Preferred engineer — evaluate</span></div>
-      <hr class="div">
-      <div class="detail">Dewberry is a leading national professional services and engineering firm with more than 60 locations and 2,500+ professionals. Critically, they have a dedicated National Electric Vehicle Infrastructure Team — not a generalist group that occasionally does EV work, but a specialized team whose sole focus is EV projects. Active clients include utilities, transit authorities, and privately owned EV companies. They are actively hiring for EV infrastructure roles (Deputy Project Manager — EV Infrastructure Design posted November 2025), signaling active project growth in this practice. Services include site design, engineering and permitting, utility coordination, and NEVI grant project support. California-strong but national reach.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#E6F1FB;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#0C447C;font-weight:500;margin-bottom:3px;">Why Dewberry matters</div>
-          <div style="font-size:12px;color:#185FA5;line-height:1.55;">A dedicated EV engineering team means they understand make-ready, utility interconnection, load management, and NEVI compliance in ways a generalist firm doesn't. For your DCFC sites (Fort Mitchell, Alexander Plaza), having an EV-specialized engineer reduces design errors and speeds utility approval.</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Next step</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Identify the Dewberry office closest to Cincinnati and confirm they have EV project experience in Ohio/Kentucky. Request an introductory call — their EV team is actively seeking private operator clients.</div>
-        </div>
-      </div>
-      <div class="badge-row" style="margin-top:10px;"><span class="badge b-blue">Dedicated EV infrastructure team</span><span class="badge b-teal">National — 60+ offices</span><span class="badge b-gray">Utilities + private operators</span></div>
-      <div class="notes-area" placeholder="Dewberry notes — Cincinnati/regional office, EV team contact, project pricing, NEVI experience..." id="note-dewberry" oninput="save('dewberry',this.value)"></div>
-      <div id="saved-dewberry" class="saved-note"></div>
-    </div>
-
-    <div class="section-label">Construction partners</div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">3V3I (3v3i.com)</div><div class="card-sub">Active partnership discussion — prefab DCFC site construction · Ionna installer · Andrew (owner) — RE gap confirmed</div></div><span class="badge b-green">Active partnership discussion</span></div>
-      <hr class="div">
-      <div class="detail">3V3I is an active installer using a proprietary prefab construction model for DCFC sites. They completed an Ionna site in Oklahoma City's Bricktown district in 5 business days. Also deploying Red E Charging sites. Confirmed RE bottleneck on call with Andrew (owner, April 2026): 3V3I has no RE expertise — their explicit gap. Partnership thesis: Telos EV brings real estate ownership and developer expertise; 3V3I brings installation speed and execution. Leverage their Ionna relationship for BL02b preferred developer deals. Next steps: define deal structure, review pipeline, agree economics split.</div>
-      <div class="badge-row"><span class="badge b-green">Active talks</span><span class="badge b-teal">Ionna installer</span><span class="badge b-blue">Prefab construction model</span><span class="badge b-amber">RE gap = our leverage</span></div>
-      <div class="notes-area" placeholder="3V3I notes — deal structure progress, pipeline review, economics split, next steps with Andrew..." id="note-3v3i-v" oninput="save('3v3i-v',this.value)"></div>
-      <div id="saved-3v3i-v" class="saved-note"></div>
-    </div>
-
-    <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;">
-      <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add additional vendors, contractors, or partners here</div>
-      <div class="notes-area" placeholder="New vendor or partner to track..." id="note-vendor-new" oninput="save('vendor-new',this.value)" style="min-height:50px;"></div>
-      <div id="saved-vendor-new" class="saved-note"></div>
-    </div>
-
-  </div>
-
 
   <!-- COMPETITORS TAB -->
   <div id="competitors" class="section">
@@ -1468,378 +1641,6 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
 
     <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;margin-top:4px;">
       <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add new competitor</div>
-      <div class="notes-area" placeholder="New competitor to track..." id="note-comp-new" oninput="save('comp-new',this.value)" style="min-height:50px;"></div>
-      <div id="saved-comp-new" class="saved-note"></div>
-    </div>
-
-  </div>
-
-
-  <!-- CONNECTIVITY TAB -->
-  <div id="connectivity" class="section">
-    <div class="page-title">Connectivity</div>
-    <div class="page-sub">WiFi and cellular solutions for bringing EV chargers online — hardware, carriers, costs, and site decision framework</div>
-
-    <!-- KEY PRINCIPLE -->
-    <div style="background:#E6F1FB;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;border:0.5px solid #B5D4F4;">
-      <div style="font-size:12px;font-weight:500;color:#0C447C;margin-bottom:4px;">Key framing — data usage is minimal</div>
-      <div style="font-size:12px;color:#185FA5;line-height:1.6;">EV chargers send telemetry, session data, and management pings — not streaming video. Realistic usage is <strong style="font-weight:500;">1–5 GB/month per site</strong> regardless of stall count. This keeps cellular data costs very low and makes connectivity a rounding error in your operating budget. Carry <strong style="font-weight:500;">$1,500/site capex</strong> and <strong style="font-weight:500;">$40/month recurring</strong> as your underwriting line items.</div>
-    </div>
-
-    <!-- DECISION FRAMEWORK -->
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Site decision framework — in order of cost efficiency</div><div class="card-sub">Run through these three steps at every new site before spending anything on connectivity</div></div></div>
-      <hr class="div">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;background:#EAF3DE;border-radius:8px;padding:10px 12px;">
-          <div style="font-size:18px;font-weight:600;color:#27500A;min-width:24px;">1</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:#27500A;margin-bottom:3px;">Test existing hotel / property WiFi at stall locations — cost: $0</div>
-            <div style="font-size:12px;color:#3B6D11;line-height:1.55;">Tesla Gen 3 Wall Connectors need a WPA2-secured 2.4GHz network — standard enterprise hotel WiFi meets this spec. Ask: "Can you add our chargers' MAC addresses to a dedicated VLAN or network segment?" Many hotel IT teams will cooperate, especially branded properties (Hilton, Marriott) being pushed by their flag to expand EV. What kills it: security policies blocking non-guest devices, or parking lots out of AP range. Always test signal at proposed stall locations before budgeting anything.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;background:#f1efe8;border-radius:8px;padding:10px 12px;">
-          <div style="font-size:18px;font-weight:600;color:#1a1a18;min-width:24px;">2</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">Check T-Mobile and Verizon 5G coverage at the specific address — cost: ~$40/month</div>
-            <div style="font-size:12px;color:#5f5e5a;line-height:1.55;">If strong signal is confirmed → deploy a Peplink BR1 Pro 5G with an IoT data plan. This is your default solution for the vast majority of sites in the Cincinnati MSA and target markets. Carrier-agnostic, deployment-ready, one-time capex.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;background:#FAECE7;border-radius:8px;padding:10px 12px;">
-          <div style="font-size:18px;font-weight:600;color:#711B13;min-width:24px;">3</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:#711B13;margin-bottom:3px;">Dedicated ISP line — only if cellular coverage is genuinely poor</div>
-            <div style="font-size:12px;color:#5A1008;line-height:1.55;">Requires hotel/property operator cooperation for ISP provisioning access. Monthly cost ~$50–80/month for a business broadband line. Higher upfront coordination cost, longer lead time. Last resort only — most urban/suburban sites in your target markets will have strong 5G.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OPTION A: CELLULAR -->
-    <div class="section-label">Option A — 5G/LTE cellular router (primary go-to)</div>
-
-    <div class="card" style="border-color:#1D9E75;">
-      <div class="card-header"><div><div class="card-title">Peplink MAX BR1 Pro 5G</div><div class="card-sub">Best value for most sites — recommended default · ~$999 hardware · ~$40/month data</div></div><span class="badge b-green">Recommended</span></div>
-      <hr class="div">
-      <div class="detail">All-in-one cellular router with embedded 5G/LTE modem, WiFi 6, dual SIM slots, and a weatherized metal enclosure. Pole/pedestal-mountable. Rated -40°F to +149°F — survives Ohio winters and surface lot heat. Updated X65 modem released October 2025; price holds at $999. Cloud management via InControl2 included in Year 1 PrimeCare subscription. Dual SIM slots give you a path to a backup carrier in the future without swapping hardware.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Hardware cost</div>
-          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$999–$1,100</div>
-          <div style="font-size:11px;color:#5f5e5a;">incl. antenna kit</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Monthly data plan</div>
-          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$30–50/mo</div>
-          <div style="font-size:11px;color:#5f5e5a;">IoT plan, 5–10GB pooled</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Annual PrimeCare renewal</div>
-          <div style="font-size:14px;font-weight:500;color:#1a1a18;">~$179/yr</div>
-          <div style="font-size:11px;color:#5f5e5a;">after Year 1</div>
-        </div>
-      </div>
-      <div class="pros-cons" style="margin-top:10px;">
-        <div class="pros"><div class="pros-t">Pros</div><ul><li>Purpose-built for outdoor fixed deployments</li><li>Dual SIM — carrier flexibility without new hardware</li><li>WiFi 6 — future-proof for multi-device sites</li><li>Cloud-managed — monitor all sites remotely via InControl2</li><li>One-time capex fits your underwriting model cleanly</li></ul></div>
-        <div class="cons"><div class="cons-t">Cons</div><ul><li>Requires NEMA-rated enclosure for pedestal mounts (~$50–100 additional)</li><li>External antenna runs needed (vs. HD1 Dome's internal antennas)</li><li>PrimeCare renewal adds ~$180/yr per site</li></ul></div>
-      </div>
-      <div class="badge-row"><span class="badge b-green">Default recommendation</span><span class="badge b-teal">5G + WiFi 6</span><span class="badge b-blue">Dual SIM</span><span class="badge b-gray">Cloud managed</span></div>
-      <div class="notes-area" placeholder="BR1 Pro notes — vendor contacts, carrier plan details, install findings..." id="note-br1pro" oninput="save('br1pro',this.value)"></div>
-      <div id="saved-br1pro" class="saved-note"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Peplink HD1 Dome Pro</div><div class="card-sub">Premium outdoor all-in-one · ~$2,799 hardware · internal antennas · designed for vehicles/marine</div></div><span class="badge b-gray">Not recommended for fixed pedestal installs</span></div>
-      <hr class="div">
-      <div class="detail">Outdoor-first unit with integrated cellular antennas for minimal cable loss. 5G modem with WiFi 6 and dual SIM slots. Pole-mount design is clean. All antennas internal — no external antenna runs needed. Priced at $2,799 — nearly 3x the BR1 Pro for incremental outdoor form factor advantage. Purpose-built for vehicles and marine use where cable routing is genuinely complex. For a fixed pedestal mount with conduit access and power already run by your electrician, the BR1 Pro in a NEMA enclosure achieves the same result at a third of the cost.</div>
-      <div style="background:#FAECE7;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:12px;color:#5A1008;"><strong style="font-weight:500;">Bottom line:</strong> The HD1 Dome Pro is the right tool for vehicles and boats — not for fixed lot pedestal mounts. Save $1,800 per site and use the BR1 Pro instead. Revisit only if you encounter a site with genuinely complex antenna routing constraints.</div>
-      <div class="badge-row" style="margin-top:10px;"><span class="badge b-gray">~$2,799 hardware</span><span class="badge b-gray">Overkill for fixed installs</span></div>
-      <div class="notes-area" placeholder="HD1 Dome notes..." id="note-hd1dome" oninput="save('hd1dome',this.value)"></div>
-      <div id="saved-hd1dome" class="saved-note"></div>
-    </div>
-
-    <!-- OPTION B: HOTEL WIFI -->
-    <div class="section-label">Option B — tap into existing property WiFi (situational)</div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Hotel / property WiFi access</div><div class="card-sub">Always test first — cost: $0 if it works</div></div><span class="badge b-teal">Test at every site</span></div>
-      <hr class="div">
-      <div class="detail">Tesla Gen 3 Wall Connectors require a WPA2-secured 2.4GHz network. Standard enterprise hotel WiFi meets this spec. Before spending anything on connectivity, test signal strength at the actual stall locations and ask the property IT team to whitelist your chargers' MAC addresses on a dedicated VLAN or network segment.</div>
-      <div class="pros-cons" style="margin-top:10px;">
-        <div class="pros"><div class="pros-t">When it works</div><ul><li>Branded hotel properties (Hilton, Marriott) increasingly motivated to support EV — their flags are pushing it</li><li>Parking structures attached to the building — often within AP range</li><li>Properties with modern enterprise WiFi infrastructure</li></ul></div>
-        <div class="cons"><div class="cons-t">When it fails</div><ul><li>Security policies blocking non-guest device registration</li><li>Open surface lots out of AP range</li><li>Older properties with weak or inconsistent WiFi coverage</li><li>IT teams unwilling to add external devices to their network</li></ul></div>
-      </div>
-      <div class="notes-area" placeholder="Property WiFi notes by site — which hotels cooperated, which didn't..." id="note-hotelwifi" oninput="save('hotelwifi',this.value)"></div>
-      <div id="saved-hotelwifi" class="saved-note"></div>
-    </div>
-
-    <!-- OPTION C: STARLINK -->
-    <div class="section-label">Option C — Starlink (flagged and dismissed)</div>
-
-    <div class="card" style="background:#f8f7f4;border-style:dashed;">
-      <div class="card-header"><div><div class="card-title">Starlink</div><div class="card-sub">~$600 hardware · ~$150/month · designed for locations with zero cellular coverage</div></div><span class="badge b-gray">Not applicable — dismiss confidently</span></div>
-      <hr class="div">
-      <div class="detail">Starlink comes up in EV connectivity discussions and is worth addressing so you can dismiss it confidently. It is designed for locations with genuinely no cellular coverage — rural, maritime, remote. For urban and suburban Cincinnati MSA surface lots, T-Mobile and Verizon 5G coverage is near-universal. Latency and reliability do not outperform 5G for this use case, and the cost ($150/month) is 3–4x a cellular IoT plan for no meaningful benefit. Do not use Starlink for your deployments.</div>
-      <div class="notes-area" placeholder="Starlink notes..." id="note-starlink" oninput="save('starlink',this.value)"></div>
-      <div id="saved-starlink" class="saved-note"></div>
-    </div>
-
-    <!-- UNDERWRITING NUMBERS -->
-    <div class="section-label">Underwriting numbers</div>
-
-    <div class="card" style="border-color:#378ADD;">
-      <div class="card-header"><div><div class="card-title">Connectivity capex &amp; opex — use these in your models</div><div class="card-sub">Validated numbers from the WiFi solutions research conversation · May 2026</div></div></div>
-      <hr class="div">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
-        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
-          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Capex per site</div>
-          <div style="font-size:22px;font-weight:500;color:#0C447C;">$1,500</div>
-          <div style="font-size:11px;color:#5f5e5a;">hardware + install (BR1 Pro scenario)</div>
-        </div>
-        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
-          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Monthly recurring</div>
-          <div style="font-size:22px;font-weight:500;color:#0C447C;">$40</div>
-          <div style="font-size:11px;color:#5f5e5a;">data plan + amortized device mgmt</div>
-        </div>
-        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
-          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">10-site capex total</div>
-          <div style="font-size:22px;font-weight:500;color:#0C447C;">$15,000</div>
-          <div style="font-size:11px;color:#5f5e5a;">across full 24-month deployment</div>
-        </div>
-        <div style="background:#E6F1FB;border-radius:8px;padding:10px 12px;text-align:center;">
-          <div style="font-size:10px;color:#185FA5;font-weight:500;margin-bottom:4px;">Annual recurring (10 sites)</div>
-          <div style="font-size:22px;font-weight:500;color:#0C447C;">$4,800</div>
-          <div style="font-size:11px;color:#5f5e5a;">$400/month total portfolio</div>
-        </div>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:#5f5e5a;font-style:italic;">These are conservative, defensible numbers. Connectivity is a rounding error in your overall deployment budget — don't over-engineer the solution to save $20/month.</div>
-      <div class="notes-area" placeholder="Connectivity cost notes — actual carrier quotes, install findings, model updates..." id="note-conn-costs" oninput="save('conn-costs',this.value)"></div>
-      <div id="saved-conn-costs" class="saved-note"></div>
-    </div>
-
-  </div>
-
-  <!-- VENDORS & PARTNERS TAB -->
-  <div id="vendors" class="section">
-    <div class="page-title">Vendors &amp; Partners</div>
-    <div class="page-sub">Companies we work with to execute — installation contractors, engineers, and construction partners. Evaluate, track, and build relationships.</div>
-
-    <div class="section-label">Electrical contractors</div>
-
-    <div class="card" style="border-color:#1D9E75;">
-      <div class="card-header"><div><div class="card-title">STG Electric (stgelectricservices.com)</div><div class="card-sub">Northeast Ohio + Western PA · Commercial, industrial, residential · EV charger installation + Tesla Supercharger experience · Est. 1972</div></div><span class="badge b-green">Preferred — evaluate for Telos deployments</span></div>
-      <hr class="div">
-      <div class="detail">STG Electric Services is a full-service electrical contractor based in Northeast Ohio, serving industrial, commercial, and residential clients since 1972. Their service department specializes in EV charger installation and maintenance alongside generators and general electrical work. Critically, they have direct Tesla Supercharger installation experience — a key differentiator given your active Fort Mitchell Gateway and Alexander Plaza Supercharger deals. Service area: Northeast Ohio, Western Pennsylvania, and beyond. Part of the STG family of companies which also includes STG Communications, Advanced Underground Solutions, and Blue Jay Communications. They have a dedicated EV charging section on their website including a cost estimator tool.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:3px;">Why STG is relevant</div>
-          <div style="font-size:12px;color:#3B6D11;line-height:1.55;">Tesla Supercharger experience is rare among regional contractors. If your DCFC sites require Supercharger installation, STG has already solved the technical and coordination challenges that come with Tesla's proprietary installation requirements. Northeast Ohio service area covers your Cincinnati and Dayton markets.</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Contact</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Phone: 330-650-0513 · stgelectricservices.com · Request Quote available on site. Confirm: do they serve Hamilton County / Greater Cincinnati directly?</div>
-        </div>
-      </div>
-      <div class="badge-row" style="margin-top:10px;"><span class="badge b-green">Tesla Supercharger experience</span><span class="badge b-teal">NE Ohio + W. PA service area</span><span class="badge b-blue">Commercial + industrial</span></div>
-      <div class="notes-area" placeholder="STG notes — Cincinnati coverage, pricing, Supercharger experience details, key contact name..." id="note-stg" oninput="save('stg',this.value)"></div>
-      <div id="saved-stg" class="saved-note"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">Qmerit (qmerit.com)</div><div class="card-sub">National managed installer network — 23,000+ certified electricians · Hardware-agnostic · NEVI + 30C grant support</div></div><span class="badge b-green">Potential execution partner</span></div>
-      <hr class="div">
-      <div class="detail">Qmerit is a managed installation and electrification services platform with a national network of 23,000+ certified, licensed, insured, and background-checked electricians. Hardware-agnostic. Full permitting, inspection, and compliance management. NEVI grant navigation + 30C tax credit support. Ongoing EVSE maintenance program post-install. Dedicated multifamily and hospitality pages. Automakers accounting for 90% of all EV models use Qmerit as their preferred home installation partner. Utility partners include Tucson Electric Power. Fleet partners include WEX. Busiest period in company history was early 2025.</div>
-      <div class="insight-box">
-        <div class="insight-t">Best use case for Telos EV</div>
-        <div class="insight-txt">Qmerit is your most scalable path to rapid L2 deployment across multiple property types without building an in-house electrician network. Bring the real estate and the deal — Qmerit brings certified electricians, permitting, inspections, and grant navigation in any market you enter. Particularly relevant for Phase A Cincinnati deployments and any new market entry where you don't have a local electrical contractor relationship yet.</div>
-      </div>
-      <div class="badge-row"><span class="badge b-green">23,000+ certified electricians</span><span class="badge b-teal">Hardware agnostic</span><span class="badge b-blue">NEVI + 30C grant support</span></div>
-      <div class="notes-area" placeholder="Qmerit notes — Cincinnati network depth, commercial pricing, utility partnerships in OH/KY/VA..." id="note-qmerit-v" oninput="save('qmerit-v',this.value)"></div>
-      <div id="saved-qmerit-v" class="saved-note"></div>
-    </div>
-
-    <div class="section-label">Engineering &amp; site design</div>
-
-    <div class="card" style="border-color:#378ADD;">
-      <div class="card-header"><div><div class="card-title">Dewberry (dewberry.com)</div><div class="card-sub">National engineering firm — dedicated National EV Infrastructure Team · utilities, transit, private operators · 60+ offices, 2,500+ professionals</div></div><span class="badge b-blue">Preferred engineer — evaluate</span></div>
-      <hr class="div">
-      <div class="detail">Dewberry is a leading national professional services and engineering firm with more than 60 locations and 2,500+ professionals. Critically, they have a dedicated National Electric Vehicle Infrastructure Team — not a generalist group that occasionally does EV work, but a specialized team whose sole focus is EV projects. Active clients include utilities, transit authorities, and privately owned EV companies. They are actively hiring for EV infrastructure roles (Deputy Project Manager — EV Infrastructure Design posted November 2025), signaling active project growth in this practice. Services include site design, engineering and permitting, utility coordination, and NEVI grant project support. California-strong but national reach.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#E6F1FB;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#0C447C;font-weight:500;margin-bottom:3px;">Why Dewberry matters</div>
-          <div style="font-size:12px;color:#185FA5;line-height:1.55;">A dedicated EV engineering team means they understand make-ready, utility interconnection, load management, and NEVI compliance in ways a generalist firm doesn't. For your DCFC sites (Fort Mitchell, Alexander Plaza), having an EV-specialized engineer reduces design errors and speeds utility approval.</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:3px;">Next step</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Identify the Dewberry office closest to Cincinnati and confirm they have EV project experience in Ohio/Kentucky. Request an introductory call — their EV team is actively seeking private operator clients.</div>
-        </div>
-      </div>
-      <div class="badge-row" style="margin-top:10px;"><span class="badge b-blue">Dedicated EV infrastructure team</span><span class="badge b-teal">National — 60+ offices</span><span class="badge b-gray">Utilities + private operators</span></div>
-      <div class="notes-area" placeholder="Dewberry notes — Cincinnati/regional office, EV team contact, project pricing, NEVI experience..." id="note-dewberry" oninput="save('dewberry',this.value)"></div>
-      <div id="saved-dewberry" class="saved-note"></div>
-    </div>
-
-    <div class="section-label">Construction partners</div>
-
-    <div class="card">
-      <div class="card-header"><div><div class="card-title">3V3I (3v3i.com)</div><div class="card-sub">Active partnership discussion — prefab DCFC site construction · Ionna installer · Andrew (owner) — RE gap confirmed</div></div><span class="badge b-green">Active partnership discussion</span></div>
-      <hr class="div">
-      <div class="detail">3V3I is an active installer using a proprietary prefab construction model for DCFC sites. They completed an Ionna site in Oklahoma City's Bricktown district in 5 business days. Also deploying Red E Charging sites. Confirmed RE bottleneck on call with Andrew (owner, April 2026): 3V3I has no RE expertise — their explicit gap. Partnership thesis: Telos EV brings real estate ownership and developer expertise; 3V3I brings installation speed and execution. Leverage their Ionna relationship for BL02b preferred developer deals. Next steps: define deal structure, review pipeline, agree economics split.</div>
-      <div class="badge-row"><span class="badge b-green">Active talks</span><span class="badge b-teal">Ionna installer</span><span class="badge b-blue">Prefab construction model</span><span class="badge b-amber">RE gap = our leverage</span></div>
-      <div class="notes-area" placeholder="3V3I notes — deal structure progress, pipeline review, economics split, next steps with Andrew..." id="note-3v3i-v" oninput="save('3v3i-v',this.value)"></div>
-      <div id="saved-3v3i-v" class="saved-note"></div>
-    </div>
-
-    <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;">
-      <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add additional vendors, contractors, or partners here</div>
-      <div class="notes-area" placeholder="New vendor or partner to track..." id="note-vendor-new" oninput="save('vendor-new',this.value)" style="min-height:50px;"></div>
-      <div id="saved-vendor-new" class="saved-note"></div>
-    </div>
-
-  </div>
-
-
-  <!-- COMPETITORS TAB -->
-  <div id="competitors" class="section">
-    <div class="page-title">Competitive intelligence</div>
-    <div class="page-sub">Companies directly or adjacently competing with your three business lines — track their moves, deal structures, and geographic expansion</div>
-
-    <!-- Legend -->
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;">
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#5f5e5a;"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#D85A30;"></span>Direct — same business line, same model</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#5f5e5a;"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#378ADD;"></span>Adjacent — overlapping market, different angle</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#5f5e5a;"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888780;"></span>Watch — early stage or peripheral threat</div>
-    </div>
-
-
-    <!-- EV+ — TOP OF COMPETITORS, DIRECT -->
-    <div class="card" style="border-top:3px solid #D85A30;border-color:#D85A30;">
-      <div class="card-header"><div><div class="card-title">EV+ Charging (ev-plus.com)</div><div class="card-sub">Zero-cost L2 provider — multifamily, hospitality, healthcare, office · Dallas, TX · CBRE preferred partner</div></div><span class="badge b-coral">Direct — highest priority</span></div>
-      <hr class="div">
-      <div class="detail">EV+ is a Dallas-based provider of zero-CapEx, turnkey L2 charging infrastructure for commercial properties — multifamily complexes, hotels, healthcare facilities, and offices. Their model: fund 100% of hardware, software, installation, and ongoing operations at no cost to the property owner, with revenue share available. Led by CEO Joe Schottland. Built by a team with over 50 years of combined experience in commercial real estate, infrastructure, and transportation. In May 2024, EV+ announced a preferred partner agreement with CBRE — one of the largest CRE services firms in the world — to deploy EV charging systems at 10,000 U.S. commercial properties over the next five years. Under the agreement, CBRE provides site acquisition services, grant and incentives work, project management, installation, and ongoing O&amp;M. This is not a small regional operator — this is a company with a national deployment pipeline backed by CBRE's full real estate services platform.</div>
-
-      <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:10px;border:0.5px solid #F0997B;">
-        <div style="font-size:11px;font-weight:500;color:#711B13;margin-bottom:5px;">Why this is now your #1 competitive threat in Business Line 3</div>
-        <div style="font-size:12px;color:#5A1008;line-height:1.6;">EV+ is pitching the exact same zero-cost model to the exact same property types you're targeting — multifamily, hotels, healthcare. The CBRE partnership changes the threat level dramatically. CBRE has relationships with virtually every major property owner and institutional landlord in the US. They are now EV+'s sales channel into those relationships. When you call on a Hills Properties-type owner or a hotel operator in Cincinnati, there is a real possibility CBRE has already introduced EV+ to them. You need to know their pitch, their term structure, their revenue share %, and their Cincinnati/Ohio footprint immediately.</div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#5f5e5a;font-weight:500;margin-bottom:4px;">Their strength</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">CBRE partnership = national sales machine. 10,000 property target. Zero-cost model removes owner objections. Turnkey, no ongoing responsibilities for owner.</div>
-        </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#27500A;font-weight:500;margin-bottom:4px;">Your advantage</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Local market relationships CBRE can't replicate in Cincinnati. Flexibility on deal structure (ground lease, rev share, hybrid). Speed — you can move faster at the site level than a national rollout machine.</div>
-        </div>
-        <div style="background:#E6F1FB;border-radius:8px;padding:8px 10px;">
-          <div style="font-size:10px;color:#0C447C;font-weight:500;margin-bottom:4px;">Intel priorities</div>
-          <div style="font-size:12px;color:#1a1a18;line-height:1.55;">Term length. Revenue share %. Ohio/KY active properties. Hardware brand + OCPP compliance. Whether CBRE Cincinnati office is actively pitching this.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:10px;background:#f1efe8;border-radius:8px;padding:8px 12px;">
-        <div style="font-size:11px;font-weight:500;color:#1a1a18;margin-bottom:3px;">Known partnerships</div>
-        <div style="font-size:12px;color:#5f5e5a;line-height:1.6;"><strong style="font-weight:500;color:#1a1a18;">CBRE (May 2024)</strong> — Preferred partner. 10,000 US commercial properties, 5-year deployment plan. CBRE handles site acquisition, grants/incentives, PM, install, and O&amp;M. This is EV+'s primary growth engine.</div>
-      </div>
-
-      <div class="badge-row" style="margin-top:10px;">
-        <span class="badge b-coral">Direct comp — BL3</span>
-        <span class="badge b-coral">CBRE-backed distribution</span>
-        <span class="badge b-amber">10,000 property target</span>
-        <span class="badge b-amber">Multifamily + hospitality</span>
-        <span class="badge b-blue">Research term + rev share urgently</span>
-      </div>
-      <div class="notes-area" placeholder="EV+ intel — term length, rev share %, OH/KY active properties, CBRE Cincinnati office activity, hardware brand..." id="note-comp-evplus" oninput="save('comp-evplus',this.value)"></div>
-      <div id="saved-comp-evplus" class="saved-note"></div>
-    </div>
-
-    <!-- BL1 - Own & Operate -->
-
-    <div class="section-label">Business Line 1 — Own &amp; operate</div>
-
-    <div class="card" style="border-top:3px solid #D85A30;">
-      <div class="card-header"><div><div class="card-title">synergEV (synergev.com)</div><div class="card-sub">End-to-end CPO — hardware, software, installation, AI diagnostics · 1,800 chargepoints, 41 states</div></div><span class="badge b-coral">Direct</span></div>
-      <hr class="div">
-      <div class="detail">Full-stack charge point operator with their own hardware, CSMS, and installation services. Actively competing in the own-and-operate space across 41 states. Has a built-in site selection and ROI scoring tool and is exploring DOOH advertising revenue on charger screens.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Key differentiator vs you</div><div style="font-size:12px;color:#1a1a18;">Vertically integrated — own hardware, software, install. You would differentiate on real estate expertise and site control speed.</div></div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Geographic overlap</div><div style="font-size:12px;color:#1a1a18;">41 states — assume they are active or expanding in OH, KY, VA. Specific market data TBD.</div></div>
-      </div>
-      <div class="notes-area" placeholder="synergEV competitive intel — sites, markets, pricing, funding rounds..." id="note-comp-synergev" oninput="save('comp-synergev',this.value)"></div>
-      <div id="saved-comp-synergev" class="saved-note"></div>
-    </div>
-
-    <div class="card" style="border-top:3px solid #378ADD;">
-      <div class="card-header"><div><div class="card-title">Jolt (incl. Volta acquisition)</div><div class="card-sub">Retail-centric, advertising-subsidized model</div></div><span class="badge b-blue">Adjacent</span></div>
-      <hr class="div">
-      <div class="detail">Retail co-location model where free charging is subsidized by DOOH advertising on charger screens. Competes for the same high-traffic retail sites you're targeting for STNL co-location. Their ad revenue model is a different value proposition to property owners than session revenue — worth understanding as an alternative owner pitch you may encounter.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Threat level</div><div style="font-size:12px;color:#1a1a18;">Medium — they compete for retail sites but the ad-subsidy model may not be as durable as fee-based; their Volta acquisition adds established footprint.</div></div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Your counter</div><div style="font-size:12px;color:#1a1a18;">Your STNL relationships (Starbucks, CFA) give you a co-tenancy advantage Jolt cannot easily replicate. Revenue certainty from session fees &gt; ad revenue dependency.</div></div>
-      </div>
-      <div class="notes-area" placeholder="Jolt competitive intel — US expansion markets, Volta integration status..." id="note-comp-jolt" oninput="save('comp-jolt',this.value)"></div>
-      <div id="saved-comp-jolt" class="saved-note"></div>
-    </div>
-
-    <!-- BL3 - Property Owner Partner -->
-    <div class="section-label" style="margin-top:1.5rem;">Business Line 3 — Property owner partnership</div>
-
-    <div class="card" style="border-top:3px solid #D85A30;">
-      <div class="card-header"><div><div class="card-title">3V Infrastructure (3vinfrastructure.com)</div><div class="card-sub">L2 capital provider — multifamily and hotels · Greenbacker Capital ($40M)</div></div><span class="badge b-coral">Direct — zero-cost model</span></div>
-      <hr class="div">
-      <div class="detail">Funds, installs, owns, and operates L2 chargers at multifamily and hotel properties at zero cost to the owner. 10-year agreements. Collects all session revenue; owner gets the amenity. Active in 17 states with institutional clients including Bridge Investment Group and Solomon Organization. Primary competitor when pitching your zero-cost model (L2 Model A) to multifamily and hotel owners.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#FAECE7;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#711B13;margin-bottom:3px;">Their strength</div><div style="font-size:12px;color:#1a1a18;">Institutional scale, Greenbacker backing, deep multifamily relationships, proven no-cost owner pitch.</div></div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;margin-bottom:3px;">Your advantage</div><div style="font-size:12px;color:#1a1a18;">You speak real estate — can structure ground leases, rev share, and hybrid models they won't consider. More flexible deal structures. Local market relationships.</div></div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Geographic overlap</div><div style="font-size:12px;color:#1a1a18;">17 states — confirm whether they are active in OH, KY, VA. Their 20-site portfolio minimum means smaller property owners may be underserved.</div></div>
-      </div>
-      <div style="margin-top:10px;padding:8px 12px;background:#f1efe8;border-radius:8px;font-size:12px;color:#5f5e5a;">
-        <strong style="font-weight:500;color:#1a1a18;">See also:</strong> Full Qmerit vs. 3V Infrastructure comparison table in the RE &amp; Platform Companies tab.
-      </div>
-      <div class="notes-area" placeholder="3V Infrastructure competitive intel — market expansion, new clients, term changes, Greenbacker relationship..." id="note-comp-3vinf" oninput="save('comp-3vinf',this.value)"></div>
-      <div id="saved-comp-3vinf" class="saved-note"></div>
-    </div>
-
-    <div class="card" style="border-top:3px solid #D85A30;">
-      <div class="card-header"><div><div class="card-title">EV Site Solutions (evsitesolutions.com)</div><div class="card-sub">Zero-cost L2 provider — Florida-based, multifamily / hospitality / government / retail</div></div><span class="badge b-coral">Direct — zero-cost model</span></div>
-      <hr class="div">
-      <div class="detail">Funds 100% of hardware, networking, operating expenses, AND electricity for the life of the agreement. Also contributes toward electrical make-ready. Stronger pitch to owners than 3V Infrastructure (covers electricity cost). Florida-concentrated with clients including JLL, Cushman &amp; Wakefield, Lennar, Marriott, Ritz-Carlton Residences. Revenue sharing available on certain term lengths.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#FAECE7;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#711B13;margin-bottom:3px;">Their strength</div><div style="font-size:12px;color:#1a1a18;">Covers electricity cost — cleanest no-cost pitch in the market. Strong hospitality and multifamily track record. Broad asset type coverage.</div></div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;margin-bottom:3px;">Your advantage</div><div style="font-size:12px;color:#1a1a18;">Florida focus means limited current overlap. Covering electricity compresses their margins — raises questions about long-term sustainability. Your RE relationships open doors EVSS can't access.</div></div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#5f5e5a;margin-bottom:3px;">Intel gaps</div><div style="font-size:12px;color:#1a1a18;">Term length, rev share %, geographic expansion plans, and funding source all unknown. Research priority if they show up in your markets.</div></div>
-      </div>
-      <div class="notes-area" placeholder="EVSS competitive intel — term structure, rev share details, OH/KY/VA expansion, funding..." id="note-comp-evss" oninput="save('comp-evss',this.value)"></div>
-      <div id="saved-comp-evss" class="saved-note"></div>
-    </div>
-
-    <div class="card" style="border-top:3px solid #378ADD;">
-      <div class="card-header"><div><div class="card-title">PearlX (pearlx.com)</div><div class="card-sub">Bundled energy infrastructure — solar + storage + EV + smart energy · $110M deployed</div></div><span class="badge b-blue">Adjacent</span></div>
-      <hr class="div">
-      <div class="detail">25-year master lease model: PearlX funds everything and pays rent to the property owner in exchange for managing the building's full energy infrastructure. Broader than EV-only — bundles solar, storage, EV, and smart energy. California-heavy, multifamily-focused. $110M in capital deployed.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-        <div style="background:#FAECE7;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#711B13;margin-bottom:3px;">Threat level</div><div style="font-size:12px;color:#1a1a18;">Low in your markets currently — California/multifamily focus. Their 25-year term is a very long lock-in. Solar expertise not easily replicated.</div></div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:8px 10px;"><div style="font-size:10px;color:#27500A;margin-bottom:3px;">What to borrow</div><div style="font-size:12px;color:#1a1a18;">Their "owner receives rent" framing is the best pitch language in the market for your property owner partnership model. Steal it.</div></div>
-      </div>
-      <div class="notes-area" placeholder="PearlX competitive intel — Midwest expansion, new asset types, funding rounds..." id="note-comp-px" oninput="save('comp-px',this.value)"></div>
-      <div id="saved-comp-px" class="saved-note"></div>
-    </div>
-
-    <!-- Watch List -->
-    <div class="section-label" style="margin-top:1.5rem;">Watch list — peripheral / early-stage</div>
-
-    <div class="card" style="border-top:3px solid #888780;background:#f8f7f4;">
-      <div class="card-header"><div><div class="card-title">DeCharge Network (decharge.network)</div><div class="card-sub">Web3 / DePIN model — crypto-incentivized community-owned charging</div></div><span class="badge b-gray">Watch</span></div>
-      <hr class="div">
-      <div class="detail">Crowdsourced hardware ownership on the Solana blockchain. Not a near-term threat but worth monitoring — if the model scales, individual DeCharge hardware owners may approach your property owner partners directly seeking hosting arrangements. Long-term watch only.</div>
-      <div class="notes-area" placeholder="DeCharge watch notes..." id="note-comp-decharge" oninput="save('comp-decharge',this.value)"></div>
-      <div id="saved-comp-decharge" class="saved-note"></div>
-    </div>
-
-    <!-- Blank intel template -->
-    <div class="card" style="border:0.5px dashed #b4b2a9;background:transparent;margin-top:4px;">
-      <div style="font-size:12px;color:#888780;text-align:center;padding:6px 0;">Add new competitor — paste URL or company name into notes to start tracking</div>
       <div class="notes-area" placeholder="New competitor to track..." id="note-comp-new" oninput="save('comp-new',this.value)" style="min-height:50px;"></div>
       <div id="saved-comp-new" class="saved-note"></div>
     </div>
@@ -2619,9 +2420,9 @@ function calcL2() {
 // ══════════════════════════════════════════════════════════
 var TAB_NAMES = {
   overview:'Overview', bizlines:'Business lines', equipment:'Equipment',
-  operators:'Networks & operators', realestate:'RE & platform cos',
+  operators:'Networks & operators', realestate:'Active CRE Cos',
   software:'Software & OCPP', capital:'Capital & PE', markets:'Markets',
-  partnerships:'Strategic partnerships', connectivity:'Connectivity', vendors:'Vendors & Partners', competitors:'Competitors', modeling:'Modeler'
+  partnerships:'Partners & Vendors', connectivity:'Connectivity', competitors:'Competitors', modeling:'Modeler'
 };
 
 var searchIndex = null;
@@ -2732,6 +2533,28 @@ function jumpTo(tabId, el) {
     }, 60);
   }
   closeSearch();
+}
+
+function jumpToVertical(anchorId) {
+  // Switch to business lines tab
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.nav button').forEach(function(b){
+    b.classList.remove('active');
+    var oc = b.getAttribute('onclick') || '';
+    if (oc.indexOf("'bizlines'") !== -1) b.classList.add('active');
+  });
+  var sec = document.getElementById('bizlines');
+  if (sec) sec.classList.add('active');
+  var target = document.getElementById(anchorId);
+  if (target) {
+    setTimeout(function(){
+      target.scrollIntoView({ behavior:'smooth', block:'center' });
+      target.style.transition = 'outline 0.15s, box-shadow 0.15s';
+      target.style.outline = '2.5px solid #378ADD';
+      target.style.boxShadow = '0 0 0 5px rgba(55,138,221,0.1)';
+      setTimeout(function(){ target.style.outline='none'; target.style.boxShadow='none'; }, 2400);
+    }, 60);
+  }
 }
 
 function closeSearch() {
