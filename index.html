@@ -1688,6 +1688,28 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     <!-- ═══ L3 PANEL ═══ -->
     <div id="panel-L3">
 
+      <!-- Deal ID -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:12px;">Deal identification</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Deal / site name</label>
+            <input type="text" id="l3-dealname" value="" placeholder="e.g. Fort Mitchell Gateway" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Address</label>
+            <input type="text" id="l3-address" value="" placeholder="Site address" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Prepared by</label>
+            <input type="text" id="l3-preparedby" value="" placeholder="Your name" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+        </div>
+      </div>
+
       <!-- Shared inputs -->
       <div class="card">
         <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:12px;">L3 / DCFC — Own &amp; Operate inputs</div>
@@ -1700,27 +1722,31 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
           </div>
 
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Hardware cost per stall ($)</label>
-            <input type="number" id="l3-hw" value="62500" oninput="calcL3()"
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Hardware cost — all-in total ($)</label>
+            <input type="number" id="l3-hw" value="500000" oninput="calcL3()"
               style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Total project hardware, not per stall</div>
           </div>
 
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Installation cost scenario</label>
-            <select id="l3-install-sel" onchange="calcL3()"
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Installation cost — all-in total ($)</label>
+            <input type="number" id="l3-install" value="360000" oninput="calcL3()"
               style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-              <option value="30000">Low — $30,000 / stall</option>
-              <option value="40000" selected>Medium — $40,000 / stall</option>
-              <option value="50000">High — $50,000 / stall</option>
-            </select>
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Utility / transformer work included</div>
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Total install incl. utility/transformer work</div>
           </div>
 
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">kWh delivered per stall / year</label>
-            <input type="number" id="l3-kwh" value="36500" oninput="calcL3()"
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">kWh per stall / day</label>
+            <input type="number" id="l3-kwhday" value="100" step="1" oninput="calcL3()"
               style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">36,500 = ~100 kWh/day per stall</div>
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Utilization driver — model scenarios here</div>
+          </div>
+
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Operating days / year</label>
+            <input type="number" id="l3-days" value="354" step="1" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">354 = ~97% uptime (11 days downtime baked in)</div>
           </div>
 
           <div>
@@ -1743,8 +1769,9 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
 
           <div>
             <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Annual kWh growth (%)</label>
-            <input type="number" id="l3-growth" value="10" step="1" oninput="calcL3()"
+            <input type="number" id="l3-growth" value="3" step="1" oninput="calcL3()"
               style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Drives 5-yr DSCR ramp</div>
           </div>
 
           <div>
@@ -1767,45 +1794,139 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
         </div>
       </div>
 
+      <!-- Financing inputs -->
+      <div class="card" style="border-color:#EF9F27;">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Financing assumptions <span style="font-size:11px;color:#888780;font-weight:400;">— optional, for levered view</span></div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">Set LTC to 0 for an all-cash / unlevered deal.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Loan-to-Cost / LTC (%)</label>
+            <input type="number" id="l3-ltc" value="60" step="1" min="0" max="100" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">% of total CapEx financed</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Interest rate (%)</label>
+            <input type="number" id="l3-rate" value="8" step="0.1" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Amortization (years)</label>
+            <input type="number" id="l3-amort" value="10" step="1" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Drives debt service payment</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Loan term (years)</label>
+            <input type="number" id="l3-term" value="10" step="1" oninput="calcL3()"
+              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Balloon if term &lt; amort</div>
+          </div>
+        </div>
+      </div>
+
       <!-- L3 metric cards -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
         <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;">
           <div style="font-size:10px;color:#5f5e5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Total CapEx (net of grants)</div>
           <div style="font-size:22px;font-weight:500;color:#1a1a18;" id="l3-out-capex">—</div>
+          <div style="font-size:11px;color:#5f5e5a;margin-top:3px;" id="l3-out-capex-gross">—</div>
         </div>
         <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;">
-          <div style="font-size:10px;color:#5f5e5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Payback period</div>
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Unlevered payback</div>
           <div style="font-size:22px;font-weight:500;color:#1a1a18;" id="l3-out-payback">—</div>
+          <div style="font-size:11px;color:#5f5e5a;margin-top:3px;">on total CapEx</div>
         </div>
         <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;">
           <div style="font-size:10px;color:#5f5e5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Year 1 cash-on-cash</div>
           <div style="font-size:22px;font-weight:500;color:#1a1a18;" id="l3-out-coc">—</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 12px;">
-          <div style="font-size:10px;color:#5f5e5a;margin-bottom:2px;">Year 1 gross revenue</div>
-          <div style="font-size:15px;font-weight:500;color:#1a1a18;" id="l3-out-rev1">—</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 12px;">
-          <div style="font-size:10px;color:#5f5e5a;margin-bottom:2px;">Year 1 net income</div>
-          <div style="font-size:15px;font-weight:500;color:#1a1a18;" id="l3-out-net1">—</div>
-        </div>
-        <div style="background:#f1efe8;border-radius:8px;padding:8px 12px;">
-          <div style="font-size:10px;color:#5f5e5a;margin-bottom:2px;">Cumulative profit yr <span id="l3-out-yrlab">10</span></div>
-          <div style="font-size:15px;font-weight:500;color:#1a1a18;" id="l3-out-cumyr">—</div>
+          <div style="font-size:11px;color:#5f5e5a;margin-top:3px;">unlevered, Yr 1 NOI ÷ CapEx</div>
         </div>
       </div>
 
+      <!-- Per-stall derivative + system kWh -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
+        <div style="background:#f1efe8;border-radius:8px;padding:8px 12px;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:2px;">Hardware / install per stall</div>
+          <div style="font-size:15px;font-weight:500;color:#1a1a18;" id="l3-out-perstall">—</div>
+          <div style="font-size:10px;color:#888780;margin-top:2px;" id="l3-out-perstall-total">—</div>
+        </div>
+        <div style="background:#E6F1FB;border-radius:8px;padding:8px 12px;">
+          <div style="font-size:10px;color:#0C447C;margin-bottom:2px;font-weight:500;">Estimated system annual kWh</div>
+          <div style="font-size:15px;font-weight:500;color:#0C447C;" id="l3-out-syskwh">—</div>
+          <div style="font-size:10px;color:#185FA5;margin-top:2px;">stalls × kWh/stall/day × days/yr</div>
+        </div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:8px 12px;">
+          <div style="font-size:10px;color:#27500A;margin-bottom:2px;font-weight:500;">Stabilized NOI <span style="color:#888780;font-weight:400;">(Yr 1, sniff test)</span></div>
+          <div style="font-size:15px;font-weight:500;color:#27500A;" id="l3-out-net1">—</div>
+          <div style="font-size:10px;color:#3B6D11;margin-top:2px;">rev − energy − O&amp;M, before debt</div>
+        </div>
+      </div>
+
+      <!-- Levered metrics -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Loan amount</div>
+          <div style="font-size:17px;font-weight:500;color:#1a1a18;" id="l3-out-loan">—</div>
+          <div style="font-size:10px;color:#888780;margin-top:2px;" id="l3-out-equity">—</div>
+        </div>
+        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Annual debt service</div>
+          <div style="font-size:17px;font-weight:500;color:#1a1a18;" id="l3-out-ads">—</div>
+          <div style="font-size:10px;color:#888780;margin-top:2px;" id="l3-out-rate-note">—</div>
+        </div>
+        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Yr 1 DSCR</div>
+          <div style="font-size:17px;font-weight:500;color:#1a1a18;" id="l3-out-dscr1">—</div>
+          <div style="font-size:10px;color:#888780;margin-top:2px;">NOI ÷ debt service</div>
+        </div>
+        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Levered FCF (Yr 1)</div>
+          <div style="font-size:17px;font-weight:500;color:#1a1a18;" id="l3-out-lfcf">—</div>
+          <div style="font-size:10px;color:#888780;margin-top:2px;">NOI − debt service</div>
+        </div>
+      </div>
+
+      <!-- 5-year DSCR strip + break-even + equity payback -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-bottom:14px;">
+        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#5f5e5a;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">5-year DSCR (grows with kWh growth %)</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;" id="l3-out-dscr-strip">
+            <div style="text-align:center;"><div style="font-size:10px;color:#888780;">Yr 1</div><div style="font-size:15px;font-weight:500;" id="l3-dscr-y1">—</div></div>
+            <div style="text-align:center;"><div style="font-size:10px;color:#888780;">Yr 2</div><div style="font-size:15px;font-weight:500;" id="l3-dscr-y2">—</div></div>
+            <div style="text-align:center;"><div style="font-size:10px;color:#888780;">Yr 3</div><div style="font-size:15px;font-weight:500;" id="l3-dscr-y3">—</div></div>
+            <div style="text-align:center;"><div style="font-size:10px;color:#888780;">Yr 4</div><div style="font-size:15px;font-weight:500;" id="l3-dscr-y4">—</div></div>
+            <div style="text-align:center;"><div style="font-size:10px;color:#888780;">Yr 5</div><div style="font-size:15px;font-weight:500;" id="l3-dscr-y5">—</div></div>
+          </div>
+          <div style="font-size:10px;color:#888780;margin-top:8px;">Min DSCR (5yr): <span style="font-weight:500;color:#1a1a18;" id="l3-out-mindscr">—</span> · Equity payback: <span style="font-weight:500;color:#1a1a18;" id="l3-out-eqpayback">—</span></div>
+        </div>
+        <div style="background:#FAEEDA;border-radius:10px;padding:0.85rem;">
+          <div style="font-size:10px;color:#854F0B;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;">Break-even utilization</div>
+          <div style="font-size:20px;font-weight:500;color:#633806;" id="l3-out-breakeven">—</div>
+          <div style="font-size:10px;color:#854F0B;margin-top:3px;">kWh/stall/day to hit 1.25× DSCR. Compare to your input above for cushion.</div>
+        </div>
+      </div>
+
+      <!-- Key risks + Exec summary button -->
+      <div class="card">
+        <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;font-weight:500;">Key risks &amp; notes <span style="color:#888780;font-weight:400;">— appears on the 1-pager; keep the deal honest</span></label>
+        <textarea id="l3-risks" placeholder="e.g. Trip Planner filter risk if priced above Tesla network · utility rate unconfirmed · ground lease not yet executed · install bid is placeholder" oninput="calcL3()"
+          style="width:100%;min-height:56px;padding:8px 10px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:12px;font-family:inherit;background:#f8f7f4;color:#1a1a18;resize:vertical;"></textarea>
+        <div style="margin-top:12px;">
+          <button onclick="generateL3Summary()" style="padding:9px 20px;font-size:13px;font-weight:500;font-family:inherit;border:none;border-radius:8px;cursor:pointer;background:#1a1a18;color:#f8f7f4;">Generate 1-page executive summary →</button>
+          <span style="font-size:11px;color:#888780;margin-left:10px;">Opens a printable view — save as PDF to your deal folder</span>
+        </div>
+      </div>
+
+
       <!-- L3 chart -->
       <div class="card">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Cumulative profit / (loss)</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">Shows three installation cost scenarios simultaneously</div>
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Cumulative cash flow — unlevered vs. levered</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">Unlevered = on total CapEx. Levered = equity out, then cash flow after debt service. Where each line crosses zero is payback.</div>
         <div style="position:relative;height:260px;"><canvas id="l3-chart"></canvas></div>
         <div style="display:flex;gap:16px;margin-top:10px;font-size:12px;color:#5f5e5a;">
-          <span><span style="display:inline-block;width:12px;height:3px;background:#1D9E75;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Low install ($30K/stall)</span>
-          <span><span style="display:inline-block;width:12px;height:3px;background:#378ADD;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Medium install ($40K/stall)</span>
-          <span><span style="display:inline-block;width:12px;height:3px;background:#D85A30;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>High install ($50K/stall)</span>
+          <span><span style="display:inline-block;width:12px;height:3px;background:#378ADD;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Unlevered (on total CapEx)</span>
+          <span><span style="display:inline-block;width:12px;height:3px;background:#1D9E75;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Levered (on equity, after debt service)</span>
         </div>
       </div>
       <div style="font-size:11px;color:#888780;margin-top:6px;padding:0 2px;">For illustrative purposes only. Not financial advice. Verify all assumptions with your advisors.</div>
@@ -2189,11 +2310,25 @@ function calcPayback(investment, annualNetFn) {
 // ══════════════════════════════════════════════════════════
 // L3 CALCULATOR
 // ══════════════════════════════════════════════════════════
+var l3State = {};  // stores last computed values for the exec summary
+
+// Level annual debt service on an amortizing loan
+function annualDebtService(principal, annualRatePct, amortYears) {
+  if (principal <= 0) return 0;
+  var r = (annualRatePct / 100);
+  if (amortYears <= 0) return 0;
+  if (r === 0) return principal / amortYears;
+  // annual payment (payments once per year)
+  var pmt = principal * r / (1 - Math.pow(1 + r, -amortYears));
+  return pmt;
+}
+
 function calcL3() {
   var stalls  = gv('l3-stalls');
-  var hw      = gv('l3-hw');
-  var install = gvSel('l3-install-sel');
-  var kwhY1   = gv('l3-kwh');
+  var hw      = gv('l3-hw');       // all-in hardware total
+  var install = gv('l3-install');  // all-in install total
+  var kwhDay  = gv('l3-kwhday');   // kWh per stall per day
+  var days    = gv('l3-days') || 354;
   var price   = gv('l3-price');
   var energy  = gv('l3-energy');
   var om      = gv('l3-om');
@@ -2201,50 +2336,228 @@ function calcL3() {
   var grant   = gv('l3-grant');
   var yrs     = parseInt(document.getElementById('l3-years').value) || 10;
 
-  var margin  = price - energy;
-  var capex   = stalls * (hw + install) - grant;
-  var rev1    = stalls * kwhY1 * price;
-  var net1    = stalls * kwhY1 * margin - stalls * om;
-  var coc1    = capex > 0 ? net1 / capex : 0;
+  // Financing
+  var ltc     = gv('l3-ltc') / 100;
+  var rate    = gv('l3-rate');
+  var amort   = gv('l3-amort');
+  var term    = gv('l3-term');
 
-  var pb = calcPayback(capex, function(y) {
-    return stalls * kwhY1 * Math.pow(1 + growth, y - 1) * margin - stalls * om;
-  });
+  var margin      = price - energy;                       // $/kWh spread
+  var grossCapex  = hw + install;                         // all-in, total project
+  var capex       = grossCapex - grant;                   // net of grants
+  var perStallHw  = stalls > 0 ? hw / stalls : 0;
+  var perStallIn  = stalls > 0 ? install / stalls : 0;
 
-  setText('l3-out-capex',   fmt$(capex));
-  setText('l3-out-payback', fmtYr(pb));
-  setText('l3-out-coc',     fmtPct(coc1));
-  setText('l3-out-rev1',    fmt$(rev1));
-  setText('l3-out-net1',    fmt$(net1));
-  setText('l3-out-yrlab',   yrs);
+  var kwhStallYr  = kwhDay * days;                        // per stall per year
+  var sysKwhY1    = stalls * kwhStallYr;                  // system annual kWh, year 1
+  var net1        = sysKwhY1 * margin - stalls * om;      // stabilized NOI (Yr1)
+  var coc1        = capex > 0 ? net1 / capex : 0;
 
-  var installScenarios = [30000, 40000, 50000];
-  var colors = ['#1D9E75', '#378ADD', '#D85A30'];
-  var labels = [];
-  var seriesData = [[], [], []];
+  // NOI by year (grows with kWh growth)
+  function noiYear(y) { return sysKwhY1 * Math.pow(1 + growth, y - 1) * margin - stalls * om; }
 
-  for (var y = 1; y <= yrs; y++) {
-    labels.push('Yr ' + y);
-    var annualNet = stalls * kwhY1 * Math.pow(1 + growth, y - 1) * margin - stalls * om;
-    for (var s = 0; s < 3; s++) {
-      var cap = stalls * (hw + installScenarios[s]) - grant;
-      var prev = y === 1 ? -cap : seriesData[s][y - 2];
-      seriesData[s].push(Math.round(prev + annualNet));
+  // Unlevered payback on total CapEx
+  var pb = calcPayback(capex, function(y) { return noiYear(y); });
+
+  // Financing
+  var loan   = capex * ltc;
+  var equity = capex - loan;
+  var ads    = annualDebtService(loan, rate, amort);     // annual debt service
+  var dscr1  = ads > 0 ? net1 / ads : null;
+  var lfcf1  = net1 - ads;                                // levered free cash flow yr 1
+
+  // 5-year DSCR
+  var dscrArr = [];
+  for (var y = 1; y <= 5; y++) {
+    var d = ads > 0 ? noiYear(y) / ads : null;
+    dscrArr.push(d);
+  }
+  var minDscr = null;
+  dscrArr.forEach(function(d){ if (d !== null && (minDscr === null || d < minDscr)) minDscr = d; });
+
+  // Equity payback (levered): equity out, recovered by levered FCF each year (debt service only during term)
+  var eqpb = null;
+  if (equity > 0) {
+    var run = -equity;
+    for (var ye = 1; ye <= 30; ye++) {
+      var ds = (ye <= term) ? ads : 0;
+      var lf = noiYear(ye) - ds;
+      if (lf > 0 && run + lf >= 0) { eqpb = (ye - 1) + Math.abs(run) / lf; break; }
+      run += lf;
+    }
+  } else {
+    eqpb = pb; // all cash → equity payback = unlevered payback
+  }
+
+  // Break-even utilization: kWh/stall/day that yields DSCR = 1.25 (Yr1 basis)
+  // 1.25 = (stalls*days*x*margin - stalls*om) / ads  →  x = (1.25*ads + stalls*om) / (stalls*days*margin)
+  var breakeven = null;
+  if (ads > 0 && stalls > 0 && days > 0 && margin > 0) {
+    breakeven = (1.25 * ads + stalls * om) / (stalls * days * margin);
+  }
+
+  // ── write outputs ──
+  setText('l3-out-capex',        fmt$(capex));
+  setText('l3-out-capex-gross',  'Gross ' + fmt$(grossCapex) + (grant > 0 ? ' · grant ' + fmt$(grant) : ''));
+  setText('l3-out-payback',      fmtYr(pb));
+  setText('l3-out-coc',          fmtPct(coc1));
+  setText('l3-out-perstall',     fmt$(perStallHw) + ' / ' + fmt$(perStallIn));
+  setText('l3-out-perstall-total','all-in ' + fmt$((hw+install)/(stalls||1)) + '/stall');
+  setText('l3-out-syskwh',       Math.round(sysKwhY1).toLocaleString() + ' kWh');
+  setText('l3-out-net1',         fmt$(net1));
+  setText('l3-out-loan',         fmt$(loan));
+  setText('l3-out-equity',       'equity ' + fmt$(equity) + ' · ' + Math.round(ltc*100) + '% LTC');
+  setText('l3-out-ads',          fmt$(ads));
+  setText('l3-out-rate-note',    rate + '% · ' + amort + 'yr amort' + (term < amort ? ' · ' + term + 'yr term (balloon)' : ''));
+  setText('l3-out-dscr1',        dscr1 === null ? 'n/a (cash)' : dscr1.toFixed(2) + '×');
+  setText('l3-out-lfcf',         fmt$(lfcf1));
+  for (var i = 1; i <= 5; i++) {
+    var d = dscrArr[i-1];
+    var el = document.getElementById('l3-dscr-y'+i);
+    if (el) {
+      el.textContent = d === null ? '—' : d.toFixed(2) + '×';
+      el.style.color = d === null ? '#888780' : (d >= 1.25 ? '#1D9E75' : (d >= 1.0 ? '#EF9F27' : '#D85A30'));
     }
   }
+  setText('l3-out-mindscr', minDscr === null ? 'n/a' : minDscr.toFixed(2) + '×');
+  setText('l3-out-eqpayback', fmtYr(eqpb));
+  setText('l3-out-breakeven', breakeven === null ? 'n/a (cash)' : breakeven.toFixed(1) + ' kWh/stall/day');
 
-  var selectedCapex = stalls * (hw + install) - grant;
-  var cumFinal = -selectedCapex;
-  for (var y2 = 1; y2 <= yrs; y2++) {
-    cumFinal += stalls * kwhY1 * Math.pow(1 + growth, y2 - 1) * margin - stalls * om;
+  // ── chart: unlevered vs levered cumulative cash flow ──
+  var labels = [], unlev = [], lev = [];
+  var cumU = -capex, cumL = -equity;
+  for (var yc = 1; yc <= yrs; yc++) {
+    labels.push('Yr ' + yc);
+    var noi = noiYear(yc);
+    cumU += noi;
+    var ds2 = (yc <= term) ? ads : 0;
+    cumL += (noi - ds2);
+    unlev.push(Math.round(cumU));
+    lev.push(Math.round(cumL));
   }
-  setText('l3-out-cumyr', fmt$(Math.round(cumFinal)));
 
   l3Chart = buildChart('l3-chart', l3Chart, labels, [
-    { label: 'Low install',    data: seriesData[0], borderColor: colors[0], backgroundColor: 'rgba(29,158,117,0.06)',  fill: true },
-    { label: 'Medium install', data: seriesData[1], borderColor: colors[1], backgroundColor: 'rgba(55,138,221,0.06)',  fill: true },
-    { label: 'High install',   data: seriesData[2], borderColor: colors[2], backgroundColor: 'rgba(216,90,48,0.06)',   fill: true }
+    { label: 'Unlevered', data: unlev, borderColor: '#378ADD', backgroundColor: 'rgba(55,138,221,0.06)', fill: true },
+    { label: 'Levered',   data: lev,   borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.06)', fill: true }
   ]);
+
+  // ── stash state for exec summary ──
+  l3State = {
+    dealname: (document.getElementById('l3-dealname')||{}).value || '',
+    address:  (document.getElementById('l3-address')||{}).value || '',
+    preparedby: (document.getElementById('l3-preparedby')||{}).value || '',
+    stalls: stalls, hw: hw, install: install, grossCapex: grossCapex, grant: grant, capex: capex,
+    perStallHw: perStallHw, perStallIn: perStallIn,
+    kwhDay: kwhDay, days: days, sysKwhY1: sysKwhY1, price: price, energy: energy, margin: margin, om: om, growth: growth,
+    net1: net1, coc1: coc1, pb: pb,
+    ltc: ltc, rate: rate, amort: amort, term: term, loan: loan, equity: equity, ads: ads,
+    dscr1: dscr1, lfcf1: lfcf1, dscrArr: dscrArr, minDscr: minDscr, eqpb: eqpb, breakeven: breakeven
+  };
+}
+
+// ══════════════════════════════════════════════════════════
+// L3 EXECUTIVE SUMMARY (printable 1-pager)
+// ══════════════════════════════════════════════════════════
+function generateL3Summary() {
+  calcL3();
+  var s = l3State;
+  var name = s.dealname || 'DCFC Deal';
+  var today = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+
+  // ── scorecard thresholds ──
+  var THRESH = { minDscr: 1.25, unlevPayback: 7, leveredCoc: 0.12 };
+  var leveredCoc = s.equity > 0 ? s.lfcf1 / s.equity : (s.capex>0 ? s.net1/s.capex : 0);
+
+  var checks = [
+    { label: 'Min 5-yr DSCR ≥ 1.25×', val: s.minDscr===null?'n/a':s.minDscr.toFixed(2)+'×', pass: s.minDscr!==null && s.minDscr >= THRESH.minDscr },
+    { label: 'Unlevered payback ≤ 7 yrs', val: (s.pb&&isFinite(s.pb))?s.pb.toFixed(1)+' yrs':'N/A', pass: s.pb!==null && isFinite(s.pb) && s.pb <= THRESH.unlevPayback },
+    { label: 'Levered cash-on-cash ≥ 12%', val: (leveredCoc*100).toFixed(1)+'%', pass: leveredCoc >= THRESH.leveredCoc },
+    { label: 'Assumed util. ≥ break-even', val: s.breakeven===null?'n/a':(s.kwhDay.toFixed(0)+' vs '+s.breakeven.toFixed(1)), pass: s.breakeven!==null && s.kwhDay >= s.breakeven }
+  ];
+  var passCount = checks.filter(function(c){return c.pass;}).length;
+  var verdict, vColor, vBg;
+  if (passCount === checks.length) { verdict='PASS'; vColor='#27500A'; vBg='#EAF3DE'; }
+  else if (passCount >= 2)         { verdict='CONDITIONAL'; vColor='#854F0B'; vBg='#FAEEDA'; }
+  else                             { verdict='FAIL'; vColor='#711B13'; vBg='#FAECE7'; }
+
+  var risks = (document.getElementById('l3-risks')||{}).value || '';
+
+  function money(n){ if(n===null||isNaN(n))return '—'; var neg=n<0,a=Math.abs(n); var t=a>=1e6?'$'+(a/1e6).toFixed(2)+'M':a>=1e3?'$'+(a/1e3).toFixed(1)+'K':'$'+a.toFixed(0); return neg?'('+t+')':t; }
+  function pct(n){ return isNaN(n)?'—':(n*100).toFixed(1)+'%'; }
+  function yr(n){ return (n&&isFinite(n))?n.toFixed(1)+' yrs':'N/A'; }
+
+  var dscrCells = s.dscrArr.map(function(d,i){
+    var c = d===null?'#888780':(d>=1.25?'#1D9E75':(d>=1?'#EF9F27':'#D85A30'));
+    return '<td style="text-align:center;padding:5px 8px;color:'+c+';font-weight:600;">'+(d===null?'—':d.toFixed(2)+'×')+'</td>';
+  }).join('');
+
+  var scoreRows = checks.map(function(c){
+    return '<tr><td style="padding:5px 8px;">'+c.label+'</td><td style="padding:5px 8px;text-align:right;color:#5f5e5a;">'+c.val+'</td><td style="padding:5px 8px;text-align:center;font-weight:600;color:'+(c.pass?'#1D9E75':'#D85A30')+';">'+(c.pass?'PASS':'FAIL')+'</td></tr>';
+  }).join('');
+
+  var w = window.open('', '_blank');
+  var html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+name+' — Deal Summary</title>';
+  html += '<style>@media print{@page{margin:0.5in;}.noprint{display:none;}}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#1a1a18;max-width:760px;margin:0 auto;padding:28px;line-height:1.4;}h1{font-size:22px;margin:0 0 2px;}h2{font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#5f5e5a;border-bottom:1px solid #d3d1c7;padding-bottom:4px;margin:18px 0 10px;}table{width:100%;border-collapse:collapse;font-size:12.5px;}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}.kv{display:flex;justify-content:space-between;padding:3px 0;font-size:12.5px;border-bottom:0.5px solid #eee;}.kv span:first-child{color:#5f5e5a;}.kv span:last-child{font-weight:500;}.big{font-size:15px;font-weight:600;}</style></head><body>';
+  html += '<div style="display:flex;justify-content:space-between;align-items:flex-start;">';
+  html += '<div><h1>'+name+'</h1><div style="font-size:12.5px;color:#5f5e5a;">'+(s.address||'')+'</div></div>';
+  html += '<div style="text-align:right;font-size:11px;color:#888780;">DCFC / L3 Deal Sniff Test<br>'+today+(s.preparedby?'<br>Prepared by '+s.preparedby:'')+'</div></div>';
+  // verdict
+  html += '<div style="margin-top:14px;background:'+vBg+';border-radius:8px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;">';
+  html += '<div style="font-size:20px;font-weight:700;color:'+vColor+';">'+verdict+'</div>';
+  html += '<div style="font-size:12px;color:'+vColor+';">'+passCount+' of '+checks.length+' criteria met</div></div>';
+
+  // snapshot + basis
+  html += '<div class="grid"><div><h2>Deal snapshot</h2>';
+  html += '<div class="kv"><span>Stalls</span><span>'+s.stalls+'</span></div>';
+  html += '<div class="kv"><span>Hardware (all-in)</span><span>'+money(s.hw)+'</span></div>';
+  html += '<div class="kv"><span>Installation (all-in)</span><span>'+money(s.install)+'</span></div>';
+  html += '<div class="kv"><span>Per stall (hw / install)</span><span>'+money(s.perStallHw)+' / '+money(s.perStallIn)+'</span></div>';
+  html += '<div class="kv"><span>Gross CapEx</span><span>'+money(s.grossCapex)+'</span></div>';
+  html += '<div class="kv"><span>Grants / incentives</span><span>'+(s.grant>0?'('+money(s.grant)+')':'—')+'</span></div>';
+  html += '<div class="kv"><span>Net CapEx</span><span class="big">'+money(s.capex)+'</span></div>';
+  html += '</div><div><h2>Utilization &amp; revenue basis</h2>';
+  html += '<div class="kv"><span>kWh / stall / day</span><span>'+s.kwhDay+'</span></div>';
+  html += '<div class="kv"><span>Operating days / yr</span><span>'+s.days+'</span></div>';
+  html += '<div class="kv"><span>System annual kWh (Yr1)</span><span>'+Math.round(s.sysKwhY1).toLocaleString()+'</span></div>';
+  html += '<div class="kv"><span>Charge price</span><span>$'+s.price.toFixed(2)+'/kWh</span></div>';
+  html += '<div class="kv"><span>Energy cost</span><span>$'+s.energy.toFixed(2)+'/kWh</span></div>';
+  html += '<div class="kv"><span>Spread / margin</span><span>$'+s.margin.toFixed(2)+'/kWh</span></div>';
+  html += '<div class="kv"><span>Annual kWh growth</span><span>'+(s.growth*100).toFixed(0)+'%</span></div>';
+  html += '</div></div>';
+
+  // returns unlevered vs levered
+  html += '<div class="grid"><div><h2>Unlevered</h2>';
+  html += '<div class="kv"><span>Stabilized NOI (Yr1)</span><span class="big">'+money(s.net1)+'</span></div>';
+  html += '<div class="kv"><span>Cash-on-cash (Yr1)</span><span>'+pct(s.coc1)+'</span></div>';
+  html += '<div class="kv"><span>Payback</span><span>'+yr(s.pb)+'</span></div>';
+  html += '</div><div><h2>Levered</h2>';
+  html += '<div class="kv"><span>Loan ('+Math.round(s.ltc*100)+'% LTC)</span><span>'+money(s.loan)+'</span></div>';
+  html += '<div class="kv"><span>Equity required</span><span>'+money(s.equity)+'</span></div>';
+  html += '<div class="kv"><span>Annual debt service</span><span>'+money(s.ads)+'</span></div>';
+  html += '<div class="kv"><span>Levered FCF (Yr1)</span><span class="big">'+money(s.lfcf1)+'</span></div>';
+  html += '<div class="kv"><span>Levered cash-on-cash</span><span>'+pct(leveredCoc)+'</span></div>';
+  html += '<div class="kv"><span>Equity payback</span><span>'+yr(s.eqpb)+'</span></div>';
+  html += '</div></div>';
+
+  // DSCR + coverage
+  html += '<h2>Debt coverage</h2>';
+  html += '<div style="font-size:12px;color:#5f5e5a;margin-bottom:6px;">Financing: '+money(s.loan)+' @ '+s.rate+'% · '+s.amort+'yr amort'+(s.term<s.amort?' · '+s.term+'yr term (balloon)':'')+'</div>';
+  html += '<table style="border:0.5px solid #d3d1c7;border-radius:6px;overflow:hidden;"><tr style="background:#f8f7f4;"><td style="padding:5px 8px;font-weight:500;">DSCR</td><td style="text-align:center;padding:5px 8px;color:#888780;">Yr1</td><td style="text-align:center;padding:5px 8px;color:#888780;">Yr2</td><td style="text-align:center;padding:5px 8px;color:#888780;">Yr3</td><td style="text-align:center;padding:5px 8px;color:#888780;">Yr4</td><td style="text-align:center;padding:5px 8px;color:#888780;">Yr5</td></tr><tr><td style="padding:5px 8px;color:#5f5e5a;">Coverage</td>'+dscrCells+'</tr></table>';
+  html += '<div style="font-size:12px;margin-top:6px;">Min DSCR (5yr): <b>'+(s.minDscr===null?'n/a':s.minDscr.toFixed(2)+'×')+'</b> &nbsp;·&nbsp; Break-even utilization: <b>'+(s.breakeven===null?'n/a':s.breakeven.toFixed(1)+' kWh/stall/day')+'</b> (assumed '+s.kwhDay+')</div>';
+
+  // scorecard
+  html += '<h2>Go / no-go scorecard</h2>';
+  html += '<table><tr style="color:#888780;font-size:11px;"><td style="padding:4px 8px;">Criterion</td><td style="padding:4px 8px;text-align:right;">Value</td><td style="padding:4px 8px;text-align:center;">Result</td></tr>'+scoreRows+'</table>';
+
+  // risks
+  html += '<h2>Key risks &amp; notes</h2>';
+  html += '<div style="font-size:12.5px;white-space:pre-wrap;min-height:40px;color:'+(risks?'#1a1a18':'#b4b2a9')+';">'+(risks || 'None entered.')+'</div>';
+
+  html += '<div style="margin-top:22px;font-size:10px;color:#b4b2a9;border-top:0.5px solid #eee;padding-top:8px;">Telos EV Infrastructure — high-level sniff test only. Not full underwriting. Flat energy/price, no ramp beyond kWh growth. Figures are estimates for internal screening.</div>';
+  html += '<div class="noprint" style="margin-top:16px;text-align:center;"><button onclick="window.print()" style="padding:9px 22px;font-size:13px;border:none;border-radius:8px;background:#1a1a18;color:#fff;cursor:pointer;">Print / Save as PDF</button></div>';
+  html += '</body></html>';
+  w.document.write(html);
+  w.document.close();
 }
 
 // ══════════════════════════════════════════════════════════
