@@ -1936,262 +1936,358 @@ hr.div { border: none; border-top: 0.5px solid #d3d1c7; margin: 10px 0; }
     <!-- ═══ L2 PANEL ═══ -->
     <div id="panel-L2" style="display:none;">
 
-      <!-- SHARED INPUTS -->
+      <!-- DEAL IDENTIFICATION -->
       <div class="card">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Shared assumptions — all L2 models</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:14px;">These inputs flow through Models A, B, and C simultaneously</div>
+        <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:10px;">Deal identification</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Deal / site name</label>
+            <input type="text" id="l2-dealname" value="" placeholder="e.g. Hills Properties Pilot" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Address</label>
+            <input type="text" id="l2-address" value="" placeholder="Site address" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Prepared by</label>
+            <input type="text" id="l2-preparedby" value="" placeholder="Your name" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          </div>
+        </div>
+      </div>
+
+      <!-- SHARED ASSUMPTIONS -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Shared assumptions — all L2 scenarios</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:16px;">These flow through all four scenarios: Tesla &amp; Third-party hardware × Model A &amp; Model B</div>
+
+        <!-- Build -->
+        <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:10px;">Build</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
-
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Number of stalls</label>
-            <input type="number" id="l2-units" value="4" min="1" max="100" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Number of ports</label>
+            <input type="number" id="l2-units" value="6" min="1" max="200" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
           </div>
-
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">All-in cost per unit ($)</label>
-            <input type="number" id="l2-capex-unit" value="4500" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Hardware ~$650–800 + install ~$3,500–4,000</div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Pedestal cost ($ each)</label>
+            <input type="number" id="l2-pedestal" value="1200" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Set 0 for wall-mount</div>
           </div>
-
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">kWh delivered per unit / year</label>
-            <input type="number" id="l2-kwh" value="2920" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Rough estimate: sessions/day × avg kWh/session × 365</div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Chargers per pedestal</label>
+            <input type="number" id="l2-perpedestal" value="2" min="1" max="4" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Pedestals = ceil(ports ÷ this)</div>
           </div>
-
           <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Price to driver ($/kWh)</label>
-            <input type="number" id="l2-price" value="0.55" step="0.01" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Installation per port ($)</label>
+            <input type="number" id="l2-install" value="3500" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Electrical, trenching, make-ready per port</div>
           </div>
+        </div>
 
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your energy cost ($/kWh)</label>
-            <input type="number" id="l2-energy" value="0.12" step="0.01" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+        <!-- Utilization -->
+        <div style="margin:14px 0;padding-top:14px;border-top:0.5px solid #e8e6df;">
+          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:10px;">Utilization</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Property type</label>
+              <select id="l2-proptype" onchange="l2ApplyPropType()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+                <option value="apartments">Apartments / Multifamily</option>
+                <option value="hotel">Hotel</option>
+                <option value="retail">Retail</option>
+                <option value="mixeduse">Mixed-use</option>
+                <option value="office">Office</option>
+              </select>
+              <div style="font-size:10px;color:#888780;margin-top:3px;">Pre-fills throughput + kWh/session</div>
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Stabilized throughput (kWh/stall/day)</label>
+              <input type="number" id="l2-kwhday" value="8" step="0.5" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              <div style="font-size:10px;color:#888780;margin-top:3px;">The revenue driver — editable per deal</div>
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Avg kWh / session</label>
+              <input type="number" id="l2-kwhsess" value="10" step="0.5" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              <div style="font-size:10px;color:#888780;margin-top:3px;">Derives sessions/day (throughput ÷ this)</div>
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Operating days / year</label>
+              <input type="number" id="l2-days" value="354" step="1" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              <div style="font-size:10px;color:#888780;margin-top:3px;">354 = ~97% uptime (conservative for L2)</div>
+            </div>
           </div>
+        </div>
 
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Platform fee ($/kWh)</label>
-            <input type="number" id="l2-platform-fee" value="0.03" step="0.01" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Cost to you — e.g. Tesla $0.03, Red E $0.00</div>
+        <!-- Financials -->
+        <div style="margin:14px 0;padding-top:14px;border-top:0.5px solid #e8e6df;">
+          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:10px;">Financials</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Price to driver ($/kWh)</label>
+              <input type="number" id="l2-price" value="0.45" step="0.01" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your energy cost ($/kWh)</label>
+              <input type="number" id="l2-energy" value="0.12" step="0.01" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Annual O&amp;M per port ($)</label>
+              <input type="number" id="l2-om" value="300" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              <div style="font-size:10px;color:#888780;margin-top:3px;">Maintenance + connectivity (non-software)</div>
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Annual kWh growth (%)</label>
+              <input type="number" id="l2-growth" value="8" step="1" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Grants / incentives ($)</label>
+              <input type="number" id="l2-grant" value="0" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Projection horizon</label>
+              <select id="l2-years" onchange="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+                <option value="5">5 years</option>
+                <option value="7">7 years</option>
+                <option value="10" selected>10 years</option>
+              </select>
+            </div>
           </div>
+        </div>
 
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Annual operating cost per unit ($)</label>
-            <input type="number" id="l2-om" value="300" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Maintenance, connectivity, monitoring</div>
+        <!-- Session & idle fees -->
+        <div style="margin:14px 0;padding-top:14px;border-top:0.5px solid #e8e6df;">
+          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:10px;">Session &amp; idle fees</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;align-items:start;">
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Session fee ($/session)</label>
+              <input type="number" id="l2-sessfee" value="1.00" step="0.25" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Idle fee ($/hour)</label>
+              <input type="number" id="l2-idlefee" value="0.40" step="0.05" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Idle hours / port / month</label>
+              <input type="number" id="l2-idlehrs" value="6" step="1" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
           </div>
-
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Annual kWh growth (%)</label>
-            <input type="number" id="l2-growth" value="8" step="1" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+            <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-radius:8px;padding:10px 12px;">
+              <label style="font-size:11px;color:#1a1a18;display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;">
+                <input type="checkbox" id="l2-tesla-fees" onchange="calcL2()" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;">
+                Apply session/idle fees to Tesla
+              </label>
+              <div style="font-size:10px;color:#888780;line-height:1.4;margin-top:5px;">Tesla Wall Connector can't charge idle/session fees today — off by default. Always applies to third-party.</div>
+            </div>
+            <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-radius:8px;padding:10px 12px;">
+              <label style="font-size:11px;color:#1a1a18;display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;">
+                <input type="checkbox" id="l2-sess-inshare" onchange="calcL2()" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;">
+                Session fees shared with host
+              </label>
+              <div style="font-size:10px;color:#888780;line-height:1.4;margin-top:5px;">Off = Telos keeps 100% of session fees, splits only net charging revenue. Idle fees always shared.</div>
+            </div>
           </div>
-
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Grants / incentives ($)</label>
-            <input type="number" id="l2-grant" value="0" oninput="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-            <div style="font-size:10px;color:#888780;margin-top:3px;">Offset against your installation costs</div>
-          </div>
-
-          <div>
-            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Projection horizon</label>
-            <select id="l2-years" onchange="calcL2()"
-              style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-              <option value="5">5 years</option>
-              <option value="7">7 years</option>
-              <option value="10" selected>10 years</option>
-            </select>
-          </div>
-
         </div>
       </div>
 
-      <!-- MODEL-SPECIFIC INPUTS -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:12px;">
-
-        <!-- Model A -->
-        <div class="card" style="border-top:3px solid #1D9E75;">
-          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;">Model A — Zero-cost to owner</div>
-          <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">You fund 100% of install. Owner pays nothing upfront.</div>
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your rev share as operator (%)</label>
-          <input type="number" id="l2a-op-share" value="95" min="1" max="100" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <div style="font-size:10px;color:#888780;margin-top:3px;">Owner receives remainder (e.g. 5%)</div>
-          <div style="margin-top:10px;padding:8px 10px;background:#EAF3DE;border-radius:7px;">
-            <div style="font-size:10px;color:#3B6D11;margin-bottom:2px;">Owner rev share</div>
-            <div style="font-size:13px;font-weight:500;color:#27500A;" id="l2a-owner-pct">5%</div>
-          </div>
-        </div>
-
-        <!-- Model B -->
-        <div class="card" style="border-top:3px solid #378ADD;">
-          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;">Model B — Subscription + Rev Share</div>
-          <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">You fund 100% of install. Owner pays monthly fee + gets larger rev share.</div>
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Monthly subscription fee ($/stall/mo)</label>
-          <input type="number" id="l2b-sub-fee" value="200" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;margin-top:10px;">Subscription term (years)</label>
-          <input type="number" id="l2b-sub-yrs" value="10" min="1" max="30" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <div style="font-size:10px;color:#888780;margin-top:3px;">Sub payments stop after this year — rev share continues</div>
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;margin-top:10px;">Your rev share as operator (%)</label>
-          <input type="number" id="l2b-op-share" value="70" min="1" max="100" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <div style="margin-top:10px;padding:8px 10px;background:#E6F1FB;border-radius:7px;">
-            <div style="font-size:10px;color:#185FA5;margin-bottom:2px;">Owner rev share</div>
-            <div style="font-size:13px;font-weight:500;color:#0C447C;" id="l2b-owner-pct">30%</div>
-          </div>
-        </div>
-
-        <!-- Model C -->
-        <div class="card" style="border-top:3px solid #EF9F27;">
-          <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;">Model C — Owner-funded install</div>
-          <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">Owner funds install. You contribute a portion. Highest rev share to owner.</div>
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your contribution to install (%)</label>
-          <input type="number" id="l2c-contrib-pct" value="20" min="0" max="100" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <div style="margin-top:6px;padding:7px 10px;background:#f1efe8;border-radius:7px;font-size:12px;color:#5f5e5a;">
-            You pay: <strong style="color:#1a1a18;" id="l2c-contrib-amt">—</strong> total
-          </div>
-          <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;margin-top:10px;">Your rev share as operator (%)</label>
-          <input type="number" id="l2c-op-share" value="40" min="1" max="100" oninput="calcL2()"
-            style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
-          <div style="margin-top:10px;padding:8px 10px;background:#FAEEDA;border-radius:7px;">
-            <div style="font-size:10px;color:#854F0B;margin-bottom:2px;">Owner rev share</div>
-            <div style="font-size:13px;font-weight:500;color:#633806;" id="l2c-owner-pct">60%</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- METRIC CARDS -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-
-        <!-- A metrics -->
-        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;border-top:3px solid #1D9E75;">
-          <div style="font-size:10px;font-weight:500;color:#1D9E75;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">Model A — Zero-cost</div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Your total CapEx (net of grants)</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2a-capex">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Payback period</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2a-payback">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 cash-on-cash</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2a-coc">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 net to you</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2a-net1">—</div>
-          </div>
-          <div style="background:#EAF3DE;border-radius:7px;padding:8px 10px;border:0.5px solid #C0DD97;">
-            <div style="font-size:10px;color:#3B6D11;margin-bottom:2px;">Year 1 net to property owner</div>
-            <div style="font-size:16px;font-weight:500;color:#27500A;" id="l2a-owner-net1">—</div>
-          </div>
-        </div>
-
-        <!-- B metrics -->
-        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;border-top:3px solid #378ADD;">
-          <div style="font-size:10px;font-weight:500;color:#378ADD;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">Model B — Subscription</div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Your total CapEx (net of grants)</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2b-capex">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Payback period</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2b-payback">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 cash-on-cash</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2b-coc">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 net to you</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2b-net1">—</div>
-          </div>
-          <div style="background:#E6F1FB;border-radius:7px;padding:8px 10px;border:0.5px solid #B5D4F4;">
-            <div style="font-size:10px;color:#185FA5;margin-bottom:2px;">Year 1 net to property owner</div>
-            <div style="font-size:16px;font-weight:500;color:#0C447C;" id="l2b-owner-net1">—</div>
-          </div>
-        </div>
-
-        <!-- C metrics -->
-        <div style="background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1rem;border-top:3px solid #EF9F27;">
-          <div style="font-size:10px;font-weight:500;color:#EF9F27;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">Model C — Owner-funded</div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Your total CapEx (net of grants)</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2c-capex">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Payback period</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2c-payback">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 cash-on-cash</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2c-coc">—</div>
-          </div>
-          <div style="background:#f1efe8;border-radius:7px;padding:8px 10px;margin-bottom:7px;">
-            <div style="font-size:10px;color:#5f5e5a;">Year 1 net to you</div>
-            <div style="font-size:16px;font-weight:500;color:#1a1a18;" id="l2c-net1">—</div>
-          </div>
-          <div style="background:#FAEEDA;border-radius:7px;padding:8px 10px;border:0.5px solid #FAC775;">
-            <div style="font-size:10px;color:#854F0B;margin-bottom:2px;">Year 1 net to property owner</div>
-            <div style="font-size:16px;font-weight:500;color:#633806;" id="l2c-owner-net1">—</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CHART -->
+      <!-- HARDWARE INPUTS (one wrapper, two cards) -->
       <div class="card">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Cumulative profit / (loss) — your share across all three models</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">All models shown from your perspective as operator. Negative = unrecovered investment.</div>
-        <div style="position:relative;height:280px;"><canvas id="l2-chart"></canvas></div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#5f5e5a;">
-          <span><span style="display:inline-block;width:12px;height:3px;background:#1D9E75;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model A — Zero-cost (you fund all)</span>
-          <span><span style="display:inline-block;width:12px;height:3px;background:#378ADD;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model B — Subscription + Rev Share</span>
-          <span><span style="display:inline-block;width:12px;height:3px;background:#EF9F27;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model C — Owner-funded (you contribute %)</span>
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Hardware paths</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:14px;">Enter each once. Both paths run through Model A and Model B below.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+          <!-- Tesla -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #E31937;border-radius:10px;padding:14px;">
+            <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;">Tesla — Universal Wall Connector</div>
+            <div style="font-size:10px;color:#5f5e5a;margin-bottom:12px;">Closed platform · $/kWh fee only · no monthly stack</div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Charger unit price ($ each)</label>
+            <input type="number" id="l2-tesla-unit" value="565" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;" style="margin-top:10px;">Tesla platform fee ($/kWh)</label>
+            <input type="number" id="l2-tesla-fee" value="0.03" step="0.01" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Only software/network cost. $0 if charging is free.</div>
+            <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;" style="margin-top:10px;">"Tesla effect" utilization boost (%)</label>
+            <input type="number" id="l2-tesla-effect" value="10" step="1" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            <div style="font-size:10px;color:#888780;margin-top:3px;">Throughput lift vs. third-party. Tesla path only.</div>
+          </div>
+
+          <!-- Third-party -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #378ADD;border-radius:10px;padding:14px;">
+            <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;">Third-party charger + CSMS</div>
+            <div style="font-size:10px;color:#5f5e5a;margin-bottom:12px;">Open OCPP · full software stack · idle/session capable</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Unit cost ($ each)</label>
+                <input type="number" id="l2-tp-unit" value="800" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              </div>
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Brand</label>
+                <input type="text" id="l2-tp-brand" value="Autel" placeholder="Autel, Wallbox" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:500;color:#1a1a18;margin:12px 0 6px;">Software vendor (Monta-style)</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Monthly access ($/mo flat)</label>
+                <input type="number" id="l2-sw-access" value="30" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              </div>
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">L2 base ($/port/mo)</label>
+                <input type="number" id="l2-sw-base" value="5" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+              </div>
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">24/7 support ($/port/mo)</label>
+                <input type="number" id="l2-sw-support" value="0" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+                <div style="font-size:10px;color:#888780;margin-top:3px;">Optional add-on</div>
+              </div>
+              <div>
+                <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Transaction fee (%)</label>
+                <input type="number" id="l2-sw-txn" value="5" step="0.5" oninput="calcL2()" style="width:100%;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+                <div style="font-size:10px;color:#888780;margin-top:3px;">% of gross charging revenue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Build summary strip -->
+        <div style="margin-top:14px;padding-top:14px;border-top:0.5px solid #e8e6df;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="font-size:12px;color:#5f5e5a;line-height:1.7;">
+            Pedestals needed: <span style="font-weight:600;color:#1a1a18;" id="l2-ped-count">—</span><br>
+            Sessions/day (all ports): <span style="font-weight:600;color:#1a1a18;" id="l2-sess-day">—</span> · System kWh/yr: <span style="font-weight:600;color:#1a1a18;" id="l2-sys-kwh">—</span>
+          </div>
+          <div style="font-size:12px;color:#5f5e5a;line-height:1.7;">
+            Tesla hardware total: <span style="font-weight:600;color:#1a1a18;" id="l2-tesla-hw">—</span><br>
+            Third-party hardware total: <span style="font-weight:600;color:#1a1a18;" id="l2-tp-hw">—</span>
+          </div>
         </div>
       </div>
 
-      <!-- NOI BAR CHART -->
+      <!-- MODEL A — full width, Tesla + TP result subcards -->
+      <div class="card" style="border-top:3px solid #1D9E75;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#1a1a18;">Model A — Zero-cost to owner</div>
+            <div style="font-size:11px;color:#5f5e5a;">You fund 100% of install. Owner pays nothing. You keep the larger share.</div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-end;">
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your rev share (%)</label>
+              <input type="number" id="l2a-op-share" value="90" min="1" max="100" oninput="calcL2()" style="width:110px;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div style="background:#EAF3DE;border-radius:7px;padding:7px 12px;">
+              <div style="font-size:10px;color:#3B6D11;">Owner share</div>
+              <div style="font-size:13px;font-weight:500;color:#27500A;" id="l2a-owner-pct">10%</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <!-- Tesla A -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #E31937;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:600;color:#E31937;margin-bottom:10px;">TESLA HARDWARE</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Net CapEx</div><div style="font-size:15px;font-weight:500;" id="l2-ta-capex">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Payback</div><div style="font-size:15px;font-weight:500;" id="l2-ta-pb">—</div></div>
+              <div style="background:#EAF3DE;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#3B6D11;">Stabilized NOI (yr1)</div><div style="font-size:15px;font-weight:500;color:#27500A;" id="l2-ta-noi">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Yr1 cash-on-cash</div><div style="font-size:15px;font-weight:500;" id="l2-ta-coc">—</div></div>
+            </div>
+            <div style="margin-top:8px;background:#fff;border-radius:6px;padding:7px 10px;font-size:10px;color:#5f5e5a;">Owner yr1 net: <span style="font-weight:500;color:#1a1a18;" id="l2-ta-owner">—</span></div>
+          </div>
+          <!-- TP A -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #378ADD;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:600;color:#378ADD;margin-bottom:10px;">THIRD-PARTY HARDWARE</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Net CapEx</div><div style="font-size:15px;font-weight:500;" id="l2-pa-capex">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Payback</div><div style="font-size:15px;font-weight:500;" id="l2-pa-pb">—</div></div>
+              <div style="background:#E6F1FB;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#185FA5;">Stabilized NOI (yr1)</div><div style="font-size:15px;font-weight:500;color:#0C447C;" id="l2-pa-noi">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Yr1 cash-on-cash</div><div style="font-size:15px;font-weight:500;" id="l2-pa-coc">—</div></div>
+            </div>
+            <div style="margin-top:8px;background:#fff;border-radius:6px;padding:7px 10px;font-size:10px;color:#5f5e5a;">Owner yr1 net: <span style="font-weight:500;color:#1a1a18;" id="l2-pa-owner">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODEL B — full width -->
+      <div class="card" style="border-top:3px solid #378ADD;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#1a1a18;">Model B — CaaS subscription + rev share</div>
+            <div style="font-size:11px;color:#5f5e5a;">Owner pays monthly fee + gets the larger rev share.</div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;">
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Monthly fee ($/port/mo)</label>
+              <input type="number" id="l2b-sub-fee" value="200" oninput="calcL2()" style="width:120px;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Sub term (yrs)</label>
+              <input type="number" id="l2b-sub-yrs" value="10" min="1" max="30" oninput="calcL2()" style="width:90px;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div>
+              <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;">Your rev share (%)</label>
+              <input type="number" id="l2b-op-share" value="20" min="1" max="100" oninput="calcL2()" style="width:110px;padding:6px 8px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:13px;font-family:inherit;background:#f8f7f4;color:#1a1a18;">
+            </div>
+            <div style="background:#E6F1FB;border-radius:7px;padding:7px 12px;">
+              <div style="font-size:10px;color:#185FA5;">Owner share</div>
+              <div style="font-size:13px;font-weight:500;color:#0C447C;" id="l2b-owner-pct">80%</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <!-- Tesla B -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #E31937;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:600;color:#E31937;margin-bottom:10px;">TESLA HARDWARE</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Net CapEx</div><div style="font-size:15px;font-weight:500;" id="l2-tb-capex">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Payback</div><div style="font-size:15px;font-weight:500;" id="l2-tb-pb">—</div></div>
+              <div style="background:#EAF3DE;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#3B6D11;">Stabilized NOI (yr1)</div><div style="font-size:15px;font-weight:500;color:#27500A;" id="l2-tb-noi">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Yr1 cash-on-cash</div><div style="font-size:15px;font-weight:500;" id="l2-tb-coc">—</div></div>
+            </div>
+            <div style="margin-top:8px;background:#fff;border-radius:6px;padding:7px 10px;font-size:10px;color:#5f5e5a;">Owner yr1 net: <span style="font-weight:500;color:#1a1a18;" id="l2-tb-owner">—</span></div>
+          </div>
+          <!-- TP B -->
+          <div style="background:#f8f7f4;border:0.5px solid #e8e6df;border-top:3px solid #378ADD;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:600;color:#378ADD;margin-bottom:10px;">THIRD-PARTY HARDWARE</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Net CapEx</div><div style="font-size:15px;font-weight:500;" id="l2-pb-capex">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Payback</div><div style="font-size:15px;font-weight:500;" id="l2-pb-pb">—</div></div>
+              <div style="background:#E6F1FB;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#185FA5;">Stabilized NOI (yr1)</div><div style="font-size:15px;font-weight:500;color:#0C447C;" id="l2-pb-noi">—</div></div>
+              <div style="background:#fff;border-radius:6px;padding:7px 10px;"><div style="font-size:9px;color:#5f5e5a;">Yr1 cash-on-cash</div><div style="font-size:15px;font-weight:500;" id="l2-pb-coc">—</div></div>
+            </div>
+            <div style="margin-top:8px;background:#fff;border-radius:6px;padding:7px 10px;font-size:10px;color:#5f5e5a;">Owner yr1 net: <span style="font-weight:500;color:#1a1a18;" id="l2-pb-owner">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session fee upside -->
+      <div style="background:#FAEEDA;border-radius:10px;padding:10px 14px;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:500;color:#854F0B;margin-bottom:6px;">Session-fee NOI upside (annual, yr1)</div>
+        <div style="font-size:12px;color:#633806;line-height:1.7;">
+          Session fees to you: <span style="font-weight:600;" id="l2-sess-upside">—</span> &nbsp;·&nbsp; Idle fees to you: <span style="font-weight:600;" id="l2-idle-upside">—</span><br>
+          <span style="font-size:10px;color:#854F0B;">Third-party captures these; Tesla only if toggle on. This is the fee advantage of open hardware.</span>
+        </div>
+      </div>
+
+      <!-- NOI COMPARISON — horizontal bar -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Stabilized NOI to you (Year 1) — all four scenarios</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">At-a-glance comparison. Longer bar = more Year-1 NOI to you as operator.</div>
+        <div style="position:relative;height:220px;"><canvas id="l2-chart"></canvas></div>
+      </div>
+
+      <!-- NOTES + EXEC SUMMARY -->
       <div class="card" style="margin-top:12px;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Annual NOI — your net operating income per year</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">Year-by-year NOI to you as operator, after platform fee, energy cost, and O&amp;M. Grouped bars allow direct year-over-year comparison across models.</div>
-        <div style="position:relative;height:280px;"><canvas id="l2-noi-chart"></canvas></div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#5f5e5a;">
-          <span><span style="display:inline-block;width:12px;height:12px;background:#1D9E75;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model A — Zero-cost</span>
-          <span><span style="display:inline-block;width:12px;height:12px;background:#378ADD;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model B — Subscription</span>
-          <span><span style="display:inline-block;width:12px;height:12px;background:#EF9F27;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model C — Owner-funded</span>
+        <label style="font-size:11px;color:#5f5e5a;display:block;margin-bottom:4px;font-weight:500;">Key risks &amp; notes <span style="color:#888780;font-weight:400;">— appears on the 1-pager</span></label>
+        <textarea id="l2-risks" placeholder="e.g. utilization ramp assumption · Tesla pay-per-use not confirmed in OH/KY · host is net payer at low utilization · install bid placeholder" oninput="calcL2()"
+          style="width:100%;min-height:50px;padding:8px 10px;border:0.5px solid #b4b2a9;border-radius:6px;font-size:12px;font-family:inherit;background:#f8f7f4;color:#1a1a18;resize:vertical;"></textarea>
+        <div style="margin-top:12px;">
+          <button onclick="generateL2Summary()" style="padding:9px 20px;font-size:13px;font-weight:500;font-family:inherit;border:none;border-radius:8px;cursor:pointer;background:#1a1a18;color:#f8f7f4;">Generate 1-page executive summary →</button>
+          <span style="font-size:11px;color:#888780;margin-left:10px;">Opens a printable view — save as PDF to your deal folder</span>
         </div>
       </div>
 
-      <!-- OWNER REVENUE BAR CHART -->
-      <div class="card" style="margin-top:12px;">
-        <div style="font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:4px;">Annual revenue to property owner — per year</div>
-        <div style="font-size:11px;color:#5f5e5a;margin-bottom:12px;">What the property owner receives each year under each model. Model B shows rev share income minus sub fee paid (net position). Useful for owner-facing presentations.</div>
-        <div style="position:relative;height:280px;"><canvas id="l2-owner-chart"></canvas></div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#5f5e5a;">
-          <span><span style="display:inline-block;width:12px;height:12px;background:rgba(29,158,117,0.75);border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model A — Zero-cost</span>
-          <span><span style="display:inline-block;width:12px;height:12px;background:rgba(55,138,221,0.75);border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model B — Sub (net: rev share minus sub fee paid)</span>
-          <span><span style="display:inline-block;width:12px;height:12px;background:rgba(239,159,39,0.75);border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Model C — Owner-funded</span>
-        </div>
-      </div>
-
-      <div style="font-size:11px;color:#888780;margin-top:6px;padding:0 2px;">For illustrative purposes only. Not financial advice. Verify all assumptions with your advisors.</div>
+      <div style="font-size:11px;color:#888780;margin-top:6px;padding:0 2px;">For illustrative purposes only. Not financial advice. Host is a net payer at realistic utilization — verify owner economics honestly before pitching.</div>
     </div>
 
-  </div><!-- end modeling -->
+
+</div><!-- end modeling -->
 
 </div><!-- end wrapper -->
 
@@ -2259,7 +2355,7 @@ function setText(id, val) {
   if (el) el.textContent = val;
 }
 
-var l3Chart = null, l2Chart = null, l2NoiChart = null, l2OwnerChart = null;
+var l3Chart = null, l2Chart = null;
 
 function buildChart(canvasId, existing, labels, datasets) {
   if (existing) { try { existing.destroy(); } catch(e){} }
@@ -2563,195 +2659,312 @@ function generateL3Summary() {
 // ══════════════════════════════════════════════════════════
 // L2 CALCULATOR
 // ══════════════════════════════════════════════════════════
+function l2PropDefaults(t) {
+  // [kWh/stall/day, avg kWh/session]
+  var d = {
+    apartments: [8, 10],
+    hotel:      [10, 12],
+    retail:     [7, 8],
+    mixeduse:   [9, 10],
+    office:     [9, 11]
+  };
+  return d[t] || [8, 10];
+}
+
+function l2ApplyPropType() {
+  var t = (document.getElementById('l2-proptype')||{}).value || 'apartments';
+  var d = l2PropDefaults(t);
+  var kd = document.getElementById('l2-kwhday');
+  var ks = document.getElementById('l2-kwhsess');
+  if (kd) kd.value = d[0];
+  if (ks) ks.value = d[1];
+  calcL2();
+}
+
+var l2State = {};
+
 function calcL2() {
   // ── Shared inputs ──────────────────────────────────────
-  var units    = gv('l2-units');
-  var capexU   = gv('l2-capex-unit');
-  var kwhY1    = gv('l2-kwh');
+  var ports    = gv('l2-units');
+  var kwhDay   = gv('l2-kwhday');          // stabilized throughput per stall/day (base, third-party)
+  var kwhSess  = gv('l2-kwhsess') || 1;    // avg kWh/session
+  var days     = gv('l2-days') || 354;
   var price    = gv('l2-price');
   var energy   = gv('l2-energy');
-  var platFee  = gv('l2-platform-fee');
   var om       = gv('l2-om');
   var growth   = gv('l2-growth') / 100;
   var grant    = gv('l2-grant');
   var yrs      = parseInt(document.getElementById('l2-years').value) || 10;
 
-  var totalInstall = units * capexU;           // gross install cost, before grants
+  var pedCost  = gv('l2-pedestal');
+  var perPed   = gv('l2-perpedestal') || 1;
+  var installP = gv('l2-install');         // install per port
 
-  // ── Model-specific inputs ──────────────────────────────
-  var aOpShare  = gv('l2a-op-share') / 100;   // your share, Model A
-  var bSubFee   = gv('l2b-sub-fee');           // $/stall/month
-  var bSubYrs   = gv('l2b-sub-yrs') || 10;    // subscription term in years
-  var bOpShare  = gv('l2b-op-share') / 100;   // your share, Model B
-  var cContribP = gv('l2c-contrib-pct') / 100; // your % of install, Model C
-  var cOpShare  = gv('l2c-op-share') / 100;   // your share, Model C
+  // Hardware paths
+  var teslaUnit = gv('l2-tesla-unit');
+  var teslaFee  = gv('l2-tesla-fee');      // $/kWh, Tesla's only software cost
+  var teslaEff  = gv('l2-tesla-effect')/100; // throughput boost, Tesla only
+  var tpUnit    = gv('l2-tp-unit');
 
-  // ── Update owner share labels ──────────────────────────
-  setText('l2a-owner-pct', ((1 - aOpShare) * 100).toFixed(0) + '%');
-  setText('l2b-owner-pct', ((1 - bOpShare) * 100).toFixed(0) + '%');
-  setText('l2c-owner-pct', ((1 - cOpShare) * 100).toFixed(0) + '%');
+  // Third-party software stack (Monta-style)
+  var swAccess  = gv('l2-sw-access');      // flat $/month
+  var swBase    = gv('l2-sw-base');        // $/port/mo
+  var swSupport = gv('l2-sw-support');     // $/port/mo optional
+  var swTxn     = gv('l2-sw-txn')/100;     // % of gross charging revenue
 
-  // ── Model C: your dollar contribution ─────────────────
-  var cContribAmt = totalInstall * cContribP;
-  setText('l2c-contrib-amt', fmt$(cContribAmt));
+  // Fees
+  var sessFee   = gv('l2-sessfee');
+  var idleFee   = gv('l2-idlefee');
+  var idleHrs   = gv('l2-idlehrs');        // per port per month
+  var teslaFees = (document.getElementById('l2-tesla-fees')||{}).checked;
+  var sessShared= (document.getElementById('l2-sess-inshare')||{}).checked;
 
-  // ── Your net investment in each model ─────────────────
-  // Model A: you pay 100% of install, offset by grants
-  var capexA = totalInstall - grant;
-  // Model B: you pay 100% of install, offset by grants
-  var capexB = totalInstall - grant;
-  // Model C: you pay your contribution %, offset by grants (owner pays rest)
-  var capexC = cContribAmt - grant;
-  if (capexC < 0) capexC = 0;
+  // Model rev-share
+  var aOpShare  = gv('l2a-op-share')/100;
+  var bSubFee   = gv('l2b-sub-fee');       // $/port/mo
+  var bSubYrs   = gv('l2b-sub-yrs') || 10;
+  var bOpShare  = gv('l2b-op-share')/100;
 
-  // ── Annual net income functions (your perspective) ─────
-  // Revenue base per year (your portion of session revenue, net of platform fee and energy)
-  // Net session margin per kWh to you = (price - energy - platFee) × your share
-  function sessNetA(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    return units * kwh * (price - energy - platFee) * aOpShare - units * om;
-  }
-  function sessNetB(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    var subIncome = y <= bSubYrs ? units * bSubFee * 12 : 0;  // stops after subscription term
-    var sessIncome = units * kwh * (price - energy - platFee) * bOpShare;
-    return subIncome + sessIncome - units * om;
-  }
-  function sessNetC(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    return units * kwh * (price - energy - platFee) * cOpShare - units * om;
-  }
+  setText('l2a-owner-pct', ((1-aOpShare)*100).toFixed(0)+'%');
+  setText('l2b-owner-pct', ((1-bOpShare)*100).toFixed(0)+'%');
 
-  // ── Year 1 metrics ─────────────────────────────────────
-  var yr1A = sessNetA(1);
-  var yr1B = sessNetB(1);
-  var yr1C = sessNetC(1);
+  // ── Pedestal / hardware ────────────────────────────────
+  var pedCount = Math.ceil(ports / perPed);
+  var pedTotal = pedCount * pedCost;
+  var installTotal = ports * installP;
+  var teslaHw = ports * teslaUnit + pedTotal;
+  var tpHw    = ports * tpUnit + pedTotal;
+  var teslaCapexGross = teslaHw + installTotal;
+  var tpCapexGross    = tpHw + installTotal;
+  var teslaCapex = Math.max(0, teslaCapexGross - grant);
+  var tpCapex    = Math.max(0, tpCapexGross - grant);
 
-  var cocA = capexA > 0 ? yr1A / capexA : (yr1A > 0 ? Infinity : 0);
-  var cocB = capexB > 0 ? yr1B / capexB : (yr1B > 0 ? Infinity : 0);
-  var cocC = capexC > 0 ? yr1C / capexC : (yr1C > 0 ? Infinity : 0);
+  // ── Throughput / sessions ──────────────────────────────
+  // base = third-party throughput; tesla path gets the effect multiplier
+  var kwhDayTesla = kwhDay * (1 + teslaEff);
+  function sysKwh(kd, y) { return ports * kd * days * Math.pow(1+growth, y-1); }
+  var sessDayBase = (kwhDay / kwhSess) * ports;      // sessions/day all ports (base)
+  var sessYrBase  = sessDayBase * days;
+  var sessYrTesla = (kwhDayTesla / kwhSess) * ports * days;
 
-  var pbA = calcPayback(capexA, sessNetA);
-  var pbB = calcPayback(capexB, sessNetB);
-  var pbC = calcPayback(capexC, sessNetC);
+  // ── Fee revenue (annual, yr1) ──────────────────────────
+  function sessionFeeRev(sessYr) { return sessYr * sessFee; }
+  var idleRevYr = ports * idleHrs * 12 * idleFee;    // idle fees, annual (always shared pool)
 
-  // ── Write metrics ──────────────────────────────────────
-  setText('l2a-capex',   fmt$(capexA));
-  setText('l2a-payback', fmtYr(pbA));
-  setText('l2a-coc',     fmtPct(cocA));
-  setText('l2a-net1',    fmt$(yr1A));
+  // ── Core annual NOI to operator, per hardware path × model ──
+  // Waterfall: net charging proceeds = kWh rev - energy - txn fees. Split per model.
+  //   Idle fees: always added to split pool. Session fees: toggle.
+  //   Model B: monthly CaaS fee flows to Telos.
+  //   Costs unique to path: Tesla = teslaFee $/kWh; TP = software stack (access + base + support + txn already netted).
+  // hw: 'tesla' or 'tp'; model: 'A' or 'B'
+  function opNOI(hw, model, y) {
+    var isTesla = (hw === 'tesla');
+    var kd = isTesla ? kwhDayTesla : kwhDay;
+    var kwh = sysKwh(kd, y);
+    var sessYr = (isTesla ? sessYrTesla : sessYrBase) * Math.pow(1+growth, y-1);
+    var opShare = (model === 'A') ? aOpShare : bOpShare;
 
-  setText('l2b-capex',   fmt$(capexB));
-  setText('l2b-payback', fmtYr(pbB));
-  setText('l2b-coc',     fmtPct(cocB));
-  setText('l2b-net1',    fmt$(yr1B));
+    var grossCharge = kwh * price;
+    var energyCost  = kwh * energy;
 
-  setText('l2c-capex',   capexC <= 0 ? '$0' : fmt$(capexC));
-  setText('l2c-payback', capexC <= 0 ? 'Immediate' : fmtYr(pbC));
-  setText('l2c-coc',     capexC <= 0 ? 'N/A' : fmtPct(cocC));
-  setText('l2c-net1',    fmt$(yr1C));
+    // transaction/platform cost differs by hardware
+    var txnCost, swFixed;
+    if (isTesla) {
+      txnCost = kwh * teslaFee;      // Tesla $/kWh platform fee
+      swFixed = 0;                    // no monthly stack
+    } else {
+      txnCost = grossCharge * swTxn;  // Monta % of gross
+      swFixed = (swAccess*12) + (swBase*ports*12) + (swSupport*ports*12);
+    }
 
-  // ── Owner annual net income functions ─────────────────
-  // Model A: owner gets their rev share of session revenue (price × owner%)
-  // Note: owner has no cost — their share is purely additive
-  function ownerNetA(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    return units * kwh * price * (1 - aOpShare);
-  }
-  // Model B: owner gets rev share income MINUS the sub fee they pay each month (net position)
-  function ownerNetB(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    var revShareIncome = units * kwh * price * (1 - bOpShare);
-    var subCost = y <= bSubYrs ? units * bSubFee * 12 : 0;
-    return revShareIncome - subCost;
-  }
-  // Model C: owner gets rev share income; their install cost basis not modeled here (shown elsewhere)
-  function ownerNetC(y) {
-    var kwh = kwhY1 * Math.pow(1 + growth, y - 1);
-    return units * kwh * price * (1 - cOpShare);
-  }
+    var netCharging = grossCharge - energyCost - txnCost;   // proceeds to split
 
-  // ── Year 1 owner metrics ───────────────────────────────
-  setText('l2a-owner-net1', fmt$(ownerNetA(1)));
-  setText('l2b-owner-net1', fmt$(ownerNetB(1)));
-  setText('l2c-owner-net1', fmt$(ownerNetC(1)));
+    // fees
+    var feesApply = isTesla ? teslaFees : true;
+    var idle = feesApply ? (ports * idleHrs * 12 * idleFee) * Math.pow(1+growth, y-1) : 0;
+    var sessRev = feesApply ? sessYr * sessFee : 0;
 
-  // ── Build cumulative + NOI + owner series ─────────────
-  var labels = [];
-  var cumA = [], cumB = [], cumC = [];
-  var noiA = [], noiB = [], noiC = [];
-  var ownerA = [], ownerB = [], ownerC = [];
-  var rA = -capexA, rB = -capexB, rC = -capexC;
+    // split pool: net charging always; idle always in pool; session optional
+    var pool = netCharging + idle + (sessShared ? sessRev : 0);
+    var opFromPool = pool * opShare;
+    var opKeepsSession = sessShared ? 0 : sessRev;   // if not shared, operator keeps 100%
 
-  for (var y = 1; y <= yrs; y++) {
-    labels.push('Yr ' + y);
-    var nA = sessNetA(y); rA += nA; cumA.push(Math.round(rA)); noiA.push(Math.round(nA));
-    var nB = sessNetB(y); rB += nB; cumB.push(Math.round(rB)); noiB.push(Math.round(nB));
-    var nC = sessNetC(y); rC += nC; cumC.push(Math.round(rC)); noiC.push(Math.round(nC));
-    ownerA.push(Math.round(ownerNetA(y)));
-    ownerB.push(Math.round(ownerNetB(y)));
-    ownerC.push(Math.round(ownerNetC(y)));
+    // Model B monthly CaaS fee to Telos (during sub term)
+    var subIncome = (model === 'B' && y <= bSubYrs) ? ports * bSubFee * 12 : 0;
+
+    // operator costs: O&M (both), software fixed (TP only)
+    var opCost = ports * om + swFixed;
+
+    return opFromPool + opKeepsSession + subIncome - opCost;
   }
 
-  l2Chart = buildChart('l2-chart', l2Chart, labels, [
-    { label: 'Model A — Zero-cost',    data: cumA, borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.07)',  fill: true },
-    { label: 'Model B — Subscription', data: cumB, borderColor: '#378ADD', backgroundColor: 'rgba(55,138,221,0.07)',  fill: true },
-    { label: 'Model C — Owner-funded', data: cumC, borderColor: '#EF9F27', backgroundColor: 'rgba(239,159,39,0.07)',  fill: true }
-  ]);
+  // Owner yr1 net (their share of pool, minus sub fee they pay in B)
+  function ownerNOI(hw, model, y) {
+    var isTesla = (hw === 'tesla');
+    var kd = isTesla ? kwhDayTesla : kwhDay;
+    var kwh = sysKwh(kd, y);
+    var sessYr = (isTesla ? sessYrTesla : sessYrBase) * Math.pow(1+growth, y-1);
+    var opShare = (model === 'A') ? aOpShare : bOpShare;
+    var grossCharge = kwh * price;
+    var energyCost  = kwh * energy;
+    var txnCost = isTesla ? kwh*teslaFee : grossCharge*swTxn;
+    var netCharging = grossCharge - energyCost - txnCost;
+    var feesApply = isTesla ? teslaFees : true;
+    var idle = feesApply ? (ports*idleHrs*12*idleFee)*Math.pow(1+growth,y-1) : 0;
+    var sessRev = feesApply ? sessYr*sessFee : 0;
+    var pool = netCharging + idle + (sessShared ? sessRev : 0);
+    var ownerFromPool = pool * (1 - opShare);
+    var subCost = (model==='B' && y<=bSubYrs) ? ports*bSubFee*12 : 0;
+    return ownerFromPool - subCost;
+  }
 
-  // ── Annual NOI bar chart (operator perspective) ────────
-  if (l2NoiChart) { try { l2NoiChart.destroy(); } catch(e){} }
-  var noiCtx = document.getElementById('l2-noi-chart');
-  if (noiCtx) {
-    l2NoiChart = new Chart(noiCtx.getContext('2d'), {
+  // capex per hardware path
+  function capexOf(hw){ return hw==='tesla' ? teslaCapex : tpCapex; }
+
+  // ── Compute the four scenarios ─────────────────────────
+  var scen = [
+    {id:'ta', hw:'tesla', model:'A'},
+    {id:'tb', hw:'tesla', model:'B'},
+    {id:'pa', hw:'tp',    model:'A'},
+    {id:'pb', hw:'tp',    model:'B'}
+  ];
+  scen.forEach(function(sc){
+    var cap = capexOf(sc.hw);
+    var noi1 = opNOI(sc.hw, sc.model, 1);
+    var coc = cap>0 ? noi1/cap : (noi1>0?Infinity:0);
+    var pb = calcPayback(cap, function(y){ return opNOI(sc.hw, sc.model, y); });
+    var owner1 = ownerNOI(sc.hw, sc.model, 1);
+    setText('l2-'+sc.id+'-capex', fmt$(cap));
+    setText('l2-'+sc.id+'-pb', fmtYr(pb));
+    setText('l2-'+sc.id+'-noi', fmt$(noi1));
+    setText('l2-'+sc.id+'-coc', coc===Infinity?'∞':fmtPct(coc));
+    setText('l2-'+sc.id+'-owner', fmt$(owner1));
+  });
+
+  // ── Session/idle fee upside (yr1, third-party basis) ───
+  var sessUpside = sessYrBase * sessFee;   // if operator keeps; representative
+  setText('l2-sess-upside', fmt$(sessUpside));
+  setText('l2-idle-upside', fmt$(idleRevYr));
+
+  // ── Build summary ──────────────────────────────────────
+  setText('l2-ped-count', pedCount + (pedCost===0?' (wall-mount)':''));
+  setText('l2-sess-day', sessDayBase.toFixed(1));
+  setText('l2-sys-kwh', Math.round(sysKwh(kwhDay,1)).toLocaleString()+' kWh');
+  setText('l2-tesla-hw', fmt$(teslaHw));
+  setText('l2-tp-hw', fmt$(tpHw));
+
+  // ── Horizontal NOI bar chart — Year 1 NOI to operator, 4 scenarios ──
+  var barLabels = ['Tesla × A', 'Tesla × B', 'Third-party × A', 'Third-party × B'];
+  var barData = [ opNOI('tesla','A',1), opNOI('tesla','B',1), opNOI('tp','A',1), opNOI('tp','B',1) ].map(function(v){ return Math.round(v); });
+  var barColors = ['#E31937', '#F0997B', '#378ADD', '#8EC5F0'];
+
+  if (l2Chart) { try { l2Chart.destroy(); } catch(e){} }
+  var l2ctx = document.getElementById('l2-chart');
+  if (l2ctx) {
+    l2Chart = new Chart(l2ctx.getContext('2d'), {
       type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          { label: 'Model A — Zero-cost',    data: noiA, backgroundColor: 'rgba(29,158,117,0.75)', borderColor: '#1D9E75', borderWidth: 1 },
-          { label: 'Model B — Subscription', data: noiB, backgroundColor: 'rgba(55,138,221,0.75)', borderColor: '#378ADD', borderWidth: 1 },
-          { label: 'Model C — Owner-funded', data: noiC, backgroundColor: 'rgba(239,159,39,0.75)', borderColor: '#EF9F27', borderWidth: 1 }
-        ]
-      },
+      data: { labels: barLabels, datasets: [{ data: barData, backgroundColor: barColors, borderColor: barColors, borderWidth: 1, borderRadius: 4 }] },
       options: {
+        indexAxis: 'y',
         responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c){ return ' ' + c.dataset.label + ': ' + fmt$(c.parsed.y); } } } },
-        scales: {
-          x: { grid: { color: '#f1efe8' }, ticks: { font: { size: 11 }, color: '#888780' } },
-          y: { grid: { color: '#f1efe8' }, ticks: { font: { size: 11 }, color: '#888780', callback: function(v){ return fmt$(v); } } }
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: function(c){ return ' Yr1 NOI: ' + fmt$(c.parsed.x); } } }
         },
-        elements: { bar: { borderRadius: 3 } }
+        scales: {
+          x: { grid: { color: '#f1efe8' }, ticks: { font: { size: 11 }, color: '#888780', callback: function(v){ return fmt$(v); } } },
+          y: { grid: { display: false }, ticks: { font: { size: 12 }, color: '#1a1a18' } }
+        }
       }
     });
   }
 
-  // ── Annual owner revenue bar chart ────────────────────
-  if (l2OwnerChart) { try { l2OwnerChart.destroy(); } catch(e){} }
-  var ownerCtx = document.getElementById('l2-owner-chart');
-  if (ownerCtx) {
-    l2OwnerChart = new Chart(ownerCtx.getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          { label: 'Model A — Zero-cost',    data: ownerA, backgroundColor: 'rgba(29,158,117,0.75)', borderColor: '#1D9E75', borderWidth: 1 },
-          { label: 'Model B — Sub (net)',     data: ownerB, backgroundColor: 'rgba(55,138,221,0.75)', borderColor: '#378ADD', borderWidth: 1 },
-          { label: 'Model C — Owner-funded', data: ownerC, backgroundColor: 'rgba(239,159,39,0.75)', borderColor: '#EF9F27', borderWidth: 1 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c){ return ' ' + c.dataset.label + ': ' + fmt$(c.parsed.y); } } } },
-        scales: {
-          x: { grid: { color: '#f1efe8' }, ticks: { font: { size: 11 }, color: '#888780' } },
-          y: { grid: { color: '#f1efe8' }, ticks: { font: { size: 11 }, color: '#888780', callback: function(v){ return fmt$(v); } } }
-        },
-        elements: { bar: { borderRadius: 3 } }
-      }
-    });
-  }
+
+  // ── stash state ────────────────────────────────────────
+  l2State = {
+    dealname:(document.getElementById('l2-dealname')||{}).value||'',
+    address:(document.getElementById('l2-address')||{}).value||'',
+    preparedby:(document.getElementById('l2-preparedby')||{}).value||'',
+    proptype:(document.getElementById('l2-proptype')||{}).value||'',
+    ports:ports, pedCount:pedCount, kwhDay:kwhDay, kwhDayTesla:kwhDayTesla, kwhSess:kwhSess, days:days,
+    price:price, energy:energy, sessDayBase:sessDayBase,
+    teslaCapex:teslaCapex, tpCapex:tpCapex, teslaHw:teslaHw, tpHw:tpHw,
+    sessUpside:sessUpside, idleRevYr:idleRevYr, sessShared:sessShared, teslaFees:teslaFees,
+    tpBrand:(document.getElementById('l2-tp-brand')||{}).value||'third-party',
+    bSubFee:bSubFee, aOpShare:aOpShare, bOpShare:bOpShare,
+    scen: scen.map(function(sc){
+      var cap=capexOf(sc.hw);
+      return { id:sc.id, hw:sc.hw, model:sc.model, capex:cap,
+        noi1:opNOI(sc.hw,sc.model,1), owner1:ownerNOI(sc.hw,sc.model,1),
+        pb:calcPayback(cap,function(y){return opNOI(sc.hw,sc.model,y);}) };
+    })
+  };
+}
+
+// ══════════════════════════════════════════════════════════
+// L2 EXECUTIVE SUMMARY
+// ══════════════════════════════════════════════════════════
+function generateL2Summary() {
+  calcL2();
+  var s = l2State;
+  var name = s.dealname || 'L2 Deal';
+  var today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  var propLabels = {apartments:'Apartments / Multifamily', hotel:'Hotel', retail:'Retail', mixeduse:'Mixed-use', office:'Office'};
+  function money(n){ if(n===null||isNaN(n))return '—'; var neg=n<0,a=Math.abs(n); var t=a>=1e6?'$'+(a/1e6).toFixed(2)+'M':a>=1e3?'$'+(a/1e3).toFixed(1)+'K':'$'+a.toFixed(0); return neg?'('+t+')':t; }
+  function yr(n){ return (n&&isFinite(n))?n.toFixed(1)+' yrs':'N/A'; }
+  var risks=(document.getElementById('l2-risks')||{}).value||'';
+
+  // find best (lowest payback) scenario
+  var best=null;
+  s.scen.forEach(function(sc){ if(sc.pb&&isFinite(sc.pb)&&(best===null||sc.pb<best.pb)) best=sc; });
+  var lbl={ta:'Tesla × Model A', tb:'Tesla × Model B', pa:'Third-party × Model A', pb:'Third-party × Model B'};
+
+  var rows = s.scen.map(function(sc){
+    var coc = sc.capex>0? (sc.noi1/sc.capex*100).toFixed(1)+'%':'—';
+    return '<tr><td style="padding:5px 8px;">'+lbl[sc.id]+'</td><td style="padding:5px 8px;text-align:right;">'+money(sc.capex)+'</td><td style="padding:5px 8px;text-align:right;">'+money(sc.noi1)+'</td><td style="padding:5px 8px;text-align:right;">'+yr(sc.pb)+'</td><td style="padding:5px 8px;text-align:right;">'+coc+'</td><td style="padding:5px 8px;text-align:right;color:#5f5e5a;">'+money(sc.owner1)+'</td></tr>';
+  }).join('');
+
+  var w = window.open('','_blank');
+  var h = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+name+' — L2 Deal Summary</title>';
+  h += '<style>@media print{@page{margin:0.5in;}.noprint{display:none;}}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#1a1a18;max-width:760px;margin:0 auto;padding:28px;line-height:1.4;}h1{font-size:22px;margin:0 0 2px;}h2{font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#5f5e5a;border-bottom:1px solid #d3d1c7;padding-bottom:4px;margin:18px 0 10px;}table{width:100%;border-collapse:collapse;font-size:12.5px;}.kv{display:flex;justify-content:space-between;padding:3px 0;font-size:12.5px;border-bottom:0.5px solid #eee;}.kv span:first-child{color:#5f5e5a;}.kv span:last-child{font-weight:500;}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}</style></head><body>';
+  h += '<div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><h1>'+name+'</h1><div style="font-size:12.5px;color:#5f5e5a;">'+(s.address||'')+'</div></div>';
+  h += '<div style="text-align:right;font-size:11px;color:#888780;">L2 / Level 2 Deal Sniff Test<br>'+today+(s.preparedby?'<br>Prepared by '+s.preparedby:'')+'</div></div>';
+
+  h += '<div class="grid"><div><h2>Deal snapshot</h2>';
+  h += '<div class="kv"><span>Property type</span><span>'+(propLabels[s.proptype]||s.proptype)+'</span></div>';
+  h += '<div class="kv"><span>Ports</span><span>'+s.ports+'</span></div>';
+  h += '<div class="kv"><span>Pedestals</span><span>'+s.pedCount+'</span></div>';
+  h += '<div class="kv"><span>Tesla hardware</span><span>'+money(s.teslaHw)+'</span></div>';
+  h += '<div class="kv"><span>'+s.tpBrand+' hardware</span><span>'+money(s.tpHw)+'</span></div>';
+  h += '<div class="kv"><span>Tesla net CapEx</span><span>'+money(s.teslaCapex)+'</span></div>';
+  h += '<div class="kv"><span>Third-party net CapEx</span><span>'+money(s.tpCapex)+'</span></div>';
+  h += '</div><div><h2>Utilization basis</h2>';
+  h += '<div class="kv"><span>Throughput (base)</span><span>'+s.kwhDay+' kWh/stall/day</span></div>';
+  h += '<div class="kv"><span>Throughput (Tesla, w/ effect)</span><span>'+s.kwhDayTesla.toFixed(1)+' kWh/stall/day</span></div>';
+  h += '<div class="kv"><span>Avg kWh/session</span><span>'+s.kwhSess+'</span></div>';
+  h += '<div class="kv"><span>Sessions/day (all ports)</span><span>'+s.sessDayBase.toFixed(1)+'</span></div>';
+  h += '<div class="kv"><span>Operating days/yr</span><span>'+s.days+'</span></div>';
+  h += '<div class="kv"><span>Price / energy</span><span>$'+s.price.toFixed(2)+' / $'+s.energy.toFixed(2)+'</span></div>';
+  h += '</div></div>';
+
+  h += '<h2>Scenario matrix (Year 1)</h2>';
+  h += '<table><tr style="color:#888780;font-size:11px;"><td style="padding:4px 8px;">Scenario</td><td style="padding:4px 8px;text-align:right;">Net CapEx</td><td style="padding:4px 8px;text-align:right;">NOI (yr1)</td><td style="padding:4px 8px;text-align:right;">Payback</td><td style="padding:4px 8px;text-align:right;">CoC</td><td style="padding:4px 8px;text-align:right;">Owner yr1</td></tr>'+rows+'</table>';
+  if (best) h += '<div style="font-size:12.5px;margin-top:8px;">Fastest payback: <b>'+lbl[best.id]+'</b> at '+yr(best.pb)+'.</div>';
+
+  h += '<h2>Fee upside &amp; structure</h2>';
+  h += '<div class="kv"><span>Session-fee revenue (yr1, if kept)</span><span>'+money(s.sessUpside)+'</span></div>';
+  h += '<div class="kv"><span>Idle-fee revenue (yr1)</span><span>'+money(s.idleRevYr)+'</span></div>';
+  h += '<div class="kv"><span>Session fees</span><span>'+(s.sessShared?'shared with host':'Telos keeps 100%')+'</span></div>';
+  h += '<div class="kv"><span>Fees applied to Tesla</span><span>'+(s.teslaFees?'yes':'no (WC limitation)')+'</span></div>';
+  h += '<div class="kv"><span>Model A / B rev share (operator)</span><span>'+(s.aOpShare*100).toFixed(0)+'% / '+(s.bOpShare*100).toFixed(0)+'%</span></div>';
+  h += '<div class="kv"><span>Model B CaaS fee</span><span>$'+s.bSubFee+'/port/mo</span></div>';
+
+  h += '<h2>Key risks &amp; notes</h2>';
+  h += '<div style="font-size:12.5px;white-space:pre-wrap;min-height:36px;color:'+(risks?'#1a1a18':'#b4b2a9')+';">'+(risks||'None entered.')+'</div>';
+  h += '<div style="margin-top:20px;font-size:10px;color:#b4b2a9;border-top:0.5px solid #eee;padding-top:8px;">Telos EV Infrastructure — high-level L2 sniff test. Host is a net payer at realistic utilization. Unlevered. Not full underwriting.</div>';
+  h += '<div class="noprint" style="margin-top:16px;text-align:center;"><button onclick="window.print()" style="padding:9px 22px;font-size:13px;border:none;border-radius:8px;background:#1a1a18;color:#fff;cursor:pointer;">Print / Save as PDF</button></div>';
+  h += '</body></html>';
+  w.document.write(h); w.document.close();
 }
 
 
